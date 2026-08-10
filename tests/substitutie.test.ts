@@ -5,6 +5,10 @@ test('tekst zonder verwijzingen is één segment', () => {
   expect(parseStaptekst('Giet de pasta af.')).toEqual([{ type: 'tekst', waarde: 'Giet de pasta af.' }]);
 });
 
+test('lege tekst is één tekstsegment', () => {
+  expect(parseStaptekst('')).toEqual([{ type: 'tekst', waarde: '' }]);
+});
+
 test('verwijzing middenin', () => {
   expect(parseStaptekst('Voeg {gehakt} toe.')).toEqual([
     { type: 'tekst', waarde: 'Voeg ' },

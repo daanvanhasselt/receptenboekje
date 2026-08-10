@@ -11,5 +11,6 @@ export function parseStaptekst(tekst: string): Segment[] {
     vorige = match.index + match[0].length;
   }
   if (vorige < tekst.length) segmenten.push({ type: 'tekst', waarde: tekst.slice(vorige) });
+  if (segmenten.length === 0) segmenten.push({ type: 'tekst', waarde: '' });
   return segmenten;
 }
