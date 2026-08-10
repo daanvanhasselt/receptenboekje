@@ -27,6 +27,7 @@
         "hoeveelheid": { "type": "number", "exclusiveMinimum": 0 },
         "eenheid": { "type": "string", "minLength": 1 },
         "schaling": { "enum": ["lineair", "stuks", "vast"] },
+        "categorie": { "enum": ["groente-en-fruit", "brood-en-bakkerij", "vlees-en-vis", "pasta-rijst-en-granen", "conserven-en-potten", "olie-en-sauzen", "kruiden-en-specerijen", "zuivel-en-eieren", "kaas", "diepvries", "overig"] },
         "notitie": { "type": "string" }
       }
     },

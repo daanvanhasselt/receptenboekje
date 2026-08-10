@@ -1,5 +1,21 @@
 export type Schaling = 'lineair' | 'stuks' | 'vast';
 
+export const CATEGORIEEN = [
+  'groente-en-fruit',
+  'brood-en-bakkerij',
+  'vlees-en-vis',
+  'pasta-rijst-en-granen',
+  'conserven-en-potten',
+  'olie-en-sauzen',
+  'kruiden-en-specerijen',
+  'zuivel-en-eieren',
+  'kaas',
+  'diepvries',
+  'overig',
+] as const;
+
+export type Categorie = (typeof CATEGORIEEN)[number];
+
 export interface Ingredient {
   id: string;
   naam: string;
@@ -7,6 +23,7 @@ export interface Ingredient {
   hoeveelheid?: number;
   eenheid?: string;
   schaling: Schaling;
+  categorie?: Categorie;
   notitie?: string;
 }
 
