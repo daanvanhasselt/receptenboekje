@@ -32,6 +32,7 @@ Stel de gebruiker alléén een vraag als het aantal personen nergens uit af te l
 - Telbare stuks (ui, ei, teen knoflook, citroen, paprika) → `"eenheid": "stuk"`, `"schaling": "stuks"`, én `meervoud` ("uien", "eieren", "tenen knoflook").
 - Smaakmakers en bakvet zonder echte maat ("naar smaak", "snufje", "scheutje om te bakken") → `"schaling": "vast"` zonder hoeveelheid, met `notitie`.
 - Al het andere → `"schaling": "lineair"` met `hoeveelheid` + `eenheid` uit: `g`, `ml`, `kg`, `l`, `el`, `tl`, `stuk`. Reken afwijkende maten om (kopje ≈ 250 ml, eetlepel = el).
+- Elk ingrediënt krijgt een `categorie` (supermarktschap) uit: `groente-en-fruit`, `brood-en-bakkerij`, `vlees-en-vis`, `pasta-rijst-en-granen`, `conserven-en-potten`, `olie-en-sauzen`, `kruiden-en-specerijen`, `zuivel-en-eieren`, `kaas`, `diepvries`, `overig`. Kies het schap waar je het product pakt (passata → `conserven-en-potten`, boter → `zuivel-en-eieren`, verse basilicum → `groente-en-fruit`); twijfel → `overig`.
 
 **Stappen.**
 - Elke hoeveelheid in een staptekst wordt een `{id}`-verwijzing: `"Voeg {gehakt} toe"` — nooit een hoeveelheid als losse tekst, ook niet gedeeltelijk ("de helft van {olijfolie}" mag wél: de verwijzing schaalt, de breuk is tekst).
@@ -54,12 +55,12 @@ Wordt `recepten/spaghetti-aglio-e-olio.json`:
   "personen": 2,
   "tags": ["pasta", "snel", "vega"],
   "ingredienten": [
-    { "id": "spaghetti", "naam": "spaghetti", "hoeveelheid": 200, "eenheid": "g", "schaling": "lineair" },
-    { "id": "knoflook", "naam": "teen knoflook", "meervoud": "tenen knoflook", "hoeveelheid": 4, "eenheid": "stuk", "schaling": "stuks" },
-    { "id": "peper", "naam": "rode peper", "meervoud": "rode pepers", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks" },
-    { "id": "olijfolie", "naam": "olijfolie", "hoeveelheid": 60, "eenheid": "ml", "schaling": "lineair" },
-    { "id": "peterselie", "naam": "verse peterselie", "schaling": "vast", "notitie": "handje, fijngehakt" },
-    { "id": "zout", "naam": "zout", "schaling": "vast", "notitie": "voor het kookwater" }
+    { "id": "spaghetti", "naam": "spaghetti", "hoeveelheid": 200, "eenheid": "g", "schaling": "lineair", "categorie": "pasta-rijst-en-granen" },
+    { "id": "knoflook", "naam": "teen knoflook", "meervoud": "tenen knoflook", "hoeveelheid": 4, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit" },
+    { "id": "peper", "naam": "rode peper", "meervoud": "rode pepers", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit" },
+    { "id": "olijfolie", "naam": "olijfolie", "hoeveelheid": 60, "eenheid": "ml", "schaling": "lineair", "categorie": "olie-en-sauzen" },
+    { "id": "peterselie", "naam": "verse peterselie", "schaling": "vast", "categorie": "groente-en-fruit", "notitie": "handje, fijngehakt" },
+    { "id": "zout", "naam": "zout", "schaling": "vast", "categorie": "kruiden-en-specerijen", "notitie": "voor het kookwater" }
   ],
   "stappen": [
     { "tekst": "Kook {spaghetti} al dente in ruim water met {zout}.", "duur": 10, "vereist": { "apparaat": "pan-water" } },

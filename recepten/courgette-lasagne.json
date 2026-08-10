@@ -6,15 +6,15 @@
   "foto": "courgette-lasagne.jpg",
   "bron": "https://miljuschka.nl/courgette-lasagne-recept/",
   "ingredienten": [
-    { "id": "courgette", "naam": "courgette", "meervoud": "courgettes", "hoeveelheid": 3, "eenheid": "stuk", "schaling": "stuks" },
-    { "id": "olijfolie", "naam": "olijfolie", "hoeveelheid": 2, "eenheid": "el", "schaling": "lineair" },
-    { "id": "ricotta", "naam": "ricotta", "hoeveelheid": 250, "eenheid": "g", "schaling": "lineair" },
-    { "id": "spinazie", "naam": "verse spinazie", "hoeveelheid": 500, "eenheid": "g", "schaling": "lineair" },
-    { "id": "basilicum", "naam": "verse basilicum", "schaling": "vast", "notitie": "handje, fijngesneden, plus extra om te serveren" },
-    { "id": "italiaanse-kruiden", "naam": "Italiaanse kruiden", "hoeveelheid": 1, "eenheid": "el", "schaling": "lineair" },
-    { "id": "zout-peper", "naam": "zout en peper", "schaling": "vast", "notitie": "naar smaak" },
-    { "id": "passata", "naam": "tomatenpassata", "hoeveelheid": 250, "eenheid": "ml", "schaling": "lineair" },
-    { "id": "mozzarella", "naam": "bol mozzarella", "meervoud": "bollen mozzarella", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks" }
+    { "id": "courgette", "naam": "courgette", "meervoud": "courgettes", "hoeveelheid": 3, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit" },
+    { "id": "olijfolie", "naam": "olijfolie", "hoeveelheid": 2, "eenheid": "el", "schaling": "lineair", "categorie": "olie-en-sauzen" },
+    { "id": "ricotta", "naam": "ricotta", "hoeveelheid": 250, "eenheid": "g", "schaling": "lineair", "categorie": "zuivel-en-eieren" },
+    { "id": "spinazie", "naam": "verse spinazie", "hoeveelheid": 500, "eenheid": "g", "schaling": "lineair", "categorie": "groente-en-fruit" },
+    { "id": "basilicum", "naam": "verse basilicum", "schaling": "vast", "categorie": "groente-en-fruit", "notitie": "handje, fijngesneden, plus extra om te serveren" },
+    { "id": "italiaanse-kruiden", "naam": "Italiaanse kruiden", "hoeveelheid": 1, "eenheid": "el", "schaling": "lineair", "categorie": "kruiden-en-specerijen" },
+    { "id": "zout-peper", "naam": "zout en peper", "schaling": "vast", "categorie": "kruiden-en-specerijen", "notitie": "naar smaak" },
+    { "id": "passata", "naam": "tomatenpassata", "hoeveelheid": 250, "eenheid": "ml", "schaling": "lineair", "categorie": "conserven-en-potten" },
+    { "id": "mozzarella", "naam": "bol mozzarella", "meervoud": "bollen mozzarella", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "categorie": "kaas" }
   ],
   "stappen": [
     { "tekst": "Snijd {courgette} in dunne plakken (zo'n 16 stuks) en leg ze op een bakplaat met bakpapier. Schenk de helft van {olijfolie} erover en breng op smaak met {zout-peper}. Bak de plakken zacht in de oven, ±15–20 minuten.", "duur": 8, "wachttijd": 18, "vereist": { "apparaat": "oven", "temperatuur": 200 } },

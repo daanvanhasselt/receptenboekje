@@ -45,6 +45,7 @@ const bron = recept.bron !== undefined ? bronWeergave(recept.bron) : undefined;
     {plaatsing.vooraf.map((tekst) => <Waarschuwing tekst={tekst} />)}
     <PersonenKiezer basis={recept.personen} />
     <IngredientenLijst ingredienten={recept.ingredienten} />
+    <button type="button" class="boodschappen-knop" data-boodschappen>Zet op boodschappenlijst</button>
     <h2>Bereiding</h2>
     <ol class="stappen">
       {recept.stappen.map((stap, i) => (
@@ -63,8 +64,9 @@ const bron = recept.bron !== undefined ? bronWeergave(recept.bron) : undefined;
 </Basis>
 
 <script>
+  import { bewaarLijst, laadLijst, maakItems } from '../../lib/boodschappen';
   import { ingredientDelen, ingredientTekst } from '../../lib/schalen';
-  import type { Ingredient, Schaling } from '../../lib/typen';
+  import type { Categorie, Ingredient, Schaling } from '../../lib/typen';
 
   const artikel = document.querySelector<HTMLElement>('article.recept')!;
   const basis = Number(artikel.dataset.basisPersonen);
@@ -80,6 +82,7 @@ const bron = recept.bron !== undefined ? bronWeergave(recept.bron) : undefined;
       hoeveelheid: dataset.hoeveelheid !== undefined ? Number(dataset.hoeveelheid) : undefined,
       eenheid: dataset.eenheid,
       schaling: dataset.schaling as Schaling,
+      categorie: dataset.categorie as Categorie | undefined,
     };
   }
 
@@ -109,6 +112,20 @@ const bron = recept.bron !== undefined ? bronWeergave(recept.bron) : undefined;
   artikel.querySelector('[data-meer]')!.addEventListener('click', () => {
     personen += 1;
     werkBij();
+  });
+  const boodschappenKnop = artikel.querySelector<HTMLButtonElement>('[data-boodschappen]')!;
+  boodschappenKnop.addEventListener('click', () => {
+    const factor = personen / basis;
+    const ingredienten = [...artikel.querySelectorAll<HTMLElement>('[data-ingredient-rij]')].map((rij) =>
+      ingredientVan(rij.dataset)
+    );
+    const lijst = laadLijst();
+    lijst.items.push(...maakItems(ingredienten, factor));
+    bewaarLijst(lijst);
+    boodschappenKnop.textContent = 'Toegevoegd ✓';
+    setTimeout(() => {
+      boodschappenKnop.textContent = 'Zet op boodschappenlijst';
+    }, 2000);
   });
   werkBij();
 </script>

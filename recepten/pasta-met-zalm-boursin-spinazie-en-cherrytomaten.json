@@ -4,14 +4,14 @@
   "personen": 2,
   "tags": ["pasta", "oven", "vis"],
   "ingredienten": [
-    { "id": "zalm", "naam": "zalmmoot", "meervoud": "zalmmoten", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks" },
-    { "id": "boursin", "naam": "Boursin knoflook & fijne kruiden", "hoeveelheid": 80, "eenheid": "g", "schaling": "lineair" },
-    { "id": "cherrytomaten", "naam": "cherrytomaten", "hoeveelheid": 250, "eenheid": "g", "schaling": "lineair" },
-    { "id": "spinazie", "naam": "verse spinazie", "hoeveelheid": 120, "eenheid": "g", "schaling": "lineair" },
-    { "id": "olijfolie", "naam": "olijfolie", "hoeveelheid": 1, "eenheid": "el", "schaling": "lineair" },
-    { "id": "peper-chili", "naam": "peper en chilivlokken", "schaling": "vast", "notitie": "naar smaak; de Boursin is al vrij zout" },
-    { "id": "spaghetti", "naam": "spaghetti", "hoeveelheid": 150, "eenheid": "g", "schaling": "lineair" },
-    { "id": "kaas", "naam": "geraspte belegen kaas", "schaling": "vast", "notitie": "om te serveren" }
+    { "id": "zalm", "naam": "zalmmoot", "meervoud": "zalmmoten", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "categorie": "vlees-en-vis" },
+    { "id": "boursin", "naam": "Boursin knoflook & fijne kruiden", "hoeveelheid": 80, "eenheid": "g", "schaling": "lineair", "categorie": "kaas" },
+    { "id": "cherrytomaten", "naam": "cherrytomaten", "hoeveelheid": 250, "eenheid": "g", "schaling": "lineair", "categorie": "groente-en-fruit" },
+    { "id": "spinazie", "naam": "verse spinazie", "hoeveelheid": 120, "eenheid": "g", "schaling": "lineair", "categorie": "groente-en-fruit" },
+    { "id": "olijfolie", "naam": "olijfolie", "hoeveelheid": 1, "eenheid": "el", "schaling": "lineair", "categorie": "olie-en-sauzen" },
+    { "id": "peper-chili", "naam": "peper en chilivlokken", "schaling": "vast", "categorie": "kruiden-en-specerijen", "notitie": "naar smaak; de Boursin is al vrij zout" },
+    { "id": "spaghetti", "naam": "spaghetti", "hoeveelheid": 150, "eenheid": "g", "schaling": "lineair", "categorie": "pasta-rijst-en-granen" },
+    { "id": "kaas", "naam": "geraspte belegen kaas", "schaling": "vast", "categorie": "kaas", "notitie": "om te serveren" }
   ],
   "stappen": [
     { "tekst": "Leg {zalm} in een ovenbestendige pan of ovenschaal samen met {boursin}, {cherrytomaten} en {spinazie}. Schenk {olijfolie} over het geheel en breng op smaak met {peper-chili}.", "duur": 5 },
