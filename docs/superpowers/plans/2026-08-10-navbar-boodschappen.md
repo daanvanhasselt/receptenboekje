@@ -608,6 +608,8 @@ Voeg aan elk ingrediënt `"categorie"` toe (na `"schaling"`, vóór een eventuel
 
 `recepten/spaghetti-bolognese.json`: olijfolie → `olie-en-sauzen`, boter → `zuivel-en-eieren`, ui → `groente-en-fruit`, winterpeen → `groente-en-fruit`, bleekselderij → `groente-en-fruit`, pancetta → `vlees-en-vis`, gehakt → `vlees-en-vis`, knoflook → `groente-en-fruit`, tomatenpuree → `conserven-en-potten`, wijn → `overig`, tomaten → `conserven-en-potten`, melk → `zuivel-en-eieren`, laurier → `kruiden-en-specerijen`, kruiden → `kruiden-en-specerijen`, spaghetti → `pasta-rijst-en-granen`, parmezaan → `kaas`.
 
+Staan er inmiddels méér JSON-bestanden in `recepten/` (er wordt parallel geïmporteerd — controleer met `ls recepten/*.json`), geef dan ook die ingrediënten een `categorie` volgens de skillregel uit Step 5 (het schap waar je het product pakt; twijfel → `overig`).
+
 - [ ] **Step 5: Importskill bijwerken**
 
 In `.claude/skills/recept-import/SKILL.md`, sectie "Regels voor de JSON" onder **Ingrediënten**, voeg een bullet toe na de "Al het andere"-bullet:
