@@ -1,5 +1,5 @@
 import { APPARATEN, type Apparaat } from './apparaten';
-import { cumulatieveTijd, formatteerMinuten, totaalTijd } from './tijden';
+import { cumulatieveTijd } from './tijden';
 import type { Stap } from './typen';
 
 export interface WaarschuwingsPlaatsing {
@@ -49,10 +49,4 @@ export function plaatsWaarschuwingen(
   });
 
   return { vooraf, perStap };
-}
-
-export function wachttijdSamenvatting(stappen: Stap[]): string | null {
-  if (!stappen.some((stap) => (stap.wachttijd ?? 0) >= 30)) return null;
-  const { actief, wachten } = totaalTijd(stappen);
-  return `Reken naast ±${formatteerMinuten(actief)} actief koken op ±${formatteerMinuten(wachten)} wachttijd.`;
 }

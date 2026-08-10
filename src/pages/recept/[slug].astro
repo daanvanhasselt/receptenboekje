@@ -8,7 +8,7 @@ import Basis from '../../layouts/Basis.astro';
 import { fotoVoor } from '../../lib/fotos';
 import { laadRecepten } from '../../lib/laden';
 import { formatteerMinuten, totaalTijd } from '../../lib/tijden';
-import { plaatsWaarschuwingen, wachttijdSamenvatting } from '../../lib/waarschuwingen';
+import { plaatsWaarschuwingen } from '../../lib/waarschuwingen';
 import type { ReceptMetSlug } from '../../lib/typen';
 
 export function getStaticPaths() {
@@ -17,7 +17,6 @@ export function getStaticPaths() {
 
 const { recept } = Astro.props as { recept: ReceptMetSlug };
 const plaatsing = plaatsWaarschuwingen(recept.stappen);
-const samenvatting = wachttijdSamenvatting(recept.stappen);
 const tijd = totaalTijd(recept.stappen);
 const foto = fotoVoor(recept.foto);
 ---
@@ -29,7 +28,6 @@ const foto = fotoVoor(recept.foto);
     <p class="tijden">
       🍳 {formatteerMinuten(tijd.actief)} actief{tijd.wachten > 0 && ` · ⏳ ${formatteerMinuten(tijd.wachten)} wachten`}
     </p>
-    {samenvatting && <Waarschuwing tekst={samenvatting} />}
     {plaatsing.vooraf.map((tekst) => <Waarschuwing tekst={tekst} />)}
     <PersonenKiezer basis={recept.personen} />
     <IngredientenLijst ingredienten={recept.ingredienten} />

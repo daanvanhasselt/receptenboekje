@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { plaatsWaarschuwingen, wachttijdSamenvatting } from '../src/lib/waarschuwingen';
+import { plaatsWaarschuwingen } from '../src/lib/waarschuwingen';
 import type { Stap } from '../src/lib/typen';
 
 function stap(duur: number, extra: Partial<Stap> = {}): Stap {
@@ -45,11 +45,4 @@ test('lange wachttijd → melding "tegen het einde van de wachttijd"', () => {
   const stappen = [stap(12), stap(2, { wachttijd: 60 }), stap(8), stap(2, { vereist: { apparaat: 'oven', temperatuur: 220 } })];
   const p = plaatsWaarschuwingen(stappen);
   expect(p.perStap[1]).toEqual(['Tegen het einde van de wachttijd: zet de oven aan op 220°C.']);
-});
-
-test('wachttijdSamenvatting alleen bij wachttijd >= 30', () => {
-  expect(wachttijdSamenvatting([stap(10), stap(2, { wachttijd: 60 })])).toBe(
-    'Reken naast ±12 min. actief koken op ±1 uur wachttijd.'
-  );
-  expect(wachttijdSamenvatting([stap(10), stap(2, { wachttijd: 10 })])).toBeNull();
 });
