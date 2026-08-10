@@ -1,0 +1,32 @@
+{
+  "titel": "Gehaktballetjes in tomatensaus met courgette",
+  "beschrijving": "Rauw ingelegde gehaktballetjes die in de oven garen in een tomatensaus met courgette en ui.",
+  "personen": 2,
+  "tags": ["oven", "italiaans"],
+  "foto": "gehaktballetjes-in-tomatensaus-met-courgette.jpg",
+  "ingredienten": [
+    { "id": "gehakt", "naam": "kip- of half-om-halfgehakt", "hoeveelheid": 300, "eenheid": "g", "schaling": "lineair", "categorie": "vlees-en-vis", "notitie": "of 300 g verse ongebakken (mini)gehaktballetjes; sla dan stap 1 over" },
+    { "id": "paneermeel", "naam": "paneermeel", "hoeveelheid": 3, "eenheid": "el", "schaling": "lineair", "categorie": "brood-en-bakkerij" },
+    { "id": "ei", "naam": "ei", "meervoud": "eieren", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "categorie": "zuivel-en-eieren" },
+    { "id": "oregano", "naam": "gedroogde oregano", "hoeveelheid": 1, "eenheid": "tl", "schaling": "lineair", "categorie": "kruiden-en-specerijen" },
+    { "id": "paprikapoeder", "naam": "paprikapoeder", "hoeveelheid": 0.5, "eenheid": "tl", "schaling": "lineair", "categorie": "kruiden-en-specerijen" },
+    { "id": "olijfolie", "naam": "olijfolie", "hoeveelheid": 1, "eenheid": "el", "schaling": "lineair", "categorie": "olie-en-sauzen" },
+    { "id": "ui", "naam": "ui", "meervoud": "uien", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit", "notitie": "in halve ringen" },
+    { "id": "knoflook", "naam": "teen knoflook", "meervoud": "tenen knoflook", "hoeveelheid": 2, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit" },
+    { "id": "courgette", "naam": "courgette", "meervoud": "courgettes", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit", "notitie": "in halve maantjes" },
+    { "id": "passata", "naam": "passata", "hoeveelheid": 500, "eenheid": "ml", "schaling": "lineair", "categorie": "conserven-en-potten" },
+    { "id": "suiker", "naam": "suiker", "schaling": "vast", "categorie": "overig", "notitie": "snufje" },
+    { "id": "chilivlokken", "naam": "chilivlokken", "schaling": "vast", "categorie": "kruiden-en-specerijen", "notitie": "naar smaak" },
+    { "id": "basilicum", "naam": "verse basilicum", "schaling": "vast", "categorie": "groente-en-fruit", "notitie": "handvol" },
+    { "id": "spaghetti", "naam": "spaghetti", "hoeveelheid": 150, "eenheid": "g", "schaling": "lineair", "categorie": "pasta-rijst-en-granen", "notitie": "optioneel; of goed brood erbij" },
+    { "id": "kaas", "naam": "geraspte belegen kaas of Parmezaan", "schaling": "vast", "categorie": "kaas", "notitie": "optioneel, aan tafel" },
+    { "id": "zout-peper", "naam": "zout & zwarte peper", "schaling": "vast", "categorie": "kruiden-en-specerijen", "notitie": "naar smaak" }
+  ],
+  "stappen": [
+    { "tekst": "Meng {gehakt} met {paneermeel}, {ei}, {oregano}, {paprikapoeder} en wat {zout-peper} — niet langer kneden dan nodig. Draai er met natte handen balletjes van ter grootte van een walnoot. Kant-en-klaar? Sla deze stap over.", "duur": 10, "vereist": { "apparaat": "oven", "temperatuur": 200 } },
+    { "tekst": "Doe {ui}, {knoflook} en {courgette} in een cocotte (24–28 cm). Schenk {olijfolie} erover, breng op smaak met {zout-peper} en schep om zodat alles bedekt is.", "duur": 3 },
+    { "tekst": "Giet {passata} over de groenten en roer er {suiker} en naar smaak {chilivlokken} door. Verdeel de balletjes over de pan en druk ze half in de saus, zodat de bovenkant net uitsteekt en kan kleuren.", "duur": 2 },
+    { "tekst": "Zet de cocotte zonder deksel in de oven en gaar tot de saus stevig bubbelt en de grootste balletjes vanbinnen niet meer roze zijn; keer ze halverwege. Kook intussen eventueel {spaghetti}.", "duur": 5, "wachttijd": 30 },
+    { "tekst": "Proef de saus en corrigeer met {zout-peper}. Scheur {basilicum} erover en serveer uit de pan, met de spaghetti erdoor of brood om te dopen. {kaas} erover aan tafel.", "duur": 3 }
+  ]
+}
