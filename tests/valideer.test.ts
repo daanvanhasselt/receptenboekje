@@ -57,3 +57,11 @@ test('ontbrekende foto', () => {
   const met = { ...geldig, foto: 'test.jpg' };
   expect(valideerRecept('test.json', met, () => false).map((f) => f.fout)).toEqual(['foto "test.jpg" niet gevonden']);
 });
+
+test('bron is toegestaan als optioneel veld', () => {
+  expect(valideerRecept('test.json', { ...geldig, bron: 'https://voorbeeld.nl/lasagne' })).toEqual([]);
+});
+
+test('lege bron is ongeldig', () => {
+  expect(valideerRecept('test.json', { ...geldig, bron: '' }).length).toBeGreaterThan(0);
+});

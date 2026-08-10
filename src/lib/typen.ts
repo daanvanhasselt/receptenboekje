@@ -28,6 +28,7 @@ export interface Recept {
   personen: number;
   tags: string[];
   foto?: string;
+  bron?: string;
   ingredienten: Ingredient[];
   stappen: Stap[];
 }

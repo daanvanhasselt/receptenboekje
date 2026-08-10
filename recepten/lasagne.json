@@ -3,6 +3,7 @@
   "beschrijving": "Klassieke lasagne met ragù en bechamel.",
   "personen": 4,
   "tags": ["pasta", "oven", "italiaans"],
+  "bron": "Klassiek familierecept",
   "ingredienten": [
     { "id": "gehakt", "naam": "rundergehakt", "hoeveelheid": 500, "eenheid": "g", "schaling": "lineair" },
     { "id": "ui", "naam": "ui", "meervoud": "uien", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks" },

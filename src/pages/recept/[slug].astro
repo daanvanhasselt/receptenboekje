@@ -5,6 +5,7 @@ import PersonenKiezer from '../../components/PersonenKiezer.astro';
 import Stap from '../../components/Stap.astro';
 import Waarschuwing from '../../components/Waarschuwing.astro';
 import Basis from '../../layouts/Basis.astro';
+import { bronWeergave } from '../../lib/bron';
 import { fotoVoor } from '../../lib/fotos';
 import { laadRecepten } from '../../lib/laden';
 import { formatteerMinuten, totaalTijd } from '../../lib/tijden';
@@ -19,6 +20,7 @@ const { recept } = Astro.props as { recept: ReceptMetSlug };
 const plaatsing = plaatsWaarschuwingen(recept.stappen);
 const tijd = totaalTijd(recept.stappen);
 const foto = fotoVoor(recept.foto);
+const bron = recept.bron !== undefined ? bronWeergave(recept.bron) : undefined;
 ---
 <Basis titel={recept.titel}>
   <article class="recept" data-slug={recept.slug} data-basis-personen={recept.personen}>
@@ -40,6 +42,11 @@ const foto = fotoVoor(recept.foto);
         </li>
       ))}
     </ol>
+    {bron && (
+      <p class="bron">
+        Bron: {bron.url ? <a href={bron.url}>{bron.tekst}</a> : bron.tekst}
+      </p>
+    )}
   </article>
 </Basis>
 
