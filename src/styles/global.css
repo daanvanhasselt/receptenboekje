@@ -313,3 +313,53 @@ main { padding-bottom: 7rem; }
 
 .leeg { color: var(--inkt-zacht); }
 .leeg a { color: var(--accent); }
+
+/* Losse boodschappen toevoegen */
+.toevoegen { display: flex; gap: 0.5rem; margin: 0.25rem 0 1.25rem; }
+.toevoegen input {
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  font-size: 1rem;
+  padding: 0.7rem 1rem;
+  border: none;
+  border-radius: 1rem;
+  background: var(--kaart);
+  box-shadow: var(--schaduw);
+  color: var(--inkt);
+}
+.toevoegen input::placeholder { color: var(--inkt-zacht); }
+.toevoegen select {
+  font: inherit;
+  font-size: 0.85rem;
+  max-width: 8.5rem;
+  border: none;
+  border-radius: 1rem;
+  padding: 0 0.6rem;
+  background: var(--kaart);
+  box-shadow: var(--schaduw);
+  color: var(--inkt);
+}
+.toevoegen button {
+  width: 3rem;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 1rem;
+  background: var(--accent);
+  color: #fff;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+.toevoegen button:hover { background: var(--accent-donker); }
+.toevoegen input:focus, .toevoegen select:focus { outline: 2px solid var(--accent); }
+
+.rij-verwijder {
+  border: none;
+  background: none;
+  color: var(--inkt-zacht);
+  font-size: 1.2rem;
+  line-height: 1;
+  padding: 0 0 0 0.5rem;
+  cursor: pointer;
+}
+.rij-verwijder:hover { color: var(--accent-donker); }

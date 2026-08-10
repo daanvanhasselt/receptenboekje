@@ -1,9 +1,20 @@
 ---
 import Basis from '../layouts/Basis.astro';
+import { CATEGORIE_LABELS } from '../lib/boodschappen';
 import { pad } from '../lib/pad';
+import { CATEGORIEEN } from '../lib/typen';
 ---
 <Basis titel="Boodschappen" actief="boodschappen">
   <h1>🛒 Boodschappen</h1>
+  <form class="toevoegen" id="toevoegen">
+    <input type="text" id="invoer" placeholder="Voeg toe… (bijv. 2 kg appels)" autocomplete="off" />
+    <select id="invoer-categorie" aria-label="Categorie">
+      {CATEGORIEEN.map((categorie) => (
+        <option value={categorie} selected={categorie === 'overig'}>{CATEGORIE_LABELS[categorie]}</option>
+      ))}
+    </select>
+    <button type="submit" aria-label="Voeg toe">+</button>
+  </form>
   <p class="leeg" id="leeg" hidden>
     Nog niets op de lijst. Open een <a href={pad('')}>recept</a> en druk op "Zet op boodschappenlijst".
   </p>
@@ -12,11 +23,15 @@ import { pad } from '../lib/pad';
 </Basis>
 
 <script>
-  import { bewaarLijst, laadLijst, perCategorie, samengevoegd, CATEGORIE_LABELS } from '../lib/boodschappen';
+  import { bewaarLijst, laadLijst, parseInvoer, perCategorie, samengevoegd, verwijderRij, CATEGORIE_LABELS } from '../lib/boodschappen';
+  import type { Categorie } from '../lib/typen';
 
   const lijstElement = document.querySelector<HTMLElement>('#lijst')!;
   const leegElement = document.querySelector<HTMLElement>('#leeg')!;
   const wisKnop = document.querySelector<HTMLButtonElement>('#wis')!;
+  const formulier = document.querySelector<HTMLFormElement>('#toevoegen')!;
+  const invoer = document.querySelector<HTMLInputElement>('#invoer')!;
+  const invoerCategorie = document.querySelector<HTMLSelectElement>('#invoer-categorie')!;
 
   function toon() {
     const lijst = laadLijst();
@@ -55,6 +70,17 @@ import { pad } from '../lib/pad';
           hoeveelheid.textContent = rij.hoeveelheid;
           label.append(hoeveelheid);
         }
+        const verwijder = document.createElement('button');
+        verwijder.type = 'button';
+        verwijder.className = 'rij-verwijder';
+        verwijder.textContent = '×';
+        verwijder.setAttribute('aria-label', `Verwijder ${rij.tekst}`);
+        verwijder.addEventListener('click', (gebeurtenis) => {
+          gebeurtenis.preventDefault();
+          bewaarLijst(verwijderRij(laadLijst(), rij.sleutel));
+          toon();
+        });
+        label.append(verwijder);
         li.append(label);
         ul.append(li);
       }
@@ -64,6 +90,18 @@ import { pad } from '../lib/pad';
 
   wisKnop.addEventListener('click', () => {
     bewaarLijst({ items: [], afgevinkt: [] });
+    toon();
+  });
+
+  formulier.addEventListener('submit', (gebeurtenis) => {
+    gebeurtenis.preventDefault();
+    const geparsed = parseInvoer(invoer.value);
+    if (geparsed === undefined) return;
+    const lijst = laadLijst();
+    lijst.items.push({ ...geparsed, categorie: invoerCategorie.value as Categorie });
+    bewaarLijst(lijst);
+    invoer.value = '';
+    invoer.focus();
     toon();
   });
 
