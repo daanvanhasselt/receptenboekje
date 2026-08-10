@@ -8,6 +8,7 @@ import Basis from '../../layouts/Basis.astro';
 import { bronWeergave } from '../../lib/bron';
 import { fotoVoor } from '../../lib/fotos';
 import { laadRecepten } from '../../lib/laden';
+import { pad } from '../../lib/pad';
 import { formatteerMinuten, totaalTijd } from '../../lib/tijden';
 import { plaatsWaarschuwingen } from '../../lib/waarschuwingen';
 import type { ReceptMetSlug } from '../../lib/typen';
@@ -24,12 +25,23 @@ const bron = recept.bron !== undefined ? bronWeergave(recept.bron) : undefined;
 ---
 <Basis titel={recept.titel}>
   <article class="recept" data-slug={recept.slug} data-basis-personen={recept.personen}>
+    <a class="terug" href={pad('')} aria-label="Terug naar overzicht">←</a>
     {foto && <Image class="recept-foto" src={foto} alt={recept.titel} widths={[480, 960]} sizes="100vw" />}
     <h1>{recept.titel}</h1>
     <p class="beschrijving">{recept.beschrijving}</p>
-    <p class="tijden">
-      🍳 {formatteerMinuten(tijd.actief)} actief{tijd.wachten > 0 && ` · ⏳ ${formatteerMinuten(tijd.wachten)} wachten`}
-    </p>
+    <div class="statrij">
+      <div class="stat"><strong>{formatteerMinuten(tijd.actief)}</strong><span>actief</span></div>
+      {tijd.wachten > 0 && (
+        <div class="stat"><strong>{formatteerMinuten(tijd.wachten)}</strong><span>wachten</span></div>
+      )}
+      <div class="stat"><strong data-personen>{recept.personen}</strong><span>personen</span></div>
+      <div class="stat"><strong>{recept.ingredienten.length}</strong><span>ingrediënten</span></div>
+    </div>
+    {recept.tags.length > 0 && (
+      <div class="tagfilters">
+        {recept.tags.map((tag) => <span class="tag">{tag}</span>)}
+      </div>
+    )}
     {plaatsing.vooraf.map((tekst) => <Waarschuwing tekst={tekst} />)}
     <PersonenKiezer basis={recept.personen} />
     <IngredientenLijst ingredienten={recept.ingredienten} />
@@ -42,38 +54,44 @@ const bron = recept.bron !== undefined ? bronWeergave(recept.bron) : undefined;
         </li>
       ))}
     </ol>
-    {bron && (
-      <p class="bron">
-        Bron: {bron.url ? <a href={bron.url}>{bron.tekst}</a> : bron.tekst}
-      </p>
-    )}
   </article>
 </Basis>
 
 <script>
-  import { ingredientTekst } from '../../lib/schalen';
+  import { ingredientDelen, ingredientTekst } from '../../lib/schalen';
   import type { Ingredient, Schaling } from '../../lib/typen';
 
   const artikel = document.querySelector<HTMLElement>('article.recept')!;
   const basis = Number(artikel.dataset.basisPersonen);
   const sleutel = `personen:${artikel.dataset.slug}`;
-  const uitvoer = artikel.querySelector<HTMLOutputElement>('[data-personen]')!;
+  const uitvoeren = [...artikel.querySelectorAll<HTMLElement>('[data-personen]')];
   let personen = Number(localStorage.getItem(sleutel)) || basis;
 
+  function ingredientVan(dataset: DOMStringMap): Ingredient {
+    return {
+      id: '',
+      naam: dataset.naam!,
+      meervoud: dataset.meervoud,
+      hoeveelheid: dataset.hoeveelheid !== undefined ? Number(dataset.hoeveelheid) : undefined,
+      eenheid: dataset.eenheid,
+      schaling: dataset.schaling as Schaling,
+    };
+  }
+
   function werkBij() {
-    uitvoer.textContent = String(personen);
+    for (const uitvoer of uitvoeren) uitvoer.textContent = String(personen);
     localStorage.setItem(sleutel, String(personen));
     const factor = personen / basis;
     for (const span of artikel.querySelectorAll<HTMLElement>('[data-ingredient]')) {
-      const ingredient: Ingredient = {
-        id: '',
-        naam: span.dataset.naam!,
-        meervoud: span.dataset.meervoud,
-        hoeveelheid: span.dataset.hoeveelheid !== undefined ? Number(span.dataset.hoeveelheid) : undefined,
-        eenheid: span.dataset.eenheid,
-        schaling: span.dataset.schaling as Schaling,
-      };
-      span.textContent = ingredientTekst(ingredient, factor);
+      span.textContent = ingredientTekst(ingredientVan(span.dataset), factor);
+    }
+    for (const rij of artikel.querySelectorAll<HTMLElement>('[data-ingredient-rij]')) {
+      const delen = ingredientDelen(ingredientVan(rij.dataset), factor);
+      rij.querySelector('[data-doel-naam]')!.textContent = delen.naam;
+      const hoeveelheidDoel = rij.querySelector('[data-doel-hoeveelheid]');
+      if (hoeveelheidDoel !== null && delen.hoeveelheid !== undefined) {
+        hoeveelheidDoel.textContent = delen.hoeveelheid;
+      }
     }
   }
 
