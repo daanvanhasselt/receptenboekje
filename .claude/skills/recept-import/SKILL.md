@@ -5,7 +5,7 @@ description: Zet een recept (URL, afbeelding of geplakte tekst) om naar het gest
 
 # Recept importeren
 
-Zet de gegeven invoer om naar één nieuw bestand in `recepten/` volgens `schema/recept.schema.json`: gevalideerd, gecommit, met rapport. Push niet — dat beslist de gebruiker.
+Zet de gegeven invoer om naar één nieuw bestand in `recepten/` volgens `schema/recept.schema.json`: gevalideerd, gecommit, gepusht (het recept gaat dus direct live), met rapport.
 
 ## Werkwijze
 
@@ -19,8 +19,8 @@ Zet de gegeven invoer om naar één nieuw bestand in `recepten/` volgens `schema
 4. **JSON opbouwen** volgens de regels hieronder.
 5. **Foto.** Heeft de bron een receptfoto (foto-URL uit de JSON-LD, of de invoer wás een foto van het gerecht — een kookboekpagina vol tekst is géén receptfoto): `npx tsx scripts/foto-import.ts <foto-url-of-pad> <slug> <pagina-url>` — de derde parameter laat het script bij een geblokkeerde download de foto via de browsercontext van de receptpagina ophalen. Zet `"foto": "<slug>.jpg"` in de JSON. Geen foto of mislukt → veld weglaten en dit in het rapport melden.
 6. **Poort.** `npm run valideer && npm test` — beide moeten groen. Fouten eerst fixen; de foutmeldingen noemen bestand en veld.
-7. **Commit.** `git add recepten/ && git commit -m "Recept toegevoegd: <titel>"`.
-8. **Rapport.** Meld: samenvatting (titel, personen, tags, totaaltijd), álle aannames en schattingen (met stapnummer), en wat er niet te vinden was (foto, tijden, personen).
+7. **Commit en push.** `git add recepten/ && git commit -m "Recept toegevoegd: <titel>" && git push` — de deploy-Action zet het recept daarna automatisch live. Commit alléén het nieuwe recept (+ foto); staan er andere wijzigingen in de werkboom, laat die staan.
+8. **Rapport.** Meld: samenvatting (titel, personen, tags, totaaltijd), álle aannames en schattingen (met stapnummer), wat er niet te vinden was (foto, tijden, personen), en dat het recept gepusht is.
 
 Stel de gebruiker alléén een vraag als het aantal personen nergens uit af te leiden is. Al het andere: beste aanname doen en rapporteren.
 
