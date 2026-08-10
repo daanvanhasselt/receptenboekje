@@ -30,7 +30,7 @@ export function formatteerHoeveelheid(waarde: number, eenheid?: string): string 
     getal = String(waarde).replace('.', ',');
   } else {
     const heel = Math.floor(waarde + 1e-9);
-    const rest = Number((waarde - heel).toFixed(2));
+    const rest = Number((waarde - heel).toFixed(4));
     const breuk = BREUKEN[String(rest)];
     if (breuk !== undefined) getal = heel > 0 ? `${heel}${breuk}` : breuk;
     else getal = String(waarde).replace('.', ',');

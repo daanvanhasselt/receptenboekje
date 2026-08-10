@@ -38,6 +38,9 @@ describe('formatteerHoeveelheid', () => {
   test('behoudt exacte basishoeveelheid met meer dan twee decimalen', () => {
     expect(formatteerHoeveelheid(1.125, 'l')).toBe('1,125 l');
   });
+  test('behoudt exacte niet-metrische basishoeveelheid', () => {
+    expect(formatteerHoeveelheid(1.249, 'el')).toBe('1,249 el');
+  });
   test('breuken voor lepels', () => {
     expect(formatteerHoeveelheid(0.75, 'tl')).toBe('¾ tl');
     expect(formatteerHoeveelheid(1.5, 'el')).toBe('1½ el');
