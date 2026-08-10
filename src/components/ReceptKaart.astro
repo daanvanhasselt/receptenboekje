@@ -1,0 +1,28 @@
+---
+import { Image } from 'astro:assets';
+import { fotoVoor } from '../lib/fotos';
+import { pad } from '../lib/pad';
+import { formatteerMinuten, totaalTijd } from '../lib/tijden';
+import type { ReceptMetSlug } from '../lib/typen';
+
+const { recept } = Astro.props as { recept: ReceptMetSlug };
+const tijd = totaalTijd(recept.stappen);
+const foto = fotoVoor(recept.foto);
+const zoektekst = [recept.titel, ...recept.tags, ...recept.ingredienten.map((ingredient) => ingredient.naam)]
+  .join(' ')
+  .toLowerCase();
+---
+<a class="kaart" href={pad(`recept/${recept.slug}/`)} data-zoek={zoektekst} data-tags={recept.tags.join(' ')}>
+  {foto ? (
+    <Image src={foto} alt="" widths={[480]} sizes="(max-width: 40rem) 100vw, 20rem" />
+  ) : (
+    <div class="kaart-placeholder" aria-hidden="true">{recept.titel.slice(0, 1)}</div>
+  )}
+  <div class="kaart-tekst">
+    <h2>{recept.titel}</h2>
+    <p class="tijden">
+      🍳 {formatteerMinuten(tijd.actief)}{tijd.wachten > 0 && ` · ⏳ ${formatteerMinuten(tijd.wachten)}`}
+    </p>
+    <p class="kaart-tags">{recept.tags.join(' · ')}</p>
+  </div>
+</a>

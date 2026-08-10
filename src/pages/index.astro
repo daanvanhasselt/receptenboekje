@@ -1,7 +1,53 @@
 ---
+import ReceptKaart from '../components/ReceptKaart.astro';
+import Basis from '../layouts/Basis.astro';
+import { laadRecepten } from '../lib/laden';
+
+const recepten = laadRecepten();
+const alleTags = [...new Set(recepten.flatMap((recept) => recept.tags))].sort();
 ---
-<!doctype html>
-<html lang="nl">
-  <head><meta charset="utf-8" /><title>Recepten</title></head>
-  <body><p>In aanbouw</p></body>
-</html>
+<Basis titel="Recepten">
+  <h1>Recepten</h1>
+  <input class="zoekbalk" type="search" id="zoek" placeholder="Zoek op naam, tag of ingrediënt…" />
+  <div class="tagfilters" id="tagfilters">
+    {alleTags.map((tag) => (
+      <button type="button" class="tag" data-tag={tag}>{tag}</button>
+    ))}
+  </div>
+  <div class="kaarten">
+    {recepten.map((recept) => (
+      <ReceptKaart recept={recept} />
+    ))}
+  </div>
+  <p id="geen-resultaten" hidden>Geen recepten gevonden.</p>
+</Basis>
+
+<script>
+  const zoekveld = document.querySelector<HTMLInputElement>('#zoek')!;
+  const kaarten = [...document.querySelectorAll<HTMLElement>('.kaart')];
+  const tagKnoppen = [...document.querySelectorAll<HTMLButtonElement>('#tagfilters .tag')];
+  const geenResultaten = document.querySelector<HTMLElement>('#geen-resultaten')!;
+  let actieveTag: string | null = null;
+
+  function filter() {
+    const term = zoekveld.value.trim().toLowerCase();
+    let zichtbaar = 0;
+    for (const kaart of kaarten) {
+      const past =
+        (term === '' || kaart.dataset.zoek!.includes(term)) &&
+        (actieveTag === null || kaart.dataset.tags!.split(' ').includes(actieveTag));
+      kaart.hidden = !past;
+      if (past) zichtbaar += 1;
+    }
+    geenResultaten.hidden = zichtbaar > 0;
+  }
+
+  zoekveld.addEventListener('input', filter);
+  for (const knop of tagKnoppen) {
+    knop.addEventListener('click', () => {
+      actieveTag = actieveTag === knop.dataset.tag ? null : knop.dataset.tag!;
+      for (const andere of tagKnoppen) andere.classList.toggle('actief', andere.dataset.tag === actieveTag);
+      filter();
+    });
+  }
+</script>
