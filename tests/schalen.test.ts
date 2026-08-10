@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { formatteerHoeveelheid, ingredientTekst, schaalHoeveelheid } from '../src/lib/schalen';
+import { formatteerHoeveelheid, ingredientDelen, ingredientTekst, schaalHoeveelheid } from '../src/lib/schalen';
 import type { Ingredient } from '../src/lib/typen';
 
 const gehakt: Ingredient = { id: 'gehakt', naam: 'rundergehakt', hoeveelheid: 250, eenheid: 'g', schaling: 'lineair' };
@@ -63,5 +63,17 @@ describe('ingredientTekst', () => {
   });
   test('vast zonder hoeveelheid: alleen naam', () => {
     expect(ingredientTekst(zout, 2)).toBe('zout');
+  });
+});
+
+describe('ingredientDelen', () => {
+  test('splitst hoeveelheid en naam, met meervoud en zonder "stuk"-eenheid', () => {
+    expect(ingredientDelen(ei, 2)).toEqual({ hoeveelheid: '2', naam: 'eieren' });
+  });
+  test('metrische eenheid blijft bij de hoeveelheid', () => {
+    expect(ingredientDelen(gehakt, 1.5)).toEqual({ hoeveelheid: '375 g', naam: 'rundergehakt' });
+  });
+  test('zonder hoeveelheid alleen naam', () => {
+    expect(ingredientDelen(zout, 2)).toEqual({ naam: 'zout' });
   });
 });

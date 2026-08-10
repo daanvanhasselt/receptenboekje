@@ -38,10 +38,15 @@ export function formatteerHoeveelheid(waarde: number, eenheid?: string): string 
   return eenheid === undefined ? getal : `${getal} ${eenheid}`;
 }
 
-export function ingredientTekst(ing: Ingredient, factor: number): string {
-  if (ing.hoeveelheid === undefined) return ing.naam;
+export function ingredientDelen(ing: Ingredient, factor: number): { hoeveelheid?: string; naam: string } {
+  if (ing.hoeveelheid === undefined) return { naam: ing.naam };
   const waarde = schaalHoeveelheid(ing.hoeveelheid, ing.schaling, factor, ing.eenheid);
   const naam = waarde > 1 && ing.meervoud !== undefined ? ing.meervoud : ing.naam;
   const toonEenheid = ing.eenheid !== undefined && ing.eenheid !== 'stuk' ? ing.eenheid : undefined;
-  return `${formatteerHoeveelheid(waarde, toonEenheid)} ${naam}`;
+  return { hoeveelheid: formatteerHoeveelheid(waarde, toonEenheid), naam };
+}
+
+export function ingredientTekst(ing: Ingredient, factor: number): string {
+  const delen = ingredientDelen(ing, factor);
+  return delen.hoeveelheid === undefined ? delen.naam : `${delen.hoeveelheid} ${delen.naam}`;
 }
