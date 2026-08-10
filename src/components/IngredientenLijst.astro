@@ -21,8 +21,7 @@ const { ingredienten } = Astro.props as { ingredienten: Ingredient[] };
         >
           <input type="checkbox" />
           <span class="ingredient-naam">
-            <span data-doel-naam>{delen.naam}</span>
-            {ingredient.notitie && <span class="notitie">, {ingredient.notitie}</span>}
+            <span data-doel-naam>{delen.naam}</span>{ingredient.notitie && <span class="notitie">, {ingredient.notitie}</span>}
           </span>
           {delen.hoeveelheid !== undefined && (
             <span class="ingredient-hoeveelheid" data-doel-hoeveelheid>{delen.hoeveelheid}</span>
