@@ -1,0 +1,32 @@
+{
+  "titel": "Spaghetti bolognese",
+  "beschrijving": "Klassieke ragù die urenlang zachtjes suddert in de cocotte, met soffritto, pancetta en een scheut melk.",
+  "personen": 4,
+  "tags": ["pasta", "italiaans"],
+  "ingredienten": [
+    { "id": "olijfolie", "naam": "olijfolie", "hoeveelheid": 2, "eenheid": "el", "schaling": "lineair" },
+    { "id": "boter", "naam": "boter", "schaling": "vast", "notitie": "klontje" },
+    { "id": "ui", "naam": "ui", "meervoud": "uien", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "notitie": "fijngesnipperd" },
+    { "id": "winterpeen", "naam": "winterpeen", "meervoud": "winterpenen", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "notitie": "in kleine blokjes" },
+    { "id": "bleekselderij", "naam": "stengel bleekselderij", "meervoud": "stengels bleekselderij", "hoeveelheid": 2, "eenheid": "stuk", "schaling": "stuks", "notitie": "fijngesneden" },
+    { "id": "pancetta", "naam": "pancetta of gerookt spek", "hoeveelheid": 100, "eenheid": "g", "schaling": "lineair", "notitie": "fijngesneden" },
+    { "id": "gehakt", "naam": "rundergehakt", "hoeveelheid": 500, "eenheid": "g", "schaling": "lineair", "notitie": "of half-om-half" },
+    { "id": "knoflook", "naam": "teen knoflook", "meervoud": "tenen knoflook", "hoeveelheid": 2, "eenheid": "stuk", "schaling": "stuks", "notitie": "fijngesneden" },
+    { "id": "tomatenpuree", "naam": "tomatenpuree", "hoeveelheid": 2, "eenheid": "el", "schaling": "lineair" },
+    { "id": "wijn", "naam": "rode wijn", "hoeveelheid": 150, "eenheid": "ml", "schaling": "lineair" },
+    { "id": "tomaten", "naam": "gepelde tomaten", "hoeveelheid": 400, "eenheid": "g", "schaling": "lineair", "notitie": "1 blik" },
+    { "id": "melk", "naam": "volle melk", "hoeveelheid": 150, "eenheid": "ml", "schaling": "lineair" },
+    { "id": "laurier", "naam": "laurierblad", "meervoud": "laurierblaadjes", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks" },
+    { "id": "kruiden", "naam": "nootmuskaat, zout en zwarte peper", "schaling": "vast", "notitie": "naar smaak" },
+    { "id": "spaghetti", "naam": "spaghetti", "hoeveelheid": 400, "eenheid": "g", "schaling": "lineair", "notitie": "of tagliatelle" },
+    { "id": "parmezaan", "naam": "geraspte Parmezaanse kaas", "hoeveelheid": 60, "eenheid": "g", "schaling": "lineair" }
+  ],
+  "stappen": [
+    { "tekst": "Verhit {olijfolie} en {boter} in de cocotte op middelhoog vuur. Laat {ui}, {winterpeen} en {bleekselderij} met een snuf zout zacht worden zonder te kleuren — glazig en zoet, niet gebruind.", "duur": 10 },
+    { "tekst": "Voeg {pancetta} toe en bak uit. Dan {gehakt} erbij: druk plat, laat liggen en roer pas als de onderkant diep bruin is. Die aangebakken korst is waar de smaak vandaan komt — grijs gehakt geeft een vlakke saus.", "duur": 12 },
+    { "tekst": "Roer {knoflook} en {tomatenpuree} erdoor en bak mee tot de puree donkerder kleurt. Blus af met {wijn} en schraap de aanbaksels los. Laat inkoken tot de alcoholgeur weg is en het vocht bijna verdampt.", "duur": 5 },
+    { "tekst": "Voeg {tomaten} (grof geprakt), {melk}, {laurier} en een snuf nootmuskaat toe. Breng tegen de kook aan, zet het vuur zo laag mogelijk en leg het deksel er schuin op. Laat zachtjes pruttelen — hooguit af en toe een bel. Roer elk half uur even; is de saus te droog, voeg een scheutje water toe.", "duur": 5, "wachttijd": 150 },
+    { "tekst": "Kook {spaghetti} in ruim gezouten water één minuut korter dan de verpakking aangeeft. Bewaar een kop pastawater voor je afgiet.", "duur": 10, "vereist": { "apparaat": "pan-water" } },
+    { "tekst": "Proef de ragù en corrigeer met {kruiden}. Schep de spaghetti met een scheut pastawater door de saus en laat een minuut samen garen tot de saus aan de pasta kleeft. Serveer met {parmezaan}.", "duur": 3 }
+  ]
+}
