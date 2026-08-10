@@ -54,6 +54,11 @@ const bron = recept.bron !== undefined ? bronWeergave(recept.bron) : undefined;
         </li>
       ))}
     </ol>
+    {bron && (
+      <p class="bron">
+        Bron: {bron.url ? <a href={bron.url}>{bron.tekst}</a> : bron.tekst}
+      </p>
+    )}
   </article>
 </Basis>
 

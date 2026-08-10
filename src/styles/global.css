@@ -227,3 +227,10 @@ button.tag { cursor: pointer; }
 .stap p { margin: 0; }
 .stap-tijd { color: var(--inkt-zacht); font-size: 0.9rem; margin-top: 0.25rem !important; }
 .ingredient-ref { font-weight: 600; color: var(--accent-donker); }
+
+.bron {
+  color: var(--inkt-zacht);
+  font-size: 0.9rem;
+  margin-top: 2rem;
+}
+.bron a { color: inherit; }
