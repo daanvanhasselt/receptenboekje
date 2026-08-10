@@ -93,6 +93,7 @@ button.tag { cursor: pointer; }
 }
 .kaart img, .kaart-placeholder {
   width: 100%;
+  height: auto; /* neutraliseert het height-attribuut van astro:assets, anders is aspect-ratio inert */
   aspect-ratio: 4 / 3;
   object-fit: cover;
   display: block;
@@ -142,6 +143,9 @@ button.tag { cursor: pointer; }
 .recept-foto {
   width: 100%;
   height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  max-height: 24rem;
   border-radius: var(--radius);
   box-shadow: var(--schaduw);
 }
