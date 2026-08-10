@@ -1,0 +1,33 @@
+{
+  "titel": "Shakshuka met witte bonen & feta",
+  "beschrijving": "Eenpansgerecht van diep ingekookte tomatensaus met paprika en komijn, witte bonen, zachtgegaarde eieren en feta.",
+  "personen": 4,
+  "tags": ["vega", "midden-oosters"],
+  "ingredienten": [
+    { "id": "olijfolie", "naam": "olijfolie", "hoeveelheid": 3, "eenheid": "el", "schaling": "lineair", "categorie": "olie-en-sauzen" },
+    { "id": "ui", "naam": "grote ui", "meervoud": "grote uien", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit", "notitie": "gesnipperd" },
+    { "id": "paprika", "naam": "rode (punt)paprika", "meervoud": "rode (punt)paprika's", "hoeveelheid": 2, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit", "notitie": "in reepjes" },
+    { "id": "knoflook", "naam": "teen knoflook", "meervoud": "tenen knoflook", "hoeveelheid": 3, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit", "notitie": "fijngesneden" },
+    { "id": "komijn", "naam": "gemalen komijn", "hoeveelheid": 1, "eenheid": "tl", "schaling": "lineair", "categorie": "kruiden-en-specerijen" },
+    { "id": "paprikapoeder", "naam": "gerookt paprikapoeder", "hoeveelheid": 1, "eenheid": "tl", "schaling": "lineair", "categorie": "kruiden-en-specerijen" },
+    { "id": "chilivlokken", "naam": "chilivlokken", "hoeveelheid": 0.5, "eenheid": "tl", "schaling": "lineair", "categorie": "kruiden-en-specerijen" },
+    { "id": "tomatenpuree", "naam": "tomatenpuree", "hoeveelheid": 1, "eenheid": "el", "schaling": "lineair", "categorie": "conserven-en-potten" },
+    { "id": "tomaten", "naam": "gepelde tomaten", "hoeveelheid": 800, "eenheid": "g", "schaling": "lineair", "categorie": "conserven-en-potten", "notitie": "2 blikken" },
+    { "id": "bonen", "naam": "witte bonen", "hoeveelheid": 400, "eenheid": "g", "schaling": "lineair", "categorie": "conserven-en-potten", "notitie": "1 blik, afgespoeld" },
+    { "id": "eieren", "naam": "ei", "meervoud": "eieren", "hoeveelheid": 6, "eenheid": "stuk", "schaling": "stuks", "categorie": "zuivel-en-eieren", "notitie": "tot 8, naar honger" },
+    { "id": "feta", "naam": "feta", "hoeveelheid": 150, "eenheid": "g", "schaling": "lineair", "categorie": "kaas" },
+    { "id": "smaakmakers", "naam": "suiker, zout en zwarte peper", "schaling": "vast", "categorie": "kruiden-en-specerijen", "notitie": "naar smaak" },
+    { "id": "koriander", "naam": "verse koriander of platte peterselie", "schaling": "vast", "categorie": "groente-en-fruit", "notitie": "handvol" },
+    { "id": "sumak", "naam": "sumak of za'atar", "schaling": "vast", "categorie": "kruiden-en-specerijen", "notitie": "optioneel" },
+    { "id": "brood", "naam": "zuurdesem- of Turks brood", "meervoud": "zuurdesem- of Turkse broden", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "categorie": "brood-en-bakkerij", "notitie": "geroosterd" },
+    { "id": "yoghurt", "naam": "Griekse yoghurt met citroenrasp", "schaling": "vast", "categorie": "zuivel-en-eieren", "notitie": "optioneel, voor erbij" }
+  ],
+  "stappen": [
+    { "tekst": "Verhit {olijfolie} in de cocotte op middelhoog vuur. Fruit {ui} en {paprika} met een snuf zout tot ze zacht en licht gekleurd zijn — neem hier echt de tijd voor, dit is de smaakbodem.", "duur": 10 },
+    { "tekst": "Voeg {knoflook}, {komijn}, {paprikapoeder}, {chilivlokken} en {tomatenpuree} toe. Bak al roerend mee tot het intens geurt — niet langer, anders verbrandt de knoflook.", "duur": 2 },
+    { "tekst": "Giet {tomaten} erbij en druk ze grof kapot met een houten lepel. Breng op smaak met {smaakmakers}. Laat zonder deksel zachtjes pruttelen tot de saus dik is en niet meer waterig — een spoor van de lepel moet even zichtbaar blijven op de bodem.", "duur": 2, "wachttijd": 18 },
+    { "tekst": "Roer {bonen} door de saus en laat een paar minuten meewarmen. Proef en corrigeer: meestal kan er nog wat zout of chili bij.", "duur": 3 },
+    { "tekst": "Zet het vuur laag. Maak met de lepel kuiltjes in de saus en breek in elk kuiltje een ei van {eieren}. Bestrooi met wat zout en leg het deksel op de cocotte. Zachte dooiers: 8–10 minuten; volledig gestold: 12–14 minuten.", "duur": 4, "wachttijd": 10 },
+    { "tekst": "Verkruimel {feta} over de pan en strooi er {koriander} en eventueel {sumak} over. Zet de cocotte op een onderzetter midden op tafel en serveer met {brood} om te dopen, eventueel met {yoghurt}.", "duur": 3 }
+  ]
+}
