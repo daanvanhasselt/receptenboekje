@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "recept.schema.json",
+  "title": "Recept",
+  "type": "object",
+  "required": ["titel", "beschrijving", "personen", "tags", "ingredienten", "stappen"],
+  "additionalProperties": false,
+  "properties": {
+    "titel": { "type": "string", "minLength": 1 },
+    "beschrijving": { "type": "string" },
+    "personen": { "type": "integer", "minimum": 1 },
+    "tags": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "foto": { "type": "string" },
+    "ingredienten": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/ingredient" } },
+    "stappen": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/stap" } }
+  },
+  "definitions": {
+    "ingredient": {
+      "type": "object",
+      "required": ["id", "naam", "schaling"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "naam": { "type": "string", "minLength": 1 },
+        "meervoud": { "type": "string", "minLength": 1 },
+        "hoeveelheid": { "type": "number", "exclusiveMinimum": 0 },
+        "eenheid": { "type": "string", "minLength": 1 },
+        "schaling": { "enum": ["lineair", "stuks", "vast"] },
+        "notitie": { "type": "string" }
+      }
+    },
+    "stap": {
+      "type": "object",
+      "required": ["tekst"],
+      "additionalProperties": false,
+      "properties": {
+        "tekst": { "type": "string", "minLength": 1 },
+        "duur": { "type": "number", "minimum": 0 },
+        "wachttijd": { "type": "number", "minimum": 0 },
+        "vereist": {
+          "type": "object",
+          "required": ["apparaat"],
+          "additionalProperties": false,
+          "properties": {
+            "apparaat": { "type": "string" },
+            "temperatuur": { "type": "number" }
+          }
+        }
+      }
+    }
+  }
+}
