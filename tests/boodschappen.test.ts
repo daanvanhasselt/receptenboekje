@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { maakItems, perCategorie, samengevoegd } from '../src/lib/boodschappen';
+import { maakItems, parseInvoer, perCategorie, samengevoegd, verwijderRij } from '../src/lib/boodschappen';
 import type { BoodschapItem } from '../src/lib/boodschappen';
 import type { Ingredient } from '../src/lib/typen';
 
@@ -68,5 +68,42 @@ describe('perCategorie', () => {
     ]);
     const groepen = perCategorie(rijen);
     expect(groepen.map((groep) => groep.categorie)).toEqual(['groente-en-fruit', 'kruiden-en-specerijen']);
+  });
+});
+
+describe('parseInvoer', () => {
+  test('alleen naam', () => {
+    expect(parseInvoer('melk')).toEqual({ naam: 'melk' });
+  });
+  test('getal met bekende eenheid', () => {
+    expect(parseInvoer('2 kg appels')).toEqual({ naam: 'appels', hoeveelheid: 2, eenheid: 'kg' });
+  });
+  test('getal zonder eenheid', () => {
+    expect(parseInvoer('3 appels')).toEqual({ naam: 'appels', hoeveelheid: 3 });
+  });
+  test('komma als decimaalteken en hoofdletter-eenheid', () => {
+    expect(parseInvoer('1,5 L melk')).toEqual({ naam: 'melk', hoeveelheid: 1.5, eenheid: 'l' });
+  });
+  test('meerwoordige naam blijft heel', () => {
+    expect(parseInvoer('250 g geraspte kaas')).toEqual({ naam: 'geraspte kaas', hoeveelheid: 250, eenheid: 'g' });
+  });
+  test('lege of witruimte-invoer levert niets op', () => {
+    expect(parseInvoer('')).toBeUndefined();
+    expect(parseInvoer('   ')).toBeUndefined();
+  });
+});
+
+describe('verwijderRij', () => {
+  test('verwijdert alle items achter een rij en de afvinkstatus', () => {
+    const items = [
+      item({ naam: 'melk', hoeveelheid: 1, eenheid: 'l' }),
+      item({ naam: 'melk', hoeveelheid: 500, eenheid: 'ml' }),
+      item({ naam: 'ui' }),
+    ];
+    const rijen = samengevoegd(items);
+    const melkRij = rijen.find((rij) => rij.tekst === 'melk')!;
+    const lijst = verwijderRij({ items, afgevinkt: [melkRij.sleutel] }, melkRij.sleutel);
+    expect(lijst.items.map((overgebleven) => overgebleven.naam)).toEqual(['ui']);
+    expect(lijst.afgevinkt).toEqual([]);
   });
 });

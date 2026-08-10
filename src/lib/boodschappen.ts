@@ -53,6 +53,22 @@ export function maakItems(ingredienten: Ingredient[], factor: number): Boodschap
   }));
 }
 
+const INVOER_EENHEDEN = new Set(['g', 'kg', 'ml', 'l', 'el', 'tl']);
+
+export function parseInvoer(tekst: string): { naam: string; hoeveelheid?: number; eenheid?: string } | undefined {
+  const delen = tekst.trim().split(/\s+/).filter((deel) => deel !== '');
+  if (delen.length === 0) return undefined;
+  const getal = Number(delen[0].replace(',', '.'));
+  if (Number.isNaN(getal) || getal <= 0 || delen.length === 1) {
+    return { naam: delen.join(' ') };
+  }
+  const eenheid = delen[1].toLowerCase();
+  if (delen.length >= 3 && INVOER_EENHEDEN.has(eenheid)) {
+    return { naam: delen.slice(2).join(' '), hoeveelheid: getal, eenheid };
+  }
+  return { naam: delen.slice(1).join(' '), hoeveelheid: getal };
+}
+
 function naarBasis(item: BoodschapItem): { hoeveelheid?: number; eenheid?: string } {
   if (item.hoeveelheid === undefined || item.eenheid === undefined) {
     return { hoeveelheid: item.hoeveelheid, eenheid: item.eenheid };
@@ -65,6 +81,13 @@ function naarBasis(item: BoodschapItem): { hoeveelheid?: number; eenheid?: strin
 function sleutelVan(item: BoodschapItem): string {
   const { eenheid } = naarBasis(item);
   return `${item.naam.toLowerCase()}|${item.hoeveelheid === undefined ? '' : (eenheid ?? '')}`;
+}
+
+export function verwijderRij(lijst: Boodschappenlijst, sleutel: string): Boodschappenlijst {
+  return {
+    items: lijst.items.filter((item) => sleutelVan(item) !== sleutel),
+    afgevinkt: lijst.afgevinkt.filter((afgevinkteSleutel) => afgevinkteSleutel !== sleutel),
+  };
 }
 
 export function samengevoegd(items: BoodschapItem[]): BoodschapRij[] {
