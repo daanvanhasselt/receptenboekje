@@ -27,13 +27,13 @@ export function schaalHoeveelheid(basis: number, schaling: Schaling, factor: num
 export function formatteerHoeveelheid(waarde: number, eenheid?: string): string {
   let getal: string;
   if (eenheid !== undefined && METRISCH.has(eenheid)) {
-    getal = String(Number(waarde.toFixed(2))).replace('.', ',');
+    getal = String(waarde).replace('.', ',');
   } else {
     const heel = Math.floor(waarde + 1e-9);
     const rest = Number((waarde - heel).toFixed(2));
     const breuk = BREUKEN[String(rest)];
     if (breuk !== undefined) getal = heel > 0 ? `${heel}${breuk}` : breuk;
-    else getal = String(Number(waarde.toFixed(2))).replace('.', ',');
+    else getal = String(waarde).replace('.', ',');
   }
   return eenheid === undefined ? getal : `${getal} ${eenheid}`;
 }

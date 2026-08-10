@@ -35,6 +35,9 @@ describe('formatteerHoeveelheid', () => {
     expect(formatteerHoeveelheid(7.5, 'g')).toBe('7,5 g');
     expect(formatteerHoeveelheid(1.25, 'l')).toBe('1,25 l');
   });
+  test('behoudt exacte basishoeveelheid met meer dan twee decimalen', () => {
+    expect(formatteerHoeveelheid(1.125, 'l')).toBe('1,125 l');
+  });
   test('breuken voor lepels', () => {
     expect(formatteerHoeveelheid(0.75, 'tl')).toBe('¾ tl');
     expect(formatteerHoeveelheid(1.5, 'el')).toBe('1½ el');
