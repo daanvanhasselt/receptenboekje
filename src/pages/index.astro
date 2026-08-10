@@ -7,8 +7,14 @@ const recepten = laadRecepten();
 const alleTags = [...new Set(recepten.flatMap((recept) => recept.tags))].sort();
 ---
 <Basis titel="Recepten">
-  <h1>Recepten</h1>
-  <input class="zoekbalk" type="search" id="zoek" placeholder="Zoek op naam, tag of ingrediënt…" />
+  <h1>🍲 Recepten</h1>
+  <label class="zoekveld">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" />
+      <path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+    </svg>
+    <input class="zoekbalk" type="search" id="zoek" placeholder="Zoek op naam, tag of ingrediënt…" />
+  </label>
   <div class="tagfilters" id="tagfilters">
     {alleTags.map((tag) => (
       <button type="button" class="tag" data-tag={tag}>{tag}</button>

@@ -18,11 +18,10 @@ const zoektekst = [recept.titel, ...recept.tags, ...recept.ingredienten.map((ing
   ) : (
     <div class="kaart-placeholder" aria-hidden="true">{recept.titel.slice(0, 1)}</div>
   )}
-  <div class="kaart-tekst">
+  <span class="kaart-tijd">
+    🍳 {formatteerMinuten(tijd.actief)}{tijd.wachten > 0 && ` · ⏳ ${formatteerMinuten(tijd.wachten)}`}
+  </span>
+  <div class="kaart-overlay">
     <h2>{recept.titel}</h2>
-    <p class="tijden">
-      🍳 {formatteerMinuten(tijd.actief)}{tijd.wachten > 0 && ` · ⏳ ${formatteerMinuten(tijd.wachten)}`}
-    </p>
-    <p class="kaart-tags">{recept.tags.join(' · ')}</p>
   </div>
 </a>
