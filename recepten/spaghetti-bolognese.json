@@ -3,6 +3,7 @@
   "beschrijving": "Klassieke ragù die urenlang zachtjes suddert in de cocotte, met soffritto, pancetta en een scheut melk.",
   "personen": 4,
   "tags": ["pasta", "italiaans"],
+  "foto": "spaghetti-bolognese.jpg",
   "ingredienten": [
     { "id": "olijfolie", "naam": "olijfolie", "hoeveelheid": 2, "eenheid": "el", "schaling": "lineair", "categorie": "olie-en-sauzen" },
     { "id": "boter", "naam": "boter", "schaling": "vast", "categorie": "zuivel-en-eieren", "notitie": "klontje" },
