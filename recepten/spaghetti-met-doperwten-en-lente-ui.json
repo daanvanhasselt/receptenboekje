@@ -1,0 +1,26 @@
+{
+  "titel": "Spaghetti met doperwten en lente-ui",
+  "beschrijving": "Spaghetti met zachtgestoofde doperwten, lente-ui, knoflook, prosciutto en Parmezaan.",
+  "personen": 4,
+  "tags": ["pasta", "italiaans"],
+  "bron": "Kookboek, Spaghetti — recept 5 \"Pea and spring onions\", p. 70",
+  "foto": "spaghetti-met-doperwten-en-lente-ui.jpg",
+  "ingredienten": [
+    { "id": "spaghetti", "naam": "spaghetti", "hoeveelheid": 320, "eenheid": "g", "schaling": "lineair", "categorie": "pasta-rijst-en-granen" },
+    { "id": "doperwten", "naam": "gedopte doperwten", "hoeveelheid": 400, "eenheid": "g", "schaling": "lineair", "categorie": "groente-en-fruit" },
+    { "id": "lente-ui", "naam": "lente-ui", "hoeveelheid": 100, "eenheid": "g", "schaling": "lineair", "categorie": "groente-en-fruit" },
+    { "id": "knoflook", "naam": "teen knoflook", "meervoud": "tenen knoflook", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit" },
+    { "id": "prosciutto", "naam": "prosciutto", "hoeveelheid": 100, "eenheid": "g", "schaling": "lineair", "categorie": "vlees-en-vis" },
+    { "id": "peterselie", "naam": "verse peterselie", "hoeveelheid": 2, "eenheid": "el", "schaling": "lineair", "categorie": "groente-en-fruit", "notitie": "blad, gehakt" },
+    { "id": "parmezaan", "naam": "Parmezaan", "hoeveelheid": 50, "eenheid": "g", "schaling": "lineair", "categorie": "kaas", "notitie": "geraspt" },
+    { "id": "boter", "naam": "ongezouten boter", "hoeveelheid": 100, "eenheid": "g", "schaling": "lineair", "categorie": "zuivel-en-eieren" },
+    { "id": "olijfolie", "naam": "extra vierge olijfolie", "schaling": "vast", "categorie": "olie-en-sauzen", "notitie": "ca. 3 el, plus extra indien nodig" },
+    { "id": "zout", "naam": "zout", "schaling": "vast", "categorie": "kruiden-en-specerijen", "notitie": "naar smaak, plus voor het kookwater" }
+  ],
+  "stappen": [
+    { "tekst": "Snijd het witte deel van {lente-ui} grof. Hak {knoflook} fijn, scheur {prosciutto} in stukjes en hak {peterselie}. Rasp {parmezaan}.", "duur": 10 },
+    { "tekst": "Smelt {boter} in een grote koekenpan. Voeg {lente-ui} toe en laat zachtjes zacht worden. Voeg dan {doperwten}, {zout} en 3 el heet water toe en laat zachtjes sudderen tot het water is verdampt.", "duur": 15 },
+    { "tekst": "Voeg {knoflook} en {peterselie} toe aan de doperwten met 3 el {olijfolie}. Dek af en gaar op laag vuur 15 minuten. Voeg {prosciutto} toe. Heb je meer vocht nodig, voeg dan olijfolie toe, geen water. Zijn de erwten zacht en donkergroen, haal dan van het vuur.", "duur": 5, "wachttijd": 15 },
+    { "tekst": "Kook intussen {spaghetti} in ruim gezouten water al dente en giet af. Meng door de doperwten en serveer met {parmezaan}.", "duur": 10, "vereist": { "apparaat": "pan-water" } }
+  ]
+}
