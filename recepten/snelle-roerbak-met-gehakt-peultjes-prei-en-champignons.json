@@ -1,0 +1,29 @@
+{
+  "titel": "Snelle roerbak met gehakt, peultjes, prei en champignons",
+  "beschrijving": "Snelle wokmaaltijd van mie met gehakt, peultjes, prei en champignons in een saus van ketjap, soja en oestersaus.",
+  "personen": 4,
+  "tags": ["snel", "aziatisch"],
+  "foto": "snelle-roerbak-met-gehakt-peultjes-prei-en-champignons.jpg",
+  "bron": "https://miljuschka.nl/snelle-roerbak-met-gehakt-peultjes-prei-en-champignons/",
+  "ingredienten": [
+    { "id": "mie", "naam": "mie-nestjes", "hoeveelheid": 300, "eenheid": "g", "schaling": "lineair", "notitie": "of andere noedels" },
+    { "id": "ketjap", "naam": "ketjap manis", "hoeveelheid": 125, "eenheid": "ml", "schaling": "lineair" },
+    { "id": "sojasaus", "naam": "sojasaus", "hoeveelheid": 4, "eenheid": "el", "schaling": "lineair" },
+    { "id": "oestersaus", "naam": "oestersaus", "hoeveelheid": 4, "eenheid": "el", "schaling": "lineair" },
+    { "id": "knoflook", "naam": "teen knoflook", "meervoud": "tenen knoflook", "hoeveelheid": 2, "eenheid": "stuk", "schaling": "stuks", "notitie": "geperst" },
+    { "id": "gember", "naam": "cm verse gemberwortel", "hoeveelheid": 2, "eenheid": "stuk", "schaling": "lineair", "notitie": "geschild en geraspt" },
+    { "id": "olie", "naam": "zonnebloemolie", "hoeveelheid": 1, "eenheid": "el", "schaling": "lineair" },
+    { "id": "prei", "naam": "prei", "meervoud": "preien", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "notitie": "in dunne ringen" },
+    { "id": "champignons", "naam": "kastanjechampignons", "hoeveelheid": 250, "eenheid": "g", "schaling": "lineair", "notitie": "in kwarten" },
+    { "id": "peultjes", "naam": "peultjes", "hoeveelheid": 150, "eenheid": "g", "schaling": "lineair" },
+    { "id": "gehakt", "naam": "rundergehakt", "hoeveelheid": 500, "eenheid": "g", "schaling": "lineair", "notitie": "of vegetarisch gehakt" },
+    { "id": "lente-ui", "naam": "lente-uitje", "meervoud": "lente-uitjes", "hoeveelheid": 2, "eenheid": "stuk", "schaling": "stuks", "notitie": "in dunne ringetjes" }
+  ],
+  "stappen": [
+    { "tekst": "Kook {mie} volgens de aanwijzingen op het pak. Giet af en laat uitlekken.", "duur": 8, "vereist": { "apparaat": "pan-water" } },
+    { "tekst": "Meng intussen {ketjap}, {sojasaus}, {oestersaus}, {knoflook} en {gember} tot een woksaus en zet apart.", "duur": 4 },
+    { "tekst": "Verhit {olie} in een wok. Roerbak {prei}, {champignons} en {peultjes} op hoog vuur in enkele minuten beetgaar. Schep in een kom.", "duur": 4 },
+    { "tekst": "Rul {gehakt} 3 minuten in de wok. Voeg de woksaus toe en roerbak nog 2 minuten, of tot het gehakt gaar is.", "duur": 5 },
+    { "tekst": "Doe de groenten en de mie terug in de wok, schep alles door elkaar en serveer in kommen, bestrooid met {lente-ui}.", "duur": 3 }
+  ]
+}
