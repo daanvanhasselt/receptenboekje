@@ -1,0 +1,27 @@
+---
+import { ingredientTekst } from '../lib/schalen';
+import type { Ingredient } from '../lib/typen';
+
+const { ingredienten } = Astro.props as { ingredienten: Ingredient[] };
+---
+<h2>Ingrediënten</h2>
+<ul class="ingredienten">
+  {ingredienten.map((ingredient) => (
+    <li>
+      <label>
+        <input type="checkbox" />
+        <span>
+          <span
+            data-ingredient
+            data-hoeveelheid={ingredient.hoeveelheid}
+            data-eenheid={ingredient.eenheid}
+            data-schaling={ingredient.schaling}
+            data-naam={ingredient.naam}
+            data-meervoud={ingredient.meervoud}
+          >{ingredientTekst(ingredient, 1)}</span>
+          {ingredient.notitie && <span class="notitie">, {ingredient.notitie}</span>}
+        </span>
+      </label>
+    </li>
+  ))}
+</ul>

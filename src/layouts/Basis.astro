@@ -1,0 +1,22 @@
+---
+import '../styles/global.css';
+import { pad } from '../lib/pad';
+
+const { titel } = Astro.props as { titel: string };
+---
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titel}</title>
+  </head>
+  <body>
+    <header class="site-kop">
+      <a href={pad('')}>🍲 Recepten</a>
+    </header>
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>

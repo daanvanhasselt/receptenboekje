@@ -1,0 +1,168 @@
+* { box-sizing: border-box; }
+
+[hidden] { display: none !important; }
+
+:root {
+  --inkt: #2d2a26;
+  --papier: #faf7f2;
+  --kaart: #ffffff;
+  --accent: #b4552d;
+  --rand: #e6e0d6;
+  --waarschuwing-achtergrond: #fdf3d8;
+  --waarschuwing-rand: #e0b950;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.65;
+  color: var(--inkt);
+  background: var(--papier);
+}
+
+.site-kop {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--rand);
+}
+.site-kop a {
+  color: var(--inkt);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+main {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 1rem 1rem 4rem;
+}
+
+h1 { font-size: 1.75rem; line-height: 1.2; margin: 0.75rem 0 0.25rem; }
+h2 { font-size: 1.25rem; margin: 2rem 0 0.75rem; }
+
+.beschrijving { color: #5a544c; margin: 0.25rem 0 0.5rem; }
+.tijden { color: #5a544c; font-size: 0.95rem; margin: 0; }
+
+.recept-foto {
+  width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  margin-top: 1rem;
+}
+
+.waarschuwing {
+  display: flex;
+  gap: 0.5rem;
+  background: var(--waarschuwing-achtergrond);
+  border: 1px solid var(--waarschuwing-rand);
+  border-radius: 0.5rem;
+  padding: 0.6rem 0.8rem;
+  margin: 0.75rem 0;
+  font-weight: 600;
+}
+
+.personen-kiezer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1.25rem 0 0.5rem;
+}
+.personen-kiezer button {
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.4rem;
+  border: 1px solid var(--rand);
+  border-radius: 50%;
+  background: var(--kaart);
+  color: var(--inkt);
+  cursor: pointer;
+}
+.personen-kiezer output {
+  min-width: 1.5rem;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.ingredienten {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0;
+}
+.ingredienten li { border-bottom: 1px solid var(--rand); }
+.ingredienten label {
+  display: flex;
+  gap: 0.6rem;
+  align-items: baseline;
+  padding: 0.45rem 0;
+  cursor: pointer;
+}
+.ingredienten input { transform: translateY(2px) scale(1.2); }
+.ingredienten label:has(input:checked) { opacity: 0.45; text-decoration: line-through; }
+.notitie { color: #5a544c; }
+
+.stappen {
+  padding-left: 1.5rem;
+  margin: 0;
+}
+.stappen > li { margin: 1.25rem 0; }
+.stappen > li::marker { font-weight: 700; color: var(--accent); }
+.stap p { margin: 0; }
+.stap-tijd { color: #5a544c; font-size: 0.9rem; margin-top: 0.25rem !important; }
+.ingredient-ref { font-weight: 600; }
+
+.zoekbalk {
+  width: 100%;
+  font-size: 1.1rem;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--rand);
+  border-radius: 0.75rem;
+  margin: 1rem 0 0.75rem;
+  background: var(--kaart);
+  color: var(--inkt);
+}
+
+.tagfilters { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem; }
+.tag {
+  border: 1px solid var(--rand);
+  background: var(--kaart);
+  color: var(--inkt);
+  border-radius: 999px;
+  padding: 0.25rem 0.8rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+.tag.actief {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.kaarten {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 1rem;
+}
+.kaart {
+  display: block;
+  background: var(--kaart);
+  border: 1px solid var(--rand);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--inkt);
+}
+.kaart img, .kaart-placeholder {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: #fff;
+  background: linear-gradient(135deg, #c98a5b, var(--accent));
+}
+.kaart-tekst { padding: 0.75rem 1rem 1rem; }
+.kaart-tekst h2 { font-size: 1.15rem; margin: 0 0 0.25rem; }
+.kaart-tags { color: #5a544c; font-size: 0.9rem; margin: 0.25rem 0 0; }

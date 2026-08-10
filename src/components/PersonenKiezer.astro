@@ -1,0 +1,9 @@
+---
+const { basis } = Astro.props as { basis: number };
+---
+<div class="personen-kiezer">
+  <span>Personen:</span>
+  <button type="button" data-minder aria-label="Minder personen">−</button>
+  <output data-personen>{basis}</output>
+  <button type="button" data-meer aria-label="Meer personen">+</button>
+</div>

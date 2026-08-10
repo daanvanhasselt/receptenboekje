@@ -1,0 +1,86 @@
+---
+import { Image } from 'astro:assets';
+import IngredientenLijst from '../../components/IngredientenLijst.astro';
+import PersonenKiezer from '../../components/PersonenKiezer.astro';
+import Stap from '../../components/Stap.astro';
+import Waarschuwing from '../../components/Waarschuwing.astro';
+import Basis from '../../layouts/Basis.astro';
+import { fotoVoor } from '../../lib/fotos';
+import { laadRecepten } from '../../lib/laden';
+import { formatteerMinuten, totaalTijd } from '../../lib/tijden';
+import { plaatsWaarschuwingen, wachttijdSamenvatting } from '../../lib/waarschuwingen';
+import type { ReceptMetSlug } from '../../lib/typen';
+
+export function getStaticPaths() {
+  return laadRecepten().map((recept) => ({ params: { slug: recept.slug }, props: { recept } }));
+}
+
+const { recept } = Astro.props as { recept: ReceptMetSlug };
+const plaatsing = plaatsWaarschuwingen(recept.stappen);
+const samenvatting = wachttijdSamenvatting(recept.stappen);
+const tijd = totaalTijd(recept.stappen);
+const foto = fotoVoor(recept.foto);
+---
+<Basis titel={recept.titel}>
+  <article class="recept" data-slug={recept.slug} data-basis-personen={recept.personen}>
+    {foto && <Image class="recept-foto" src={foto} alt={recept.titel} widths={[480, 960]} sizes="100vw" />}
+    <h1>{recept.titel}</h1>
+    <p class="beschrijving">{recept.beschrijving}</p>
+    <p class="tijden">
+      🍳 {formatteerMinuten(tijd.actief)} actief{tijd.wachten > 0 && ` · ⏳ ${formatteerMinuten(tijd.wachten)} wachten`}
+    </p>
+    {samenvatting && <Waarschuwing tekst={samenvatting} />}
+    {plaatsing.vooraf.map((tekst) => <Waarschuwing tekst={tekst} />)}
+    <PersonenKiezer basis={recept.personen} />
+    <IngredientenLijst ingredienten={recept.ingredienten} />
+    <h2>Bereiding</h2>
+    <ol class="stappen">
+      {recept.stappen.map((stap, i) => (
+        <li>
+          {plaatsing.perStap[i].map((tekst) => <Waarschuwing tekst={tekst} />)}
+          <Stap stap={stap} ingredienten={recept.ingredienten} />
+        </li>
+      ))}
+    </ol>
+  </article>
+</Basis>
+
+<script>
+  import { ingredientTekst } from '../../lib/schalen';
+  import type { Ingredient, Schaling } from '../../lib/typen';
+
+  const artikel = document.querySelector<HTMLElement>('article.recept')!;
+  const basis = Number(artikel.dataset.basisPersonen);
+  const sleutel = `personen:${artikel.dataset.slug}`;
+  const uitvoer = artikel.querySelector<HTMLOutputElement>('[data-personen]')!;
+  let personen = Number(localStorage.getItem(sleutel)) || basis;
+
+  function werkBij() {
+    uitvoer.textContent = String(personen);
+    localStorage.setItem(sleutel, String(personen));
+    const factor = personen / basis;
+    for (const span of artikel.querySelectorAll<HTMLElement>('[data-ingredient]')) {
+      const ingredient: Ingredient = {
+        id: '',
+        naam: span.dataset.naam!,
+        meervoud: span.dataset.meervoud,
+        hoeveelheid: span.dataset.hoeveelheid !== undefined ? Number(span.dataset.hoeveelheid) : undefined,
+        eenheid: span.dataset.eenheid,
+        schaling: span.dataset.schaling as Schaling,
+      };
+      span.textContent = ingredientTekst(ingredient, factor);
+    }
+  }
+
+  artikel.querySelector('[data-minder]')!.addEventListener('click', () => {
+    if (personen > 1) {
+      personen -= 1;
+      werkBij();
+    }
+  });
+  artikel.querySelector('[data-meer]')!.addEventListener('click', () => {
+    personen += 1;
+    werkBij();
+  });
+  werkBij();
+</script>

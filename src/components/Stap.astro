@@ -1,0 +1,38 @@
+---
+import { ingredientTekst } from '../lib/schalen';
+import { parseStaptekst } from '../lib/substitutie';
+import { formatteerMinuten } from '../lib/tijden';
+import type { Ingredient, Stap as StapType } from '../lib/typen';
+
+const { stap, ingredienten } = Astro.props as { stap: StapType; ingredienten: Ingredient[] };
+const perId = new Map(ingredienten.map((ingredient) => [ingredient.id, ingredient]));
+const segmenten = parseStaptekst(stap.tekst);
+const duur = stap.duur ?? 0;
+const wachttijd = stap.wachttijd ?? 0;
+---
+<div class="stap">
+  <p>
+    {segmenten.map((segment) => {
+      if (segment.type === 'tekst') return segment.waarde;
+      const ingredient = perId.get(segment.id)!;
+      return (
+        <span
+          class="ingredient-ref"
+          data-ingredient
+          data-hoeveelheid={ingredient.hoeveelheid}
+          data-eenheid={ingredient.eenheid}
+          data-schaling={ingredient.schaling}
+          data-naam={ingredient.naam}
+          data-meervoud={ingredient.meervoud}
+        >{ingredientTekst(ingredient, 1)}</span>
+      );
+    })}
+  </p>
+  {(duur > 0 || wachttijd > 0) && (
+    <p class="stap-tijd">
+      {duur > 0 && `⏱ ${formatteerMinuten(duur)}`}
+      {duur > 0 && wachttijd > 0 && ' · '}
+      {wachttijd > 0 && `⏳ ${formatteerMinuten(wachttijd)} wachten`}
+    </p>
+  )}
+</div>
