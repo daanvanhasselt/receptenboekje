@@ -1,0 +1,71 @@
+---
+import Basis from '../layouts/Basis.astro';
+import { pad } from '../lib/pad';
+---
+<Basis titel="Boodschappen" actief="boodschappen">
+  <h1>🛒 Boodschappen</h1>
+  <p class="leeg" id="leeg" hidden>
+    Nog niets op de lijst. Open een <a href={pad('')}>recept</a> en druk op "Zet op boodschappenlijst".
+  </p>
+  <div id="lijst"></div>
+  <button type="button" class="wis-knop" id="wis" hidden>Wis lijst</button>
+</Basis>
+
+<script>
+  import { bewaarLijst, laadLijst, perCategorie, samengevoegd, CATEGORIE_LABELS } from '../lib/boodschappen';
+
+  const lijstElement = document.querySelector<HTMLElement>('#lijst')!;
+  const leegElement = document.querySelector<HTMLElement>('#leeg')!;
+  const wisKnop = document.querySelector<HTMLButtonElement>('#wis')!;
+
+  function toon() {
+    const lijst = laadLijst();
+    const groepen = perCategorie(samengevoegd(lijst.items));
+    lijstElement.textContent = '';
+    leegElement.hidden = groepen.length > 0;
+    wisKnop.hidden = groepen.length === 0;
+
+    for (const groep of groepen) {
+      const kop = document.createElement('h2');
+      kop.textContent = CATEGORIE_LABELS[groep.categorie];
+      lijstElement.append(kop);
+
+      const ul = document.createElement('ul');
+      ul.className = 'ingredienten';
+      for (const rij of groep.rijen) {
+        const li = document.createElement('li');
+        const label = document.createElement('label');
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.checked = lijst.afgevinkt.includes(rij.sleutel);
+        checkbox.addEventListener('change', () => {
+          const actueel = laadLijst();
+          actueel.afgevinkt = checkbox.checked
+            ? [...new Set([...actueel.afgevinkt, rij.sleutel])]
+            : actueel.afgevinkt.filter((sleutel) => sleutel !== rij.sleutel);
+          bewaarLijst(actueel);
+        });
+        const naam = document.createElement('span');
+        naam.className = 'ingredient-naam';
+        naam.textContent = rij.tekst;
+        label.append(checkbox, naam);
+        if (rij.hoeveelheid !== undefined) {
+          const hoeveelheid = document.createElement('span');
+          hoeveelheid.className = 'ingredient-hoeveelheid';
+          hoeveelheid.textContent = rij.hoeveelheid;
+          label.append(hoeveelheid);
+        }
+        li.append(label);
+        ul.append(li);
+      }
+      lijstElement.append(ul);
+    }
+  }
+
+  wisKnop.addEventListener('click', () => {
+    bewaarLijst({ items: [], afgevinkt: [] });
+    toon();
+  });
+
+  toon();
+</script>
