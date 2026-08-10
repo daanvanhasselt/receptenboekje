@@ -6,7 +6,7 @@ import { laadRecepten } from '../lib/laden';
 const recepten = laadRecepten();
 const alleTags = [...new Set(recepten.flatMap((recept) => recept.tags))].sort();
 ---
-<Basis titel="Recepten">
+<Basis titel="Recepten" actief="recepten">
   <h1>🍲 Recepten</h1>
   <label class="zoekveld">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">

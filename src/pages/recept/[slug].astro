@@ -23,7 +23,7 @@ const tijd = totaalTijd(recept.stappen);
 const foto = fotoVoor(recept.foto);
 const bron = recept.bron !== undefined ? bronWeergave(recept.bron) : undefined;
 ---
-<Basis titel={recept.titel}>
+<Basis titel={recept.titel} actief="recepten">
   <article class="recept" data-slug={recept.slug} data-basis-personen={recept.personen}>
     <a class="terug" href={pad('')} aria-label="Terug naar overzicht">←</a>
     {foto && <Image class="recept-foto" src={foto} alt={recept.titel} widths={[480, 960]} sizes="100vw" />}

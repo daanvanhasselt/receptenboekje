@@ -6,7 +6,7 @@ import '@fontsource/poppins/700.css';
 import '../styles/global.css';
 import { pad } from '../lib/pad';
 
-const { titel } = Astro.props as { titel: string };
+const { titel, actief } = Astro.props as { titel: string; actief?: 'recepten' | 'boodschappen' };
 ---
 <!doctype html>
 <html lang="nl">
@@ -17,6 +17,22 @@ const { titel } = Astro.props as { titel: string };
     <title>{titel}</title>
   </head>
   <body>
+    <nav class="navbalk">
+      <a href={pad('')} class:list={[{ actief: actief === 'recepten' }]}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M4 11h16a8 8 0 0 1-16 0Z" />
+          <path d="M9 8V6m3 2V5m3 3V6" />
+        </svg>
+        Recepten
+      </a>
+      <a href={pad('boodschappen/')} class:list={[{ actief: actief === 'boodschappen' }]}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 8h12l-1.2 12H7.2L6 8Z" />
+          <path d="M9 10V7a3 3 0 0 1 6 0v3" />
+        </svg>
+        Boodschappen
+      </a>
+    </nav>
     <main>
       <slot />
     </main>
