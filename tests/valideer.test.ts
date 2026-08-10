@@ -48,6 +48,11 @@ test('onbekend apparaat', () => {
   expect(valideerRecept('test.json', kapot).map((f) => f.fout)).toEqual(['stap 1: onbekend apparaat "airfryer"']);
 });
 
+test('prototype-naam is geen geldig apparaat', () => {
+  const kapot = { ...geldig, stappen: [{ tekst: 'Kook {pasta} met {zout}.', vereist: { apparaat: 'toString' } }] };
+  expect(valideerRecept('test.json', kapot).map((f) => f.fout)).toEqual(['stap 1: onbekend apparaat "toString"']);
+});
+
 test('ontbrekende foto', () => {
   const met = { ...geldig, foto: 'test.jpg' };
   expect(valideerRecept('test.json', met, () => false).map((f) => f.fout)).toEqual(['foto "test.jpg" niet gevonden']);

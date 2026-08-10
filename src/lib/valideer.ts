@@ -45,7 +45,7 @@ export function valideerRecept(
         fouten.push({ bestand, fout: `stap ${i + 1}: verwijzing {${segment.id}} bestaat niet als ingrediënt` });
       }
     }
-    if (stap.vereist && !(stap.vereist.apparaat in APPARATEN)) {
+    if (stap.vereist && !Object.hasOwn(APPARATEN, stap.vereist.apparaat)) {
       fouten.push({ bestand, fout: `stap ${i + 1}: onbekend apparaat "${stap.vereist.apparaat}"` });
     }
   });
