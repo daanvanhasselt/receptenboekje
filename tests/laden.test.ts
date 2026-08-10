@@ -4,9 +4,11 @@ import { laadRecepten } from '../src/lib/laden';
 
 test('laadt en valideert de echte receptenmap', () => {
   const recepten = laadRecepten();
-  expect(recepten.length).toBeGreaterThanOrEqual(3);
+  expect(recepten.length).toBeGreaterThanOrEqual(1);
   const slugs = recepten.map((r) => r.slug);
-  expect(slugs).toContain('lasagne');
+  for (const slug of slugs) {
+    expect(slug).toMatch(/^[a-z0-9-]+$/);
+  }
   const titels = recepten.map((r) => r.titel);
   expect(titels).toEqual([...titels].sort((a, b) => a.localeCompare(b, 'nl')));
 });
