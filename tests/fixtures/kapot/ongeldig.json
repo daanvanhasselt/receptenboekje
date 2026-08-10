@@ -1,0 +1,8 @@
+{
+  "titel": "Kapot",
+  "beschrijving": "Recept met fouten",
+  "personen": 2,
+  "tags": [],
+  "ingredienten": [{ "id": "pasta", "naam": "penne", "hoeveelheid": 200, "eenheid": "g", "schaling": "lineair" }],
+  "stappen": [{ "tekst": "Voeg {kaas} toe." }]
+}

@@ -1,0 +1,21 @@
+{
+  "titel": "Focaccia met rozemarijn",
+  "beschrijving": "Luchtig Italiaans platbrood met olijfolie, grof zeezout en rozemarijn.",
+  "personen": 4,
+  "tags": ["brood", "oven", "vega"],
+  "ingredienten": [
+    { "id": "bloem", "naam": "tarwebloem", "hoeveelheid": 400, "eenheid": "g", "schaling": "lineair" },
+    { "id": "gist", "naam": "gedroogde gist", "hoeveelheid": 7, "eenheid": "g", "schaling": "lineair" },
+    { "id": "water", "naam": "lauwwarm water", "hoeveelheid": 280, "eenheid": "ml", "schaling": "lineair" },
+    { "id": "olijfolie", "naam": "olijfolie", "hoeveelheid": 4, "eenheid": "el", "schaling": "lineair" },
+    { "id": "zeezout", "naam": "grof zeezout", "hoeveelheid": 1, "eenheid": "tl", "schaling": "lineair" },
+    { "id": "rozemarijn", "naam": "takje rozemarijn", "meervoud": "takjes rozemarijn", "hoeveelheid": 2, "eenheid": "stuk", "schaling": "stuks" },
+    { "id": "zout", "naam": "zout", "hoeveelheid": 8, "eenheid": "g", "schaling": "lineair" }
+  ],
+  "stappen": [
+    { "tekst": "Meng {bloem}, {gist} en {zout} in een kom. Voeg {water} en de helft van {olijfolie} toe en kneed ±10 minuten tot een soepel deeg.", "duur": 12 },
+    { "tekst": "Dek de kom af en laat het deeg rijzen tot het verdubbeld is.", "duur": 2, "wachttijd": 60 },
+    { "tekst": "Druk het deeg uit in een ingevette bakvorm, maak kuiltjes met je vingers en verdeel de rest van {olijfolie}, {zeezout} en de naaldjes van {rozemarijn} erover.", "duur": 8 },
+    { "tekst": "Bak de focaccia goudbruin in de oven, ±20 minuten.", "duur": 2, "wachttijd": 20, "vereist": { "apparaat": "oven", "temperatuur": 220 } }
+  ]
+}
