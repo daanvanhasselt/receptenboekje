@@ -1,0 +1,23 @@
+{
+  "titel": "Pasta met zalm, boursin, spinazie en cherrytomaten",
+  "beschrijving": "Ovenpasta waarbij zalm, Boursin, cherrytomaten en spinazie samen de romige saus vormen.",
+  "personen": 2,
+  "tags": ["pasta", "oven", "vis"],
+  "ingredienten": [
+    { "id": "zalm", "naam": "zalmmoot", "meervoud": "zalmmoten", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks" },
+    { "id": "boursin", "naam": "Boursin knoflook & fijne kruiden", "hoeveelheid": 80, "eenheid": "g", "schaling": "lineair" },
+    { "id": "cherrytomaten", "naam": "cherrytomaten", "hoeveelheid": 250, "eenheid": "g", "schaling": "lineair" },
+    { "id": "spinazie", "naam": "verse spinazie", "hoeveelheid": 120, "eenheid": "g", "schaling": "lineair" },
+    { "id": "olijfolie", "naam": "olijfolie", "hoeveelheid": 1, "eenheid": "el", "schaling": "lineair" },
+    { "id": "peper-chili", "naam": "peper en chilivlokken", "schaling": "vast", "notitie": "naar smaak; de Boursin is al vrij zout" },
+    { "id": "spaghetti", "naam": "spaghetti", "hoeveelheid": 150, "eenheid": "g", "schaling": "lineair" },
+    { "id": "kaas", "naam": "geraspte belegen kaas", "schaling": "vast", "notitie": "om te serveren" }
+  ],
+  "stappen": [
+    { "tekst": "Leg {zalm} in een ovenbestendige pan of ovenschaal samen met {boursin}, {cherrytomaten} en {spinazie}. Schenk {olijfolie} over het geheel en breng op smaak met {peper-chili}.", "duur": 5 },
+    { "tekst": "Bak het gerecht af in de oven, ±20 minuten.", "duur": 2, "wachttijd": 20, "vereist": { "apparaat": "oven", "temperatuur": 200 } },
+    { "tekst": "Kook {spaghetti} al dente in ruim gezouten water.", "duur": 10, "vereist": { "apparaat": "pan-water" } },
+    { "tekst": "Meng de groenten en de zalm licht door de gebakken Boursin. Voeg de spaghetti toe en meng; is de saus te dik, voeg dan een scheutje pastawater toe.", "duur": 3 },
+    { "tekst": "Proef en breng verder op smaak met peper. Serveer met {kaas}.", "duur": 2 }
+  ]
+}
