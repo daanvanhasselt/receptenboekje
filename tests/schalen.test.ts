@@ -41,6 +41,9 @@ describe('formatteerHoeveelheid', () => {
   test('behoudt exacte niet-metrische basishoeveelheid', () => {
     expect(formatteerHoeveelheid(1.249, 'el')).toBe('1,249 el');
   });
+  test('rondt niet af bij breukdetectie van exacte basishoeveelheid', () => {
+    expect(formatteerHoeveelheid(1.24995, 'el')).toBe('1,24995 el');
+  });
   test('breuken voor lepels', () => {
     expect(formatteerHoeveelheid(0.75, 'tl')).toBe('¾ tl');
     expect(formatteerHoeveelheid(1.5, 'el')).toBe('1½ el');
