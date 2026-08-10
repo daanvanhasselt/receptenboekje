@@ -10,14 +10,14 @@ Zet de gegeven invoer om naar één nieuw bestand in `recepten/` volgens `schema
 ## Werkwijze
 
 1. **Invoer binnenhalen.**
-   - URL → haal de pagina op met WebFetch en vraag om de volledige recepttekst: titel, aantal personen, ingrediënten met hoeveelheden, alle stappen met tijden, en de URL van de receptfoto.
+   - URL → `npx tsx scripts/haal-pagina.ts <url>` (headless Chrome; receptensites blokkeren gewone fetches vaak met een 403). Lees het recept bij voorkeur uit het `Recipe`-object in de `jsonld`-blokken — daar staan titel, porties, ingrediënten, stappen, tijden én foto-URL's gestructureerd in; `zichtbareTekst` is het vangnet. Gebruik geen WebFetch of curl.
    - Afbeeldingspad → Read (vision) en lees het recept af.
    - Geplakte tekst → direct gebruiken.
    - Anderstalige bron → vertaal alles naar het Nederlands.
 2. **Bestaande stijl peilen.** Bekijk de tags die al in gebruik zijn: `grep -h '"tags"' recepten/*.json`. Hergebruik bestaande tags waar passend; introduceer geen synoniem naast een bestaande tag (geen "vegetarisch" naast "vega").
 3. **Slug en bestandscheck.** `npx tsx scripts/slug.ts "<titel>"` → het recept wordt `recepten/<slug>.json`. Bestaat dat bestand al, meld het dan en stop.
 4. **JSON opbouwen** volgens de regels hieronder.
-5. **Foto.** Heeft de bron een receptfoto (foto-URL uit de pagina, of de invoer wás een foto van het gerecht — een kookboekpagina vol tekst is géén receptfoto): `npx tsx scripts/foto-import.ts <url-of-pad> <slug>` en zet `"foto": "<slug>.jpg"` in de JSON. Geen foto of mislukt → veld weglaten en dit in het rapport melden.
+5. **Foto.** Heeft de bron een receptfoto (foto-URL uit de JSON-LD, of de invoer wás een foto van het gerecht — een kookboekpagina vol tekst is géén receptfoto): `npx tsx scripts/foto-import.ts <foto-url-of-pad> <slug> <pagina-url>` — de derde parameter laat het script bij een geblokkeerde download de foto via de browsercontext van de receptpagina ophalen. Zet `"foto": "<slug>.jpg"` in de JSON. Geen foto of mislukt → veld weglaten en dit in het rapport melden.
 6. **Poort.** `npm run valideer && npm test` — beide moeten groen. Fouten eerst fixen; de foutmeldingen noemen bestand en veld.
 7. **Commit.** `git add recepten/ && git commit -m "Recept toegevoegd: <titel>"`.
 8. **Rapport.** Meld: samenvatting (titel, personen, tags, totaaltijd), álle aannames en schattingen (met stapnummer), en wat er niet te vinden was (foto, tijden, personen).
