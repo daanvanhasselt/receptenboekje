@@ -3,6 +3,7 @@
   "beschrijving": "Eenpansgerecht van diep ingekookte tomatensaus met paprika en komijn, witte bonen, zachtgegaarde eieren en feta.",
   "personen": 4,
   "tags": ["vega", "midden-oosters"],
+  "foto": "shakshuka-met-witte-bonen-feta.jpg",
   "ingredienten": [
     { "id": "olijfolie", "naam": "olijfolie", "hoeveelheid": 3, "eenheid": "el", "schaling": "lineair", "categorie": "olie-en-sauzen" },
     { "id": "ui", "naam": "grote ui", "meervoud": "grote uien", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit", "notitie": "gesnipperd" },

@@ -3,6 +3,7 @@
   "beschrijving": "Ovenpasta waarbij zalm, Boursin, cherrytomaten en spinazie samen de romige saus vormen.",
   "personen": 2,
   "tags": ["pasta", "oven", "vis"],
+  "foto": "pasta-met-zalm-boursin-spinazie-en-cherrytomaten.jpg",
   "ingredienten": [
     { "id": "zalm", "naam": "zalmmoot", "meervoud": "zalmmoten", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "categorie": "vlees-en-vis" },
     { "id": "boursin", "naam": "Boursin knoflook & fijne kruiden", "hoeveelheid": 80, "eenheid": "g", "schaling": "lineair", "categorie": "kaas" },
