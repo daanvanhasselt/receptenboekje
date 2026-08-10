@@ -13,7 +13,12 @@ const { titel, actief } = Astro.props as { titel: string; actief?: 'recepten' | 
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href={pad('favicon.svg')} />
+    <link rel="icon" type="image/png" sizes="32x32" href={pad('favicon-32x32.png')} />
+    <link rel="icon" type="image/png" sizes="16x16" href={pad('favicon-16x16.png')} />
+    <link rel="apple-touch-icon" href={pad('apple-touch-icon.png')} />
+    <link rel="manifest" href={pad('manifest.webmanifest')} />
+    <meta name="theme-color" content="#43927d" />
+    <meta name="apple-mobile-web-app-title" content="Recepten" />
     <title>{titel}</title>
   </head>
   <body>
