@@ -1,6 +1,6 @@
 {
   "titel": "Courgette lasagne",
-  "beschrijving": "Lichte lasagne van opgerolde courgetteplakken gevuld met ricotta en spinazie, in tomatensaus met gesmolten mozzarella.",
+  "beschrijving": "Lichte lasagne van opgerolde courgetteplakken gevuld met ricotta en spinazie, in tomatensaus met gesmolten mozzarella. Lekker met een stokbroodje om te dippen.",
   "personen": 2,
   "tags": ["oven", "vega", "italiaans"],
   "foto": "courgette-lasagne.jpg",
@@ -14,15 +14,17 @@
     { "id": "italiaanse-kruiden", "naam": "Italiaanse kruiden", "hoeveelheid": 1, "eenheid": "el", "schaling": "lineair", "categorie": "kruiden-en-specerijen" },
     { "id": "zout-peper", "naam": "zout en peper", "schaling": "vast", "categorie": "kruiden-en-specerijen", "notitie": "naar smaak" },
     { "id": "passata", "naam": "tomatenpassata", "hoeveelheid": 250, "eenheid": "ml", "schaling": "lineair", "categorie": "conserven-en-potten" },
-    { "id": "mozzarella", "naam": "bol mozzarella", "meervoud": "bollen mozzarella", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "categorie": "kaas" }
+    { "id": "mozzarella", "naam": "bol mozzarella", "meervoud": "bollen mozzarella", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "categorie": "kaas" },
+    { "id": "stokbrood", "naam": "stokbrood", "meervoud": "stokbroden", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "categorie": "brood-en-bakkerij", "notitie": "om erbij te serveren en te dippen" }
   ],
   "stappen": [
-    { "tekst": "Snijd {courgette} in dunne plakken (ongeveer 5 plakken per courgette) en leg ze op een bakplaat met bakpapier. Schenk de helft van {olijfolie} erover en breng op smaak met {zout-peper}. Bak de plakken zacht in de oven, ±15–20 minuten.", "duur": 8, "wachttijd": 18, "vereist": { "apparaat": "oven", "temperatuur": 200 } },
+    { "tekst": "Snijd {courgette} in dunne plakken (ongeveer 5 plakken per courgette) en leg ze op een bakplaat met bakpapier. Schenk de helft van {olijfolie} erover en breng op smaak met {zout-peper}. Bak de plakken zacht in de oven, ±15–20 minuten. Laat ze daarna even uitlekken en dep vochtige plakken droog met keukenpapier, zo wordt de lasagne minder waterig.", "duur": 8, "wachttijd": 18, "vereist": { "apparaat": "oven", "temperatuur": 200 } },
     { "tekst": "Verhit intussen de rest van {olijfolie} in een pan op middelhoog vuur en laat {spinazie} er rustig in slinken.", "duur": 5 },
     { "tekst": "Mix in een kom {ricotta}, de geslonken spinazie, {basilicum}, {italiaanse-kruiden} en {zout-peper} tot een romige massa.", "duur": 3 },
     { "tekst": "Leg op iedere courgetteplak een beetje van het ricotta-spinaziemengsel en rol de plakken op.", "duur": 8 },
     { "tekst": "Verspreid het grootste deel van {passata} over de bodem van een ovenschaal en leg de rolletjes erop. Lepel de rest van de passata erover en maak af met {mozzarella}.", "duur": 5 },
     { "tekst": "Bak de courgette lasagne in de oven tot de mozzarella gesmolten en goudbruin is, ±20 minuten.", "duur": 2, "wachttijd": 20, "vereist": { "apparaat": "oven", "temperatuur": 200 } },
-    { "tekst": "Serveer, eventueel met extra {basilicum}.", "duur": 1 }
+    { "tekst": "Verwarm ondertussen {stokbrood} kort mee in de oven of rooster het knapperig.", "duur": 2 },
+    { "tekst": "Serveer met het stokbrood om te dippen, eventueel met extra {basilicum}.", "duur": 1 }
   ]
 }
