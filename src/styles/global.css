@@ -23,6 +23,7 @@ body {
   line-height: 1.6;
   color: var(--inkt);
   background: var(--papier);
+  touch-action: manipulation;
 }
 
 main {
