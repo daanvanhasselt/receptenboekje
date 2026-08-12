@@ -17,7 +17,7 @@
     { "id": "mozzarella", "naam": "bol mozzarella", "meervoud": "bollen mozzarella", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "categorie": "kaas" }
   ],
   "stappen": [
-    { "tekst": "Snijd {courgette} in dunne plakken (zo'n 16 stuks) en leg ze op een bakplaat met bakpapier. Schenk de helft van {olijfolie} erover en breng op smaak met {zout-peper}. Bak de plakken zacht in de oven, ±15–20 minuten.", "duur": 8, "wachttijd": 18, "vereist": { "apparaat": "oven", "temperatuur": 200 } },
+    { "tekst": "Snijd {courgette} in dunne plakken (ongeveer 5 plakken per courgette) en leg ze op een bakplaat met bakpapier. Schenk de helft van {olijfolie} erover en breng op smaak met {zout-peper}. Bak de plakken zacht in de oven, ±15–20 minuten.", "duur": 8, "wachttijd": 18, "vereist": { "apparaat": "oven", "temperatuur": 200 } },
     { "tekst": "Verhit intussen de rest van {olijfolie} in een pan op middelhoog vuur en laat {spinazie} er rustig in slinken.", "duur": 5 },
     { "tekst": "Mix in een kom {ricotta}, de geslonken spinazie, {basilicum}, {italiaanse-kruiden} en {zout-peper} tot een romige massa.", "duur": 3 },
     { "tekst": "Leg op iedere courgetteplak een beetje van het ricotta-spinaziemengsel en rol de plakken op.", "duur": 8 },
