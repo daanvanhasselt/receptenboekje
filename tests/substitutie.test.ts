@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { parseStaptekst } from '../src/lib/substitutie';
+import { ingredientIdsUitStap, parseStaptekst } from '../src/lib/substitutie';
 
 test('tekst zonder verwijzingen is één segment', () => {
   expect(parseStaptekst('Giet de pasta af.')).toEqual([{ type: 'tekst', waarde: 'Giet de pasta af.' }]);
@@ -28,4 +28,12 @@ test('meerdere verwijzingen, ook aan het eind', () => {
 
 test('accolades die geen geldig id vormen blijven tekst', () => {
   expect(parseStaptekst('vouw {NIET} dicht')).toEqual([{ type: 'tekst', waarde: 'vouw {NIET} dicht' }]);
+});
+
+test('ingredientIdsUitStap geeft unieke ids in volgorde van voorkomen', () => {
+  expect(ingredientIdsUitStap('Meng {bloem} met {gist} en nog wat {bloem}')).toEqual(['bloem', 'gist']);
+});
+
+test('ingredientIdsUitStap zonder verwijzingen geeft lege lijst', () => {
+  expect(ingredientIdsUitStap('Giet de pasta af.')).toEqual([]);
 });

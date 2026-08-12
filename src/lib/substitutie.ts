@@ -14,3 +14,11 @@ export function parseStaptekst(tekst: string): Segment[] {
   if (segmenten.length === 0) segmenten.push({ type: 'tekst', waarde: '' });
   return segmenten;
 }
+
+export function ingredientIdsUitStap(tekst: string): string[] {
+  const ids: string[] = [];
+  for (const segment of parseStaptekst(tekst)) {
+    if (segment.type === 'ingredient' && !ids.includes(segment.id)) ids.push(segment.id);
+  }
+  return ids;
+}
