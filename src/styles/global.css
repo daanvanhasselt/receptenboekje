@@ -364,3 +364,90 @@ main { padding-bottom: 7rem; }
   cursor: pointer;
 }
 .rij-verwijder:hover { color: var(--accent-donker); }
+
+/* Kookmodus */
+.kookmodus-start {
+  display: block;
+  width: 100%;
+  margin-top: 2rem;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 999px;
+  background: var(--chip);
+  color: var(--accent);
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.kookmodus-start:hover { background: var(--accent); color: #fff; }
+
+body.kookmodus-open { overflow: hidden; }
+
+.kookmodus {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  background: var(--papier);
+  padding: calc(0.75rem + env(safe-area-inset-top)) 1.25rem calc(0.75rem + env(safe-area-inset-bottom));
+}
+.km-kop { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+.km-bolletjes { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.35rem; }
+.km-bolletje { width: 0.55rem; height: 0.55rem; border-radius: 50%; background: var(--chip); }
+.km-bolletje.actief { background: var(--accent); }
+.km-sluit {
+  width: 2.6rem;
+  height: 2.6rem;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--kaart);
+  box-shadow: var(--schaduw);
+  color: var(--inkt);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.km-inhoud {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+}
+.km-stap { margin: auto 0; }
+.km-stap .stap p { font-size: 1.5rem; line-height: 1.55; }
+.km-stap .stap-tijd { font-size: 1.05rem; margin-top: 0.75rem !important; }
+.km-ingredienten {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0.25rem 1.25rem;
+  background: var(--kaart);
+  border-radius: var(--radius);
+  box-shadow: var(--schaduw);
+}
+.km-ingredienten li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--papier);
+}
+.km-ingredienten li:last-child { border-bottom: none; }
+.km-hoeveelheid { color: var(--inkt-zacht); white-space: nowrap; }
+.km-voet { display: flex; gap: 0.75rem; }
+.km-voet button {
+  flex: 1;
+  padding: 1.1rem;
+  border: none;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+[data-km-vorige] { background: var(--chip); color: var(--accent); }
+[data-km-vorige]:disabled { opacity: 0.4; cursor: default; }
+[data-km-volgende] { background: var(--accent); color: #fff; }

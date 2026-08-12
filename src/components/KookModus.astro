@@ -1,0 +1,146 @@
+---
+import Stap from './Stap.astro';
+import Waarschuwing from './Waarschuwing.astro';
+import { ingredientDelen } from '../lib/schalen';
+import { ingredientIdsUitStap } from '../lib/substitutie';
+import type { Ingredient, Stap as StapType } from '../lib/typen';
+
+const { stappen, ingredienten, waarschuwingenPerStap } = Astro.props as {
+  stappen: StapType[];
+  ingredienten: Ingredient[];
+  waarschuwingenPerStap: string[][];
+};
+const perId = new Map(ingredienten.map((ingredient) => [ingredient.id, ingredient]));
+---
+<button type="button" class="kookmodus-start" data-kookmodus-start>▶ Start kookmodus</button>
+<div class="kookmodus" data-kookmodus hidden>
+  <header class="km-kop">
+    <div>
+      <strong data-km-teller>Stap 1 van {stappen.length}</strong>
+      <div class="km-bolletjes" aria-hidden="true">
+        {stappen.map(() => <span class="km-bolletje"></span>)}
+      </div>
+    </div>
+    <button type="button" class="km-sluit" data-km-sluit aria-label="Kookmodus sluiten">×</button>
+  </header>
+  <div class="km-inhoud" data-km-inhoud>
+    {stappen.map((stap, i) => {
+      const stapIngredienten = ingredientIdsUitStap(stap.tekst).map((id) => perId.get(id)!);
+      return (
+        <section class="km-stap" data-km-stap hidden={i !== 0}>
+          {waarschuwingenPerStap[i].map((tekst) => <Waarschuwing tekst={tekst} />)}
+          <Stap stap={stap} ingredienten={ingredienten} />
+          {stapIngredienten.length > 0 && (
+            <ul class="km-ingredienten">
+              {stapIngredienten.map((ingredient) => {
+                const delen = ingredientDelen(ingredient, 1);
+                return (
+                  <li
+                    data-ingredient-rij
+                    data-hoeveelheid={ingredient.hoeveelheid}
+                    data-eenheid={ingredient.eenheid}
+                    data-schaling={ingredient.schaling}
+                    data-naam={ingredient.naam}
+                    data-meervoud={ingredient.meervoud}
+                  >
+                    <span data-doel-naam>{delen.naam}</span>
+                    {delen.hoeveelheid !== undefined && (
+                      <span class="km-hoeveelheid" data-doel-hoeveelheid>{delen.hoeveelheid}</span>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </section>
+      );
+    })}
+  </div>
+  <footer class="km-voet">
+    <button type="button" data-km-vorige>← Vorige</button>
+    <button type="button" data-km-volgende>Volgende →</button>
+  </footer>
+</div>
+
+<script>
+  const overlay = document.querySelector<HTMLElement>('[data-kookmodus]')!;
+  const startKnop = document.querySelector<HTMLButtonElement>('[data-kookmodus-start]')!;
+  const stappen = [...overlay.querySelectorAll<HTMLElement>('[data-km-stap]')];
+  const bolletjes = [...overlay.querySelectorAll<HTMLElement>('.km-bolletje')];
+  const teller = overlay.querySelector<HTMLElement>('[data-km-teller]')!;
+  const inhoud = overlay.querySelector<HTMLElement>('[data-km-inhoud]')!;
+  const vorigeKnop = overlay.querySelector<HTMLButtonElement>('[data-km-vorige]')!;
+  const volgendeKnop = overlay.querySelector<HTMLButtonElement>('[data-km-volgende]')!;
+  let actief = 0;
+  let wakeLock: WakeLockSentinel | null = null;
+
+  async function vraagWakeLock() {
+    try {
+      wakeLock = (await navigator.wakeLock?.request('screen')) ?? null;
+    } catch {
+      wakeLock = null;
+    }
+  }
+
+  function toon(i: number) {
+    actief = i;
+    stappen.forEach((stap, j) => {
+      stap.hidden = j !== i;
+    });
+    bolletjes.forEach((bol, j) => bol.classList.toggle('actief', j <= i));
+    teller.textContent = `Stap ${i + 1} van ${stappen.length}`;
+    vorigeKnop.disabled = i === 0;
+    volgendeKnop.textContent = i === stappen.length - 1 ? 'Klaar ✓' : 'Volgende →';
+    inhoud.scrollTop = 0;
+  }
+
+  function open() {
+    overlay.hidden = false;
+    document.body.classList.add('kookmodus-open');
+    toon(0);
+    void vraagWakeLock();
+  }
+
+  function sluit() {
+    overlay.hidden = true;
+    document.body.classList.remove('kookmodus-open');
+    void wakeLock?.release();
+    wakeLock = null;
+  }
+
+  startKnop.addEventListener('click', open);
+  overlay.querySelector('[data-km-sluit]')!.addEventListener('click', sluit);
+  vorigeKnop.addEventListener('click', () => {
+    if (actief > 0) toon(actief - 1);
+  });
+  volgendeKnop.addEventListener('click', () => {
+    if (actief === stappen.length - 1) sluit();
+    else toon(actief + 1);
+  });
+
+  let beginX = 0;
+  let beginY = 0;
+  inhoud.addEventListener(
+    'touchstart',
+    (e) => {
+      beginX = e.touches[0].clientX;
+      beginY = e.touches[0].clientY;
+    },
+    { passive: true }
+  );
+  inhoud.addEventListener(
+    'touchend',
+    (e) => {
+      const dx = e.changedTouches[0].clientX - beginX;
+      const dy = e.changedTouches[0].clientY - beginY;
+      if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy)) return;
+      if (dx < 0 && actief < stappen.length - 1) toon(actief + 1);
+      if (dx > 0 && actief > 0) toon(actief - 1);
+    },
+    { passive: true }
+  );
+
+  document.addEventListener('visibilitychange', () => {
+    if (!overlay.hidden && document.visibilityState === 'visible') void vraagWakeLock();
+  });
+</script>
