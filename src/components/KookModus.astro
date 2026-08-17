@@ -5,10 +5,11 @@ import { ingredientDelen } from '../lib/schalen';
 import { ingredientIdsUitStap } from '../lib/substitutie';
 import type { Ingredient, Stap as StapType } from '../lib/typen';
 
-const { stappen, ingredienten, waarschuwingenPerStap } = Astro.props as {
+const { stappen, ingredienten, waarschuwingenPerStap, personen } = Astro.props as {
   stappen: StapType[];
   ingredienten: Ingredient[];
   waarschuwingenPerStap: string[][];
+  personen: number;
 };
 const perId = new Map(ingredienten.map((ingredient) => [ingredient.id, ingredient]));
 ---
@@ -17,6 +18,7 @@ const perId = new Map(ingredienten.map((ingredient) => [ingredient.id, ingredien
   <header class="km-kop">
     <div>
       <strong data-km-teller>Stap 1 van {stappen.length}</strong>
+      <span class="km-personen">· <span data-personen>{personen}</span> personen</span>
       <div class="km-bolletjes" aria-hidden="true">
         {stappen.map(() => <span class="km-bolletje"></span>)}
       </div>

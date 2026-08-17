@@ -51,7 +51,7 @@ const bron = recept.bron !== undefined ? bronWeergave(recept.bron) : undefined;
     <PersonenKiezer basis={recept.personen} />
     <IngredientenLijst ingredienten={recept.ingredienten} />
     <button type="button" class="boodschappen-knop" data-boodschappen>Zet op boodschappenlijst</button>
-    <KookModus stappen={recept.stappen} ingredienten={recept.ingredienten} waarschuwingenPerStap={plaatsing.perStap} />
+    <KookModus stappen={recept.stappen} ingredienten={recept.ingredienten} waarschuwingenPerStap={plaatsing.perStap} personen={recept.personen} />
     <h2>Bereiding</h2>
     <ol class="stappen">
       {recept.stappen.map((stap, i) => (
