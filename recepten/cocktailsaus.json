@@ -1,0 +1,23 @@
+{
+  "titel": "Cocktailsaus",
+  "beschrijving": "Romige cocktailsaus in twee varianten: een pittige ketchup-mayonaise met whisky en tabasco, of een mildere versie met crème fraîche en worcestershiresaus. Kies er één. Hoeveelheden zijn een schatting; pas naar smaak aan.",
+  "personen": 4,
+  "tags": ["snel", "saus"],
+  "ingredienten": [
+    { "id": "ketchup", "naam": "ketchup", "hoeveelheid": 3, "eenheid": "el", "schaling": "lineair", "categorie": "olie-en-sauzen" },
+    { "id": "mayonaise", "naam": "mayonaise", "hoeveelheid": 4, "eenheid": "el", "schaling": "lineair", "categorie": "olie-en-sauzen" },
+    { "id": "yoghurt", "naam": "yoghurt", "hoeveelheid": 2, "eenheid": "el", "schaling": "lineair", "categorie": "zuivel-en-eieren", "notitie": "variant 1" },
+    { "id": "citroensap", "naam": "citroensap", "hoeveelheid": 1, "eenheid": "tl", "schaling": "lineair", "categorie": "groente-en-fruit", "notitie": "variant 1" },
+    { "id": "cayenne", "naam": "cayennepeper", "hoeveelheid": 1, "eenheid": "snuf", "schaling": "vast", "categorie": "kruiden-en-specerijen", "notitie": "variant 1" },
+    { "id": "tabasco", "naam": "tabasco", "hoeveelheid": 3, "eenheid": "druppel", "schaling": "vast", "categorie": "olie-en-sauzen", "notitie": "variant 1" },
+    { "id": "whisky", "naam": "whisky", "hoeveelheid": 1, "eenheid": "tl", "schaling": "vast", "categorie": "overig", "notitie": "variant 1, scheutje" },
+    { "id": "cremefraiche", "naam": "crème fraîche", "hoeveelheid": 3, "eenheid": "el", "schaling": "lineair", "categorie": "zuivel-en-eieren", "notitie": "variant 2" },
+    { "id": "worcestershire", "naam": "worcestershiresaus", "hoeveelheid": 1, "eenheid": "tl", "schaling": "vast", "categorie": "olie-en-sauzen", "notitie": "variant 2, scheutje" },
+    { "id": "peper-zout", "naam": "peper en zout", "schaling": "vast", "categorie": "kruiden-en-specerijen" }
+  ],
+  "stappen": [
+    { "tekst": "Variant 1 (pittig): meng {ketchup}, {mayonaise}, {yoghurt} en {citroensap} tot een gladde saus. Breng op smaak met {cayenne}, {tabasco}, een scheutje {whisky} en {peper-zout}.", "duur": 4 },
+    { "tekst": "Variant 2 (mild): meng {mayonaise}, {cremefraiche} en {ketchup} tot een gladde saus. Breng op smaak met een scheutje {worcestershire} en {peper-zout}.", "duur": 4 },
+    { "tekst": "Laat de saus minimaal 15 minuten in de koelkast rusten zodat de smaken zich mengen.", "duur": 1, "wachttijd": 15 }
+  ]
+}

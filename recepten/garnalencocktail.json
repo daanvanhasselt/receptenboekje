@@ -1,0 +1,24 @@
+{
+  "titel": "Garnalencocktail",
+  "beschrijving": "Frisse voorafje met garnalen en rivierkreeftjes op veldsla, met grapefruit, tomaat en avocado, afgemaakt met eigen cocktailsaus. Hoeveelheden zijn een schatting; bereiding is zelf ingevuld (stond niet op de kaart).",
+  "personen": 4,
+  "tags": ["voorgerecht", "vis"],
+  "ingredienten": [
+    { "id": "garnalen", "naam": "garnalen", "hoeveelheid": 200, "eenheid": "g", "schaling": "lineair", "categorie": "vlees-en-vis", "notitie": "gekookt en gepeld" },
+    { "id": "rivierkreeftjes", "naam": "rivierkreeftjes", "hoeveelheid": 150, "eenheid": "g", "schaling": "lineair", "categorie": "vlees-en-vis" },
+    { "id": "grapefruit", "naam": "grapefruit", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit", "notitie": "gefileerd" },
+    { "id": "tomaat", "naam": "tomaat", "meervoud": "tomaten", "hoeveelheid": 2, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit", "notitie": "in blokjes" },
+    { "id": "avocado", "naam": "avocado", "meervoud": "avocado's", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit", "notitie": "in blokjes" },
+    { "id": "veldsla", "naam": "veldsla", "hoeveelheid": 100, "eenheid": "g", "schaling": "lineair", "categorie": "groente-en-fruit" },
+    { "id": "peterselie", "naam": "peterselie", "hoeveelheid": 2, "eenheid": "el", "schaling": "lineair", "categorie": "groente-en-fruit", "notitie": "fijngehakt" },
+    { "id": "bosui", "naam": "bosui", "meervoud": "bosuitjes", "hoeveelheid": 2, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit", "notitie": "in ringetjes, als topping" },
+    { "id": "cocktailsaus", "naam": "cocktailsaus", "hoeveelheid": 4, "eenheid": "el", "schaling": "lineair", "categorie": "olie-en-sauzen", "notitie": "eigen cocktailsaus (los recept)" }
+  ],
+  "stappen": [
+    { "tekst": "Fileer {grapefruit} en vang het sap op. Snijd {tomaat} en {avocado} in blokjes; besprenkel de avocado met wat grapefruitsap zodat die niet verkleurt.", "duur": 8 },
+    { "tekst": "Meng {garnalen} en {rivierkreeftjes} met een deel van de {cocktailsaus}.", "duur": 3 },
+    { "tekst": "Verdeel {veldsla} over vier glazen of kommen. Schep daarop de tomaat, avocado en grapefruit.", "duur": 4 },
+    { "tekst": "Leg het garnalen-kreeftjesmengsel erbovenop en lepel de rest van de {cocktailsaus} erover.", "duur": 3 },
+    { "tekst": "Werk af met {peterselie} en {bosui} als topping. Serveer direct, goed gekoeld.", "duur": 2 }
+  ]
+}
