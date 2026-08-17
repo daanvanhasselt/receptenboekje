@@ -17,6 +17,6 @@
     { "tekst": "Maal {notenmix} grof en voeg toe.", "duur": 3 },
     { "tekst": "Voeg {speculaaskruiden} en {kaneel} toe en meng alles goed door elkaar.", "duur": 2 },
     { "tekst": "Verdeel het mengsel over een bakplaat met bakpapier en sprenkel er {zonnebloemolie} over.", "duur": 3 },
-    { "tekst": "Bak in de oven, hussel na ±8 minuten door en bak verder tot goudbruin.", "duur": 3, "wachttijd": 12, "vereist": { "apparaat": "oven", "temperatuur": 200 } }
+    { "tekst": "Bak in de oven, hussel na 3 minuten door en bak verder tot goudbruin.", "duur": 3, "wachttijd": 12, "vereist": { "apparaat": "oven", "temperatuur": 200 } }
   ]
 }
