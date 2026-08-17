@@ -22,8 +22,8 @@
   "stappen": [
     { "tekst": "Kook {mie} volgens de aanwijzingen op het pak. Giet af en laat uitlekken.", "duur": 8, "vereist": { "apparaat": "pan-water" } },
     { "tekst": "Meng intussen {ketjap}, {sojasaus}, {oestersaus}, {knoflook} en {gember} tot een woksaus en zet apart.", "duur": 4 },
-    { "tekst": "Verhit {olie} in een wok. Roerbak {prei}, {champignons} en {peultjes} op hoog vuur in enkele minuten beetgaar. Schep in een kom.", "duur": 4 },
-    { "tekst": "Rul {gehakt} 3 minuten in de wok. Voeg de woksaus toe en roerbak nog 2 minuten, of tot het gehakt gaar is.", "duur": 5 },
-    { "tekst": "Doe de groenten en de mie terug in de wok, schep alles door elkaar en serveer in kommen, bestrooid met {lente-ui}.", "duur": 3 }
+    { "tekst": "Verhit {olie} in een wok. Roerbak {prei}, {champignons} en {peultjes} op hoog vuur in enkele minuten beetgaar.", "duur": 4 },
+    { "tekst": "Rul {gehakt} apart 3 minuten gaar en voeg het daarna bij de groenten in de wok.", "duur": 5 },
+    { "tekst": "Voeg de woksaus toe en roerbak nog 2 minuten. Doe de mie erbij, schep alles door elkaar en serveer in kommen, bestrooid met {lente-ui}.", "duur": 3 }
   ]
 }

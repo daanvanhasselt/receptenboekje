@@ -1,0 +1,16 @@
+{
+  "titel": "Woksaus (ketjap, soja en oestersaus)",
+  "beschrijving": "Snelle Aziatische woksaus van ketjap manis, sojasaus en oestersaus met knoflook en gember. Genoeg voor een roerbak voor 4 personen.",
+  "personen": 4,
+  "tags": ["snel", "aziatisch", "saus"],
+  "ingredienten": [
+    { "id": "ketjap", "naam": "ketjap manis", "hoeveelheid": 125, "eenheid": "ml", "schaling": "lineair", "categorie": "olie-en-sauzen" },
+    { "id": "sojasaus", "naam": "sojasaus", "hoeveelheid": 4, "eenheid": "el", "schaling": "lineair", "categorie": "olie-en-sauzen" },
+    { "id": "oestersaus", "naam": "oestersaus", "hoeveelheid": 4, "eenheid": "el", "schaling": "lineair", "categorie": "olie-en-sauzen" },
+    { "id": "knoflook", "naam": "teen knoflook", "meervoud": "tenen knoflook", "hoeveelheid": 2, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit", "notitie": "geperst" },
+    { "id": "gember", "naam": "cm verse gemberwortel", "hoeveelheid": 2, "eenheid": "stuk", "schaling": "lineair", "categorie": "groente-en-fruit", "notitie": "geschild en geraspt" }
+  ],
+  "stappen": [
+    { "tekst": "Meng {ketjap}, {sojasaus}, {oestersaus}, {knoflook} en {gember} tot een gladde woksaus.", "duur": 4 }
+  ]
+}
