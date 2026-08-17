@@ -1,0 +1,19 @@
+{
+  "titel": "Aardappelpuree",
+  "beschrijving": "Romige aardappelpuree met boter, melk, nootmuscaat en parmezaan. Uit eigen receptenboekje.",
+  "personen": 4,
+  "tags": ["bijgerecht"],
+  "ingredienten": [
+    { "id": "aardappel", "naam": "kruimige aardappel", "meervoud": "kruimige aardappelen", "hoeveelheid": 800, "eenheid": "g", "schaling": "lineair", "categorie": "groente-en-fruit", "notitie": "bloemig/kruimig" },
+    { "id": "boter", "naam": "boter", "hoeveelheid": 45, "eenheid": "g", "schaling": "lineair", "categorie": "zuivel-en-eieren" },
+    { "id": "melk", "naam": "melk", "hoeveelheid": 1, "eenheid": "dl", "schaling": "lineair", "categorie": "zuivel-en-eieren" },
+    { "id": "nootmuscaat", "naam": "nootmuscaat", "hoeveelheid": 0.25, "eenheid": "tl", "schaling": "vast", "categorie": "kruiden-en-specerijen" },
+    { "id": "parmezaan", "naam": "parmezaanse kaas", "hoeveelheid": 40, "eenheid": "g", "schaling": "lineair", "categorie": "kaas", "notitie": "geraspt" },
+    { "id": "zout", "naam": "zout", "schaling": "vast", "categorie": "kruiden-en-specerijen", "notitie": "snufje, voor het kookwater" }
+  ],
+  "stappen": [
+    { "tekst": "Schil {aardappel} en snijd in gelijke stukken.", "duur": 8 },
+    { "tekst": "Kook de aardappelen met een snufje {zout} in ruim water tot ze zacht zijn. Giet af.", "duur": 5, "wachttijd": 18, "vereist": { "apparaat": "pan-water" } },
+    { "tekst": "Stamp de aardappelen fijn. Voeg {boter}, {melk}, {nootmuscaat} en {parmezaan} toe en stamp tot een gladde puree.", "duur": 4 }
+  ]
+}

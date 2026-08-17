@@ -1,0 +1,22 @@
+{
+  "titel": "Lasagne",
+  "beschrijving": "Snelle lasagne met gehakt, Italiaanse groentemix en tomatenpuree, gelaagd met lasagnebladen en kaas. Uit eigen receptenboekje. Sommige hoeveelheden zijn een schatting.",
+  "personen": 4,
+  "tags": ["oven", "pasta", "italiaans"],
+  "ingredienten": [
+    { "id": "gehakt", "naam": "gehakt", "hoeveelheid": 400, "eenheid": "g", "schaling": "lineair", "categorie": "vlees-en-vis" },
+    { "id": "groentemix", "naam": "Italiaanse groentemix", "hoeveelheid": 400, "eenheid": "g", "schaling": "lineair", "categorie": "groente-en-fruit" },
+    { "id": "tomatenpuree", "naam": "tomatenpuree", "hoeveelheid": 1, "eenheid": "blik", "schaling": "lineair", "categorie": "conserven-en-potten", "notitie": "blikje" },
+    { "id": "bouillon", "naam": "runderbouillon", "hoeveelheid": 1, "eenheid": "blokje", "schaling": "vast", "categorie": "conserven-en-potten", "notitie": "Knorr o.i.d." },
+    { "id": "water", "naam": "water", "hoeveelheid": 500, "eenheid": "ml", "schaling": "lineair", "categorie": "overig" },
+    { "id": "lasagnebladen", "naam": "lasagneblad", "meervoud": "lasagnebladen", "hoeveelheid": 250, "eenheid": "g", "schaling": "lineair", "categorie": "pasta-rijst-en-granen" },
+    { "id": "kaas", "naam": "geraspte kaas", "hoeveelheid": 150, "eenheid": "g", "schaling": "lineair", "categorie": "kaas" }
+  ],
+  "stappen": [
+    { "tekst": "Braad {gehakt} rul in een pan.", "duur": 5 },
+    { "tekst": "Voeg {groentemix} toe en bak kort mee.", "duur": 4 },
+    { "tekst": "Voeg {tomatenpuree}, verkruimeld {bouillon} en {water} toe en laat even doorkoken tot een saus.", "duur": 8 },
+    { "tekst": "Vet een ovenschaal in. Begin met een laag gehaktsaus, dan een laag {lasagnebladen}, en herhaal. Eindig met saus en bestrooi met {kaas}.", "duur": 6 },
+    { "tekst": "Bak de lasagne in de oven tot de kaas goudbruin is.", "duur": 3, "wachttijd": 45, "vereist": { "apparaat": "oven", "temperatuur": 200 } }
+  ]
+}

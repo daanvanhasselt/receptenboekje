@@ -1,0 +1,26 @@
+{
+  "titel": "Scones",
+  "beschrijving": "Klassieke scones, lekker met jam of zelfgemaakte clotted cream van crème fraîche en mascarpone. Uit eigen receptenboekje. Maakt 12-16 stuks.",
+  "personen": 4,
+  "tags": ["oven", "bakken", "zoet"],
+  "ingredienten": [
+    { "id": "bloem", "naam": "bloem", "hoeveelheid": 500, "eenheid": "g", "schaling": "lineair", "categorie": "brood-en-bakkerij" },
+    { "id": "suiker", "naam": "suiker", "hoeveelheid": 90, "eenheid": "g", "schaling": "lineair", "categorie": "overig" },
+    { "id": "bakpoeder", "naam": "bakpoeder", "hoeveelheid": 5, "eenheid": "tl", "schaling": "lineair", "categorie": "brood-en-bakkerij" },
+    { "id": "zout", "naam": "zout", "hoeveelheid": 0.5, "eenheid": "tl", "schaling": "vast", "categorie": "kruiden-en-specerijen" },
+    { "id": "boter", "naam": "koude boter", "hoeveelheid": 75, "eenheid": "g", "schaling": "lineair", "categorie": "zuivel-en-eieren", "notitie": "in blokjes" },
+    { "id": "ei", "naam": "ei", "meervoud": "eieren", "hoeveelheid": 2, "eenheid": "stuk", "schaling": "stuks", "categorie": "zuivel-en-eieren" },
+    { "id": "karnemelk", "naam": "karnemelk", "hoeveelheid": 175, "eenheid": "g", "schaling": "lineair", "categorie": "zuivel-en-eieren" },
+    { "id": "cremefraiche", "naam": "crème fraîche", "hoeveelheid": 125, "eenheid": "g", "schaling": "lineair", "categorie": "zuivel-en-eieren", "notitie": "voor clotted cream" },
+    { "id": "mascarpone", "naam": "mascarpone", "hoeveelheid": 100, "eenheid": "g", "schaling": "lineair", "categorie": "zuivel-en-eieren", "notitie": "voor clotted cream" },
+    { "id": "poedersuiker", "naam": "poedersuiker", "hoeveelheid": 1, "eenheid": "el", "schaling": "vast", "categorie": "overig", "notitie": "voor clotted cream" }
+  ],
+  "stappen": [
+    { "tekst": "Meng {bloem}, {suiker}, {bakpoeder} en {zout}. Wrijf {boter} erdoor tot een kruimelig geheel.", "duur": 5 },
+    { "tekst": "Voeg {ei} en {karnemelk} toe en kneed net tot een bal deeg (niet te lang).", "duur": 4 },
+    { "tekst": "Druk het deeg aan tot ±2 cm dik en steek rondjes uit van 5-6 cm.", "duur": 6 },
+    { "tekst": "Bestrijk de bovenkant met losgeklopt ei of karnemelk.", "duur": 2 },
+    { "tekst": "Bak de scones in de oven tot ze goudbruin en gerezen zijn, ±15 minuten.", "duur": 2, "wachttijd": 15, "vereist": { "apparaat": "oven", "temperatuur": 200 } },
+    { "tekst": "Clotted cream: hussel {cremefraiche} en {mascarpone} met een spatel rustig samen met een beetje {poedersuiker}. Serveer de scones met jam en clotted cream.", "duur": 4 }
+  ]
+}

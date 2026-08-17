@@ -1,0 +1,25 @@
+{
+  "titel": "Paddenstoelen Risotto",
+  "beschrijving": "Romige risotto met bospaddenstoelen, prei en gehakt, afgemaakt met mascarpone en parmezaan en gegratineerd in de oven. Uit eigen receptenboekje. Sommige hoeveelheden zijn een schatting.",
+  "personen": 4,
+  "tags": ["oven", "italiaans"],
+  "ingredienten": [
+    { "id": "risottorijst", "naam": "arboriorijst", "hoeveelheid": 320, "eenheid": "g", "schaling": "lineair", "categorie": "pasta-rijst-en-granen" },
+    { "id": "prei", "naam": "prei", "meervoud": "preien", "hoeveelheid": 2, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit", "notitie": "in ringen" },
+    { "id": "gehakt", "naam": "gehakt", "hoeveelheid": 300, "eenheid": "g", "schaling": "lineair", "categorie": "vlees-en-vis", "notitie": "of worst uit het vel" },
+    { "id": "paddenstoelen", "naam": "bospaddenstoelen", "hoeveelheid": 250, "eenheid": "g", "schaling": "lineair", "categorie": "groente-en-fruit" },
+    { "id": "wijn", "naam": "witte wijn", "hoeveelheid": 100, "eenheid": "ml", "schaling": "lineair", "categorie": "overig" },
+    { "id": "bouillon", "naam": "groentebouillon", "hoeveelheid": 1, "eenheid": "l", "schaling": "lineair", "categorie": "conserven-en-potten" },
+    { "id": "mascarpone", "naam": "mascarpone", "hoeveelheid": 80, "eenheid": "g", "schaling": "lineair", "categorie": "zuivel-en-eieren" },
+    { "id": "parmezaan", "naam": "parmezaanse kaas", "hoeveelheid": 50, "eenheid": "g", "schaling": "lineair", "categorie": "kaas", "notitie": "geraspt" },
+    { "id": "boter", "naam": "boter", "hoeveelheid": 25, "eenheid": "g", "schaling": "lineair", "categorie": "zuivel-en-eieren" }
+  ],
+  "stappen": [
+    { "tekst": "Smelt {boter} in een pan. Bak {gehakt}, {prei} en {paddenstoelen} ongeveer 5 minuten.", "duur": 6 },
+    { "tekst": "Voeg {risottorijst} toe en bak kort glazig.", "duur": 2 },
+    { "tekst": "Blus af met {wijn} en laat inkoken.", "duur": 3 },
+    { "tekst": "Voeg {bouillon} in delen toe en blijf goed roeren tot de rijst gaar en romig is, ±20 minuten.", "duur": 20 },
+    { "tekst": "Schep de risotto in een ingevette ovenschaal. Roer {mascarpone} erdoor en bestrooi met {parmezaan}.", "duur": 3 },
+    { "tekst": "Gratineer kort in de oven tot goudbruin.", "duur": 2, "wachttijd": 12, "vereist": { "apparaat": "oven", "temperatuur": 200 } }
+  ]
+}

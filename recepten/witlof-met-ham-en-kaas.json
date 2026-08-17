@@ -1,0 +1,21 @@
+{
+  "titel": "Witlof met ham en kaas",
+  "beschrijving": "Gegratineerde witlof gerold in ham met kaas, afgemaakt met strooikaas en panko. Uit eigen receptenboekje. Sommige hoeveelheden zijn een schatting.",
+  "personen": 4,
+  "tags": ["oven"],
+  "ingredienten": [
+    { "id": "witlof", "naam": "stronk witlof", "meervoud": "stronken witlof", "hoeveelheid": 8, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit" },
+    { "id": "ham", "naam": "plak ham", "meervoud": "plakken ham", "hoeveelheid": 8, "eenheid": "stuk", "schaling": "stuks", "categorie": "vlees-en-vis" },
+    { "id": "plakkaas", "naam": "belegen plakkaas", "hoeveelheid": 8, "eenheid": "plak", "schaling": "stuks", "categorie": "kaas" },
+    { "id": "strooikaas", "naam": "belegen strooikaas", "hoeveelheid": 75, "eenheid": "g", "schaling": "lineair", "categorie": "kaas", "notitie": "geraspt" },
+    { "id": "boter", "naam": "boter", "hoeveelheid": 25, "eenheid": "g", "schaling": "lineair", "categorie": "zuivel-en-eieren" },
+    { "id": "panko", "naam": "panko", "hoeveelheid": 3, "eenheid": "el", "schaling": "lineair", "categorie": "brood-en-bakkerij" }
+  ],
+  "stappen": [
+    { "tekst": "Vet een ovenschaal in met een deel van de {boter}.", "duur": 2 },
+    { "tekst": "Blancheer {witlof}: dompel kort in kokend water en giet af, spoel daarna met koud water. Laat goed uitlekken.", "duur": 8, "vereist": { "apparaat": "pan-water" } },
+    { "tekst": "Rol elke stronk {witlof} in een plak {ham} met daarop een plak {plakkaas}. Leg de rolletjes in de ovenschaal.", "duur": 8 },
+    { "tekst": "Verdeel puntjes van de resterende {boter} over de rolletjes en strooi {strooikaas} en {panko} erover.", "duur": 3 },
+    { "tekst": "Gratineer in de oven tot goudbruin — bruin is beter. Serveer eventueel met aardappelpuree.", "duur": 2, "wachttijd": 45, "vereist": { "apparaat": "oven", "temperatuur": 200 } }
+  ]
+}
