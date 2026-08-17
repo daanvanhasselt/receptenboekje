@@ -1,0 +1,24 @@
+{
+  "titel": "Pasta Carbonara",
+  "beschrijving": "Klassieke Romeinse carbonara met spaghetti, guanciale, ei en pecorino/parmezaan. Zonder room — de romigheid komt van ei, kaas en pastawater. Hoeveelheden zijn een schatting; pas naar smaak aan.",
+  "personen": 4,
+  "tags": ["snel", "pasta", "italiaans"],
+  "ingredienten": [
+    { "id": "spaghetti", "naam": "spaghetti", "hoeveelheid": 400, "eenheid": "g", "schaling": "lineair", "categorie": "pasta-rijst-en-granen" },
+    { "id": "guanciale", "naam": "guanciale", "hoeveelheid": 150, "eenheid": "g", "schaling": "lineair", "categorie": "vlees-en-vis", "notitie": "in blokjes of reepjes; anders pancetta" },
+    { "id": "ei", "naam": "ei", "meervoud": "eieren", "hoeveelheid": 4, "eenheid": "stuk", "schaling": "stuks", "categorie": "zuivel-en-eieren", "notitie": "3 hele eieren + 1 extra dooier" },
+    { "id": "pecorino", "naam": "pecorino romano", "hoeveelheid": 50, "eenheid": "g", "schaling": "lineair", "categorie": "kaas", "notitie": "fijn geraspt" },
+    { "id": "parmezaan", "naam": "parmezaanse kaas", "hoeveelheid": 50, "eenheid": "g", "schaling": "lineair", "categorie": "kaas", "notitie": "fijn geraspt" },
+    { "id": "peper", "naam": "zwarte peper", "hoeveelheid": 1, "eenheid": "tl", "schaling": "vast", "categorie": "kruiden-en-specerijen", "notitie": "versgemalen, royaal" },
+    { "id": "zout", "naam": "zout", "schaling": "vast", "categorie": "kruiden-en-specerijen", "notitie": "voor het pastawater" }
+  ],
+  "stappen": [
+    { "tekst": "Breng een ruime pan water met {zout} aan de kook voor {spaghetti}. Bewaar straks een kop pastawater voordat je afgiet.", "duur": 2, "vereist": { "apparaat": "pan-water" } },
+    { "tekst": "Bak {guanciale} in een koude koekenpan langzaam uit op middelhoog vuur tot het vet gesmolten is en de blokjes goudbruin en knapperig zijn. Haal van het vuur; laat het vet in de pan.", "duur": 8 },
+    { "tekst": "Klop in een kom {ei} los met {pecorino}, {parmezaan} en flink versgemalen {peper} tot een gladde room.", "duur": 3 },
+    { "tekst": "Kook {spaghetti} beetgaar volgens de aanwijzingen op het pak. Schep er vlak voor het afgieten een kop kookwater uit.", "duur": 9, "vereist": { "apparaat": "pan-water" } },
+    { "tekst": "Doe de uitgelekte spaghetti bij de guanciale in de (van het vuur gehaalde) pan en schep goed door het vet.", "duur": 1 },
+    { "tekst": "Roer al scheppend het eimengsel door de warme pasta — niet op het vuur, anders schift het ei. Voeg beetje bij beetje wat pastawater toe tot een gladde, romige saus die de spaghetti omhult.", "duur": 3 },
+    { "tekst": "Serveer direct met extra pecorino/parmezaan en nog wat versgemalen zwarte peper.", "duur": 1 }
+  ]
+}
