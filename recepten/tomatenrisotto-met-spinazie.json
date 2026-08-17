@@ -1,0 +1,24 @@
+{
+  "titel": "Tomatenrisotto met spinazie",
+  "beschrijving": "Snelle risotto met cherrytomaten en spinazie, afgemaakt met parmezaan. Uit eigen receptenboekje. Hoeveelheden deels een schatting.",
+  "personen": 4,
+  "tags": ["italiaans", "vega"],
+  "ingredienten": [
+    { "id": "risottorijst", "naam": "risottorijst", "hoeveelheid": 320, "eenheid": "g", "schaling": "lineair", "categorie": "pasta-rijst-en-granen" },
+    { "id": "cherrytomaten", "naam": "cherrytomaten", "hoeveelheid": 250, "eenheid": "g", "schaling": "lineair", "categorie": "groente-en-fruit", "notitie": "gehalveerd" },
+    { "id": "spinazie", "naam": "spinazie", "hoeveelheid": 200, "eenheid": "g", "schaling": "lineair", "categorie": "groente-en-fruit" },
+    { "id": "ui", "naam": "ui", "meervoud": "uien", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit", "notitie": "gesnipperd" },
+    { "id": "knoflook", "naam": "teen knoflook", "meervoud": "tenen knoflook", "hoeveelheid": 2, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit", "notitie": "geperst" },
+    { "id": "bouillon", "naam": "groentebouillon", "hoeveelheid": 1, "eenheid": "l", "schaling": "lineair", "categorie": "conserven-en-potten" },
+    { "id": "parmezaan", "naam": "parmezaanse kaas", "hoeveelheid": 50, "eenheid": "g", "schaling": "lineair", "categorie": "kaas", "notitie": "geraspt" },
+    { "id": "olie", "naam": "olijfolie", "hoeveelheid": 1, "eenheid": "el", "schaling": "lineair", "categorie": "olie-en-sauzen" },
+    { "id": "peper-zout", "naam": "peper en zout", "schaling": "vast", "categorie": "kruiden-en-specerijen" }
+  ],
+  "stappen": [
+    { "tekst": "Verhit {olie} en bak {ui} en {knoflook} glazig en licht bruin.", "duur": 4 },
+    { "tekst": "Voeg {risottorijst} toe en bak kort mee.", "duur": 2 },
+    { "tekst": "Voeg {bouillon} in delen toe en blijf goed roeren tot de rijst bijna gaar is, ±15 minuten.", "duur": 15 },
+    { "tekst": "Roer {spinazie} en {cherrytomaten} erdoor en laat nog ±5 minuten meekoken.", "duur": 5 },
+    { "tekst": "Roer {parmezaan} erdoor, breng op smaak met {peper-zout} en dien op.", "duur": 2 }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "titel": "Caprese pesto lasagne",
+  "beschrijving": "Vegetarische lasagne met courgette, ricotta, pesto en mozzarella. Uit eigen receptenboekje. Hoeveelheden deels een schatting.",
+  "personen": 3,
+  "tags": ["oven", "pasta", "italiaans", "vega"],
+  "ingredienten": [
+    { "id": "lasagnebladen", "naam": "lasagneblad", "meervoud": "lasagnebladen", "hoeveelheid": 250, "eenheid": "g", "schaling": "lineair", "categorie": "pasta-rijst-en-granen" },
+    { "id": "courgette", "naam": "courgette", "meervoud": "courgettes", "hoeveelheid": 2, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit", "notitie": "in dunne reepjes/plakken" },
+    { "id": "ricotta", "naam": "ricotta", "hoeveelheid": 500, "eenheid": "g", "schaling": "lineair", "categorie": "zuivel-en-eieren" },
+    { "id": "mozzarella", "naam": "mozzarella", "hoeveelheid": 250, "eenheid": "g", "schaling": "lineair", "categorie": "kaas", "notitie": "in plakjes of geraspt" },
+    { "id": "pesto", "naam": "pesto", "hoeveelheid": 85, "eenheid": "g", "schaling": "lineair", "categorie": "olie-en-sauzen", "notitie": "groene pesto" },
+    { "id": "parmezaan", "naam": "parmezaanse kaas", "hoeveelheid": 50, "eenheid": "g", "schaling": "lineair", "categorie": "kaas", "notitie": "geraspt" },
+    { "id": "knoflook", "naam": "teen knoflook", "meervoud": "tenen knoflook", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit", "notitie": "geperst" },
+    { "id": "basilicum", "naam": "basilicum", "hoeveelheid": 10, "eenheid": "g", "schaling": "lineair", "categorie": "groente-en-fruit" },
+    { "id": "olie", "naam": "olijfolie", "hoeveelheid": 2, "eenheid": "el", "schaling": "lineair", "categorie": "olie-en-sauzen" },
+    { "id": "peper-zout", "naam": "peper en zout", "schaling": "vast", "categorie": "kruiden-en-specerijen" }
+  ],
+  "stappen": [
+    { "tekst": "Snijd {courgette} in dunne reepjes of plakken en bak ze kort aan in {olie}, of gril ze even. Bestrooi met {peper-zout}.", "duur": 8 },
+    { "tekst": "Meng {ricotta} met {knoflook}, een deel van de {basilicum} en wat {peper-zout}.", "duur": 3 },
+    { "tekst": "Vet een ovenschaal in. Maak lagen: eerst courgette, dan ricottamengsel, dan {lasagnebladen}, dan {pesto}. Herhaal deze lagen.", "duur": 8 },
+    { "tekst": "Eindig met een laag {mozzarella} en bestrooi met {parmezaan} en de rest van de {basilicum}.", "duur": 3 },
+    { "tekst": "Bak de lasagne in de oven tot de bovenkant goudbruin en gaar is, ±30 minuten.", "duur": 2, "wachttijd": 30, "vereist": { "apparaat": "oven", "temperatuur": 200 } }
+  ]
+}

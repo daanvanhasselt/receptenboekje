@@ -1,0 +1,20 @@
+{
+  "titel": "Bananenbrood",
+  "beschrijving": "Bananenbrood van rijpe bananen en dadels, eventueel met chocolade. Uit eigen receptenboekje; enkele ingrediënten waren slecht leesbaar en zijn een schatting/aanname.",
+  "personen": 4,
+  "tags": ["oven", "bakken", "zoet"],
+  "ingredienten": [
+    { "id": "banaan", "naam": "rijpe banaan", "meervoud": "rijpe bananen", "hoeveelheid": 3, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit" },
+    { "id": "dadels", "naam": "dadel", "meervoud": "dadels", "hoeveelheid": 3, "eenheid": "stuk", "schaling": "stuks", "categorie": "overig", "notitie": "ontpit, fijngesneden" },
+    { "id": "bakmeel", "naam": "zelfrijzend bakmeel", "hoeveelheid": 200, "eenheid": "g", "schaling": "lineair", "categorie": "brood-en-bakkerij" },
+    { "id": "havermout", "naam": "havermout", "hoeveelheid": 200, "eenheid": "g", "schaling": "lineair", "categorie": "pasta-rijst-en-granen", "notitie": "onzeker: kaart vermeldde een tweede 200 g meel/maïs" },
+    { "id": "kaneel", "naam": "kaneel", "hoeveelheid": 1, "eenheid": "snuf", "schaling": "vast", "categorie": "kruiden-en-specerijen", "notitie": "of vanille" },
+    { "id": "chocolade", "naam": "chocolade", "hoeveelheid": 50, "eenheid": "g", "schaling": "lineair", "categorie": "overig", "notitie": "optioneel, in stukjes" }
+  ],
+  "stappen": [
+    { "tekst": "Prak {banaan} en {dadels} fijn tot een gladde massa.", "duur": 4 },
+    { "tekst": "Meng {bakmeel}, {havermout} en {kaneel} erdoor tot een beslag. Spatel eventueel {chocolade} erdoor.", "duur": 4 },
+    { "tekst": "Schep het beslag in een ingevette of beklede bakvorm.", "duur": 2 },
+    { "tekst": "Bak het bananenbrood in de oven tot een satéprikker er schoon uitkomt, ±80 minuten.", "duur": 2, "wachttijd": 80, "vereist": { "apparaat": "oven", "temperatuur": 180 } }
+  ]
+}

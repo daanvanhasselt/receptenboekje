@@ -1,0 +1,20 @@
+{
+  "titel": "Gnocchi",
+  "beschrijving": "Zelfgemaakte aardappelgnocchi van slechts drie ingrediënten. Lekker met pesto of boter, of met tomaat en mozzarella. Uit eigen receptenboekje; bereiding deels zelf ingevuld.",
+  "personen": 2,
+  "tags": ["pasta", "italiaans", "vega"],
+  "ingredienten": [
+    { "id": "aardappel", "naam": "kruimige aardappel", "meervoud": "kruimige aardappelen", "hoeveelheid": 500, "eenheid": "g", "schaling": "lineair", "categorie": "groente-en-fruit" },
+    { "id": "bloem", "naam": "bloem", "hoeveelheid": 150, "eenheid": "g", "schaling": "lineair", "categorie": "brood-en-bakkerij" },
+    { "id": "ei", "naam": "ei", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "categorie": "zuivel-en-eieren" },
+    { "id": "zout", "naam": "zout", "schaling": "vast", "categorie": "kruiden-en-specerijen" }
+  ],
+  "stappen": [
+    { "tekst": "Schil {aardappel} en kook ze gaar in water met een snufje {zout}. Giet af en laat even droogstomen.", "duur": 5, "wachttijd": 20, "vereist": { "apparaat": "pan-water" } },
+    { "tekst": "Stamp de aardappelen fijn tot een gladde puree en laat ±15 minuten afkoelen.", "duur": 4 },
+    { "tekst": "Klop {ei} los en meng door de puree. Voeg {bloem} en wat zout toe en kneed net tot een soepel deeg.", "duur": 5 },
+    { "tekst": "Rol het deeg in delen uit tot rollen van ±2 cm dik en snijd in stukjes van ±2 cm. Druk eventueel met een vork een ribbeltje erin.", "duur": 8 },
+    { "tekst": "Kook de gnocchi in gezouten water; ze zijn klaar zodra ze komen bovendrijven (±3-5 min). Schep eruit en laat uitlekken.", "duur": 5, "vereist": { "apparaat": "pan-water" } },
+    { "tekst": "Serveer met pesto of boter, of met tomaat, basilicum en mozzarella.", "duur": 2 }
+  ]
+}
