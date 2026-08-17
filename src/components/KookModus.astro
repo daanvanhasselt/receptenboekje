@@ -43,7 +43,9 @@ const perId = new Map(ingredienten.map((ingredient) => [ingredient.id, ingredien
                     data-naam={ingredient.naam}
                     data-meervoud={ingredient.meervoud}
                   >
-                    <span data-doel-naam>{delen.naam}</span>
+                    <span class="km-naam">
+                      <span data-doel-naam>{delen.naam}</span>{ingredient.notitie && <span class="notitie">, {ingredient.notitie}</span>}
+                    </span>
                     {delen.hoeveelheid !== undefined && (
                       <span class="km-hoeveelheid" data-doel-hoeveelheid>{delen.hoeveelheid}</span>
                     )}
