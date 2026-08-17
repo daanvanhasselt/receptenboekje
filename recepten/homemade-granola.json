@@ -1,0 +1,22 @@
+{
+  "titel": "Homemade Granola",
+  "beschrijving": "Zelfgemaakte granola van havermout en notenmix met honing, speculaas- en kaneelkruiden. Hoeveelheden zijn een schatting; pas naar smaak aan.",
+  "personen": 4,
+  "tags": ["snel", "oven", "ontbijt"],
+  "ingredienten": [
+    { "id": "havermout", "naam": "havermoutvlokken", "hoeveelheid": 250, "eenheid": "g", "schaling": "lineair", "categorie": "pasta-rijst-en-granen" },
+    { "id": "notenmix", "naam": "notenmix", "hoeveelheid": 150, "eenheid": "g", "schaling": "lineair", "categorie": "overig", "notitie": "grof gemalen" },
+    { "id": "honing", "naam": "honing", "hoeveelheid": 3, "eenheid": "el", "schaling": "lineair", "categorie": "olie-en-sauzen" },
+    { "id": "olijfolie", "naam": "olijfolie", "hoeveelheid": 2, "eenheid": "el", "schaling": "lineair", "categorie": "olie-en-sauzen" },
+    { "id": "zonnebloemolie", "naam": "zonnebloemolie", "hoeveelheid": 1, "eenheid": "el", "schaling": "lineair", "categorie": "olie-en-sauzen" },
+    { "id": "speculaaskruiden", "naam": "speculaaskruiden", "hoeveelheid": 1, "eenheid": "tl", "schaling": "lineair", "categorie": "kruiden-en-specerijen" },
+    { "id": "kaneel", "naam": "kaneel", "hoeveelheid": 1, "eenheid": "tl", "schaling": "lineair", "categorie": "kruiden-en-specerijen" }
+  ],
+  "stappen": [
+    { "tekst": "Doe {havermout}, {honing} en {olijfolie} in een kom.", "duur": 2 },
+    { "tekst": "Maal {notenmix} grof en voeg toe.", "duur": 3 },
+    { "tekst": "Voeg {speculaaskruiden} en {kaneel} toe en meng alles goed door elkaar.", "duur": 2 },
+    { "tekst": "Verdeel het mengsel over een bakplaat met bakpapier en sprenkel er {zonnebloemolie} over.", "duur": 3 },
+    { "tekst": "Bak in de oven, hussel na ±8 minuten door en bak verder tot goudbruin.", "duur": 3, "wachttijd": 12, "vereist": { "apparaat": "oven", "temperatuur": 200 } }
+  ]
+}
