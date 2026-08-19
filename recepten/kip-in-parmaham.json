@@ -1,0 +1,22 @@
+{
+  "titel": "Kip in parmaham",
+  "beschrijving": "Kipfilet gevuld met mozzarella en groene pesto, omwikkeld met parmaham en in de oven gebakken.",
+  "personen": 4,
+  "tags": ["oven", "vlees-en-vis", "snel", "italiaans"],
+  "bron": "https://www.laurasbakery.nl/kip-in-parmaham/",
+  "foto": "kip-in-parmaham.jpg",
+  "ingredienten": [
+    { "id": "kipfilet", "naam": "kipfilet", "meervoud": "kipfilets", "hoeveelheid": 4, "eenheid": "stuk", "schaling": "stuks", "categorie": "vlees-en-vis" },
+    { "id": "mozzarella", "naam": "bol mozzarella", "meervoud": "bollen mozzarella", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "categorie": "kaas" },
+    { "id": "pesto", "naam": "groene pesto", "schaling": "vast", "categorie": "olie-en-sauzen", "notitie": "ongeveer een theelepel per kipfilet" },
+    { "id": "parmaham", "naam": "plak parmaham", "meervoud": "plakken parmaham", "hoeveelheid": 8, "eenheid": "stuk", "schaling": "stuks", "categorie": "vlees-en-vis", "notitie": "6-8 plakken, afhankelijk van grootte/dikte" },
+    { "id": "boter", "naam": "boter", "schaling": "vast", "categorie": "zuivel-en-eieren", "notitie": "om de ovenschaal in te vetten" }
+  ],
+  "stappen": [
+    { "tekst": "Snijd de {kipfilet} horizontaal open tot een zakje; snijd slechts één kant open.", "duur": 5 },
+    { "tekst": "Snijd de {mozzarella} in plakken en leg deze in de kipfilet. Verdeel wat {pesto} over de mozzarella.", "duur": 3 },
+    { "tekst": "Vouw de filets dicht en wikkel ze in met {parmaham}. Zet eventueel vast met een cocktailprikker.", "duur": 4 },
+    { "tekst": "Vet een ovenschaal in met {boter} en leg de kipfilets erin.", "duur": 2 },
+    { "tekst": "Bak de kip gaar in de oven.", "duur": 1, "wachttijd": 25, "vereist": { "apparaat": "oven", "temperatuur": 200 } }
+  ]
+}
