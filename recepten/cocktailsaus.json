@@ -1,6 +1,7 @@
 {
   "titel": "Cocktailsaus",
   "beschrijving": "Romige cocktailsaus in twee varianten: een pittige ketchup-mayonaise met whisky en tabasco, of een mildere versie met crème fraîche en worcestershiresaus. Kies er één. Hoeveelheden zijn een schatting; pas naar smaak aan.",
+  "foto": "cocktailsaus.jpg",
   "personen": 4,
   "tags": ["snel", "saus"],
   "ingredienten": [
