@@ -1,0 +1,37 @@
+{
+  "titel": "Romige pasta met ricotta, zure room, paprika en zongedroogde tomaten",
+  "beschrijving": "Vegetarische pasta met een romige tapenade van geroosterde paprika, zongedroogde tomaten, ricotta en zure room, afgewerkt met kappertjes, basilicum en pecorino.",
+  "personen": 4,
+  "tags": ["pasta", "vega"],
+  "foto": "romige-pasta-met-ricotta-zure-room-paprika-en-zongedroogde-tomaten.jpg",
+  "bron": "https://dagelijksekost.vrt.be/gerechten/romige-pasta-met-ricotta-zure-room-paprika-en-zongedroogde-tomaten",
+  "ingredienten": [
+    { "id": "paprika", "naam": "rode paprika", "meervoud": "rode paprika's", "hoeveelheid": 2, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit" },
+    { "id": "olijfolie", "naam": "olijfolie", "schaling": "vast", "categorie": "olie-en-sauzen", "notitie": "om te druppelen en te stoven" },
+    { "id": "sjalot", "naam": "sjalot", "meervoud": "sjalotten", "hoeveelheid": 2, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit" },
+    { "id": "knoflook", "naam": "teen knoflook", "meervoud": "tenen knoflook", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit" },
+    { "id": "zongedroogde-tomaten", "naam": "zongedroogde tomaten", "hoeveelheid": 200, "eenheid": "g", "schaling": "lineair", "categorie": "conserven-en-potten" },
+    { "id": "harissa", "naam": "harissa", "hoeveelheid": 1, "eenheid": "tl", "schaling": "lineair", "categorie": "olie-en-sauzen", "notitie": "naar smaak" },
+    { "id": "tomatenpuree", "naam": "tomatenpuree", "hoeveelheid": 2, "eenheid": "tl", "schaling": "lineair", "categorie": "conserven-en-potten" },
+    { "id": "ricotta", "naam": "ricotta", "hoeveelheid": 125, "eenheid": "g", "schaling": "lineair", "categorie": "zuivel-en-eieren" },
+    { "id": "zure-room", "naam": "zure room", "hoeveelheid": 125, "eenheid": "g", "schaling": "lineair", "categorie": "zuivel-en-eieren" },
+    { "id": "pasta", "naam": "pasta", "hoeveelheid": 500, "eenheid": "g", "schaling": "lineair", "categorie": "pasta-rijst-en-granen", "notitie": "bijv. penne" },
+    { "id": "kerstomaten", "naam": "kerstomaten", "hoeveelheid": 400, "eenheid": "g", "schaling": "lineair", "categorie": "groente-en-fruit" },
+    { "id": "kappertjes", "naam": "kappertjes", "hoeveelheid": 3, "eenheid": "tl", "schaling": "lineair", "categorie": "conserven-en-potten" },
+    { "id": "basilicum", "naam": "verse basilicum", "schaling": "vast", "categorie": "groente-en-fruit", "notitie": "half bosje, gesnipperd" },
+    { "id": "pecorino", "naam": "pecorino", "hoeveelheid": 60, "eenheid": "g", "schaling": "lineair", "categorie": "kaas", "notitie": "geraspt; feta kan ook" },
+    { "id": "oregano", "naam": "oregano", "schaling": "vast", "categorie": "kruiden-en-specerijen", "notitie": "naar smaak" },
+    { "id": "zout", "naam": "zout", "schaling": "vast", "categorie": "kruiden-en-specerijen" },
+    { "id": "peper", "naam": "peper", "schaling": "vast", "categorie": "kruiden-en-specerijen" }
+  ],
+  "stappen": [
+    { "tekst": "Verwijder zaden en zaadlijsten van {paprika}, snijd in stukken en druppel er wat {olijfolie} over. Leg ze met het vel naar boven onder de grill tot ze zwart blakeren.", "duur": 3, "wachttijd": 13, "vereist": { "apparaat": "grill" } },
+    { "tekst": "Pel en snipper {sjalot} en {knoflook} en stoof ze zachtjes in een beetje {olijfolie}.", "duur": 6 },
+    { "tekst": "Trek het vel van de geroosterde paprika's, doe ze bij de sjalotten, voeg {zongedroogde-tomaten} toe en laat mee stoven.", "duur": 5 },
+    { "tekst": "Roer {tomatenpuree} en {harissa} erdoor en laat kort mee stoven.", "duur": 2 },
+    { "tekst": "Schep het mengsel in een hakmolen, voeg {ricotta} en {zure-room} toe en mix tot een smeuïge tapenade.", "duur": 2 },
+    { "tekst": "Kook {pasta} al dente in ruim water met {zout}. Halveer intussen de {kerstomaten}.", "duur": 12, "vereist": { "apparaat": "pan-water" } },
+    { "tekst": "Giet de pasta af maar hou wat kookvocht over. Roer de kerstomaten door de warme pasta zonder ze gaar te laten worden, en voeg de tapenade met een pollepel kookvocht toe.", "duur": 3 },
+    { "tekst": "Kruid met {oregano} en een snuifje {zout} en {peper}. Werk af met {kappertjes}, {basilicum} en geraspte {pecorino}.", "duur": 2 }
+  ]
+}
