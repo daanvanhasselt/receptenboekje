@@ -1,15 +1,17 @@
 {
   "titel": "Shepherd's Pie",
-  "beschrijving": "Ovenschotel van gehakt met wortel, prei en tomatenpuree onder een laag aardappelpuree. Uit eigen receptenboekje. Sommige hoeveelheden zijn een schatting.",
+  "beschrijving": "Ovenschotel van gehakt met ui, wortel, prei en tomatenpuree onder een laag romige aardappelpuree met parmezaan. Uit eigen receptenboekje. Sommige hoeveelheden zijn een schatting.",
   "foto": "shepherds-pie.jpg",
   "personen": 4,
   "tags": ["oven"],
   "ingredienten": [
     { "id": "aardappel", "naam": "aardappel", "meervoud": "aardappelen", "hoeveelheid": 800, "eenheid": "g", "schaling": "lineair", "categorie": "groente-en-fruit" },
-    { "id": "boter", "naam": "boter", "hoeveelheid": 30, "eenheid": "g", "schaling": "lineair", "categorie": "zuivel-en-eieren" },
+    { "id": "boter", "naam": "boter", "hoeveelheid": 45, "eenheid": "g", "schaling": "lineair", "categorie": "zuivel-en-eieren" },
     { "id": "melk", "naam": "melk", "hoeveelheid": 1, "eenheid": "dl", "schaling": "lineair", "categorie": "zuivel-en-eieren" },
     { "id": "nootmuscaat", "naam": "nootmuscaat", "hoeveelheid": 0.25, "eenheid": "tl", "schaling": "vast", "categorie": "kruiden-en-specerijen" },
+    { "id": "parmezaan", "naam": "parmezaanse kaas", "hoeveelheid": 40, "eenheid": "g", "schaling": "lineair", "categorie": "kaas", "notitie": "geraspt" },
     { "id": "gehakt", "naam": "gehakt", "hoeveelheid": 300, "eenheid": "g", "schaling": "lineair", "categorie": "vlees-en-vis" },
+    { "id": "ui", "naam": "ui", "meervoud": "uien", "hoeveelheid": 2, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit", "notitie": "gesnipperd" },
     { "id": "wortel", "naam": "wortel", "meervoud": "wortels", "hoeveelheid": 2, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit", "notitie": "in blokjes" },
     { "id": "prei", "naam": "prei", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit", "notitie": "in ringen" },
     { "id": "knoflook", "naam": "teen knoflook", "meervoud": "tenen knoflook", "hoeveelheid": 2, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit", "notitie": "geperst" },
@@ -22,10 +24,11 @@
     { "id": "peper-zout", "naam": "peper en zout", "schaling": "vast", "categorie": "kruiden-en-specerijen" }
   ],
   "stappen": [
+    { "tekst": "Snij de groente: snipper {ui}, snijd {wortel} in blokjes en {prei} in ringen.", "duur": 6 },
     { "tekst": "Schil {aardappel}, snijd in stukken en kook zacht in water met wat zout. Giet af.", "duur": 5, "wachttijd": 18, "vereist": { "apparaat": "pan-water" } },
-    { "tekst": "Verhit {olie} in een pan en bak {wortel}, {prei} en {knoflook} aan. Voeg {gehakt} toe en rul het gaar.", "duur": 8 },
+    { "tekst": "Verhit {olie} in een pan en bak {ui}, {wortel}, {prei} en {knoflook} aan. Voeg {gehakt} toe en rul het gaar.", "duur": 8 },
     { "tekst": "Voeg {tomatenpuree}, {bouillon}, {worcestersaus}, {laurier} en {tijm} toe. Breng op smaak met {peper-zout} en laat 10 minuten zachtjes koken.", "duur": 12 },
-    { "tekst": "Stamp de aardappelen met {boter}, {melk} en {nootmuscaat} tot puree.", "duur": 4 },
+    { "tekst": "Stamp de aardappelen met {boter}, {melk}, {nootmuscaat} en {parmezaan} tot een gladde puree.", "duur": 4 },
     { "tekst": "Vet een ovenschaal in. Schep het gehaktmengsel erin (verwijder het laurierblad) en verdeel de aardappelpuree erover.", "duur": 4 },
     { "tekst": "Bak in de oven tot de toplaag goudbruin is.", "duur": 2, "wachttijd": 30, "vereist": { "apparaat": "oven", "temperatuur": 200 } }
   ]
