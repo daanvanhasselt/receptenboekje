@@ -1,6 +1,6 @@
 ---
 name: recept-import
-description: Zet een recept (URL, afbeelding of geplakte tekst) om naar het gestandaardiseerde recept-JSON-formaat in recepten/, inclusief foto, validatie en commit. Gebruik bij "importeer dit recept", "voeg dit recept toe", een geplakte recepttekst, een recept-URL of een foto van een kookboekpagina.
+description: Zet een recept (URL, afbeelding of geplakte tekst) om naar het gestandaardiseerde recept-JSON-formaat in recepten/, inclusief foto, validatie en commit. Gebruik bij "importeer dit recept", "voeg dit recept toe", een geplakte recepttekst, een recept-URL of een foto van een kookboekpagina. Gebruik ook bij het bewerken van een bestaand recept (ingrediënt/stap wijzigen, foto koppelen, oven-instelling).
 ---
 
 # Recept importeren
@@ -36,9 +36,20 @@ Stel de gebruiker alléén een vraag als het aantal personen nergens uit af te l
 
 **Stappen.**
 - Elke hoeveelheid in een staptekst wordt een `{id}`-verwijzing: `"Voeg {gehakt} toe"` — nooit een hoeveelheid als losse tekst, ook niet gedeeltelijk ("de helft van {olijfolie}" mag wél: de verwijzing schaalt, de breuk is tekst).
-- Aanwijzingen als "verwarm de oven voor op 200°C", "breng een pan water aan de kook", "laat de waterkoker koken" **verdwijnen uit de staptekst**. Zet in plaats daarvan `"vereist": { "apparaat": "...", "temperatuur": ... }` op de stap die het apparaat daadwerkelijk gebruikt (de bakstap, de kookstap). Geldige apparaten: `oven` (met temperatuur), `grill`, `waterkoker`, `pan-water`. De site berekent zelf wanneer de melding verschijnt.
+- Aanwijzingen als "breng een pan water aan de kook" of "laat de waterkoker koken" **verdwijnen uit de staptekst**. Zet in plaats daarvan `"vereist": { "apparaat": "...", "temperatuur": ... }` op de stap die het apparaat daadwerkelijk gebruikt (de bakstap, de kookstap). Geldige apparaten: `oven` (met temperatuur), `grill`, `waterkoker`, `pan-water`. De site berekent zelf wanneer de melding verschijnt.
+- **Oven voorverwarmen (voorkeur Daan):** maak van de voorverwarmactie een **eigen zichtbare stap bovenaan** — `{ "tekst": "Verwarm de oven voor op 220 °C.", "duur": 1, "vereist": { "apparaat": "oven", "temperatuur": 220 } }`. Daan wil deze stap expliciet zien staan; laat 'm dus niet impliciet in alleen de bakstap. De latere **bakstap** houdt óók zijn `vereist`-oven-veld, maar herhaal de temperatuur **niet** nog eens in de bakstap-tekst (die staat al in `vereist`): dus "Bak in de oven tot de toplaag goudbruin is.", niet "...op 220 °C...". De voorverwarm-stap is de enige plek waar de temperatuur ook in de tekst mag staan.
 - `duur` = actieve minuten, `wachttijd` = passieve minuten ná de handeling (oventijd, rijzen, marineren). Noemt de bron geen tijd → schat ruim en meld de schatting in het rapport.
 - Splits samengestelde bronstappen in losse doe-stappen; houd de volgorde van de bron aan.
+
+## Bestaand recept bewerken
+
+Kleine wijzigingen aan een bestaand `recepten/<slug>.json` (ingrediënt toevoegen/wijzigen, stap toevoegen, foto koppelen, oven-instelling aanpassen): zelfde JSON-regels hierboven, plus:
+
+- **Lees eerst het hele bestand** en pas gericht aan; volg de bestaande stijl van dát recept.
+- **Nieuw ingrediënt** dat in een bestaande stap wordt gebruikt → voeg de `{id}`-verwijzing ook toe aan die staptekst (bv. ui erbij → ook "bak {ui}, {wortel}, ..." bijwerken).
+- **Consistentie met standalone-recepten.** Verwijst een recept naar een component dat als eigen recept bestaat (bv. shepherds-pie → aardappelpuree), match dan de ingrediënten én hoeveelheden met dat standalone-recept. Lees `recepten/aardappelpuree.json` en neem dezelfde waarden over (bv. boter 45 g + parmezaan 40 g), inclusief de smaakmaker in de bijbehorende stap. Werk zo nodig de `beschrijving` bij.
+- **Foto koppelen aan bestaand recept.** Conventie is `recepten/<slug>.jpg` + `"foto": "<slug>.jpg"` direct ná `beschrijving`. Inkomende chatafbeeldingen staan in `/home/daan/.openclaw/media/inbound/`; kopieer naar `recepten/<slug>.jpg`. Bevestig bij twijfel welk gerecht op de foto staat met vision vóór het koppelen; koppel geen foto over een bestaande heen zonder te vragen.
+- **Valideer** (`npm run valideer && npm test`, of minimaal een JSON-parse-check) en **commit alléén de gewijzigde recept-bestanden** met een beschrijvende message; push daarna.
 
 ## Voorbeeld
 
