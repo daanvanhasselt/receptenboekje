@@ -24,7 +24,6 @@
     { "id": "peper-zout", "naam": "peper en zout", "schaling": "vast", "categorie": "kruiden-en-specerijen" }
   ],
   "stappen": [
-    { "tekst": "Verwarm de oven voor op 220 °C.", "duur": 1, "vereist": { "apparaat": "oven", "temperatuur": 220 } },
     { "tekst": "Snij de groente: snipper {ui}, snijd {wortel} in blokjes en {prei} in ringen.", "duur": 6 },
     { "tekst": "Schil {aardappel}, snijd in stukken en kook zacht in water met wat zout. Giet af.", "duur": 5, "wachttijd": 18, "vereist": { "apparaat": "pan-water" } },
     { "tekst": "Verhit {olie} in een pan en bak {ui}, {wortel}, {prei} en {knoflook} aan. Voeg {gehakt} toe en rul het gaar.", "duur": 8 },
