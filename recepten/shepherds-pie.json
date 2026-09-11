@@ -30,6 +30,6 @@
     { "tekst": "Voeg {tomatenpuree}, {bouillon}, {worcestersaus}, {laurier} en {tijm} toe. Breng op smaak met {peper-zout} en laat 10 minuten zachtjes koken.", "duur": 12 },
     { "tekst": "Stamp de aardappelen met {boter}, {melk}, {nootmuscaat} en {parmezaan} tot een gladde puree.", "duur": 4 },
     { "tekst": "Vet een ovenschaal in. Schep het gehaktmengsel erin (verwijder het laurierblad) en verdeel de aardappelpuree erover.", "duur": 4 },
-    { "tekst": "Bak in de oven tot de toplaag goudbruin is.", "duur": 2, "wachttijd": 30, "vereist": { "apparaat": "oven", "temperatuur": 200 } }
+    { "tekst": "Bak in de oven op 220 °C tot de toplaag goudbruin is.", "duur": 2, "wachttijd": 30, "vereist": { "apparaat": "oven", "temperatuur": 220 } }
   ]
 }
