@@ -21,6 +21,8 @@
     { "id": "laurier", "naam": "laurierblad", "meervoud": "laurierblaadjes", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "vast", "categorie": "kruiden-en-specerijen" },
     { "id": "tijm", "naam": "tijm", "hoeveelheid": 1, "eenheid": "el", "schaling": "lineair", "categorie": "kruiden-en-specerijen" },
     { "id": "olie", "naam": "olie", "hoeveelheid": 1, "eenheid": "el", "schaling": "lineair", "categorie": "olie-en-sauzen" },
+    { "id": "panko", "naam": "panko", "hoeveelheid": 30, "eenheid": "g", "schaling": "lineair", "categorie": "pasta-rijst-en-granen" },
+    { "id": "boter-topping", "naam": "boter", "hoeveelheid": 15, "eenheid": "g", "schaling": "lineair", "categorie": "zuivel-en-eieren", "notitie": "in klontjes, voor de topping" },
     { "id": "peper-zout", "naam": "peper en zout", "schaling": "vast", "categorie": "kruiden-en-specerijen" }
   ],
   "stappen": [
@@ -30,6 +32,7 @@
     { "tekst": "Voeg {tomatenpuree}, {bouillon}, {worcestersaus}, {laurier} en {tijm} toe. Breng op smaak met {peper-zout} en laat 10 minuten zachtjes koken.", "duur": 12 },
     { "tekst": "Stamp de aardappelen met {boter}, {melk}, {nootmuscaat} en {parmezaan} tot een gladde puree.", "duur": 4 },
     { "tekst": "Vet een ovenschaal in. Schep het gehaktmengsel erin (verwijder het laurierblad) en verdeel de aardappelpuree erover.", "duur": 4 },
+    { "tekst": "Strooi {panko} over de puree en verdeel {boter-topping} erover voor een krokante korst.", "duur": 2 },
     { "tekst": "Bak in de oven tot de toplaag goudbruin is.", "duur": 2, "wachttijd": 30, "vereist": { "apparaat": "oven", "temperatuur": 220 } }
   ]
 }
