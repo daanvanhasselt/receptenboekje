@@ -1,6 +1,6 @@
 {
   "titel": "Caprese pesto lasagne",
-  "beschrijving": "Vegetarische lasagne met courgette, ricotta, pesto en mozzarella. Uit eigen receptenboekje. Hoeveelheden deels een schatting.",
+  "beschrijving": "Vegetarische lasagne met courgette, ricotta, pesto en mozzarella, opgepept met zongedroogde tomaten en geroosterde knoflook en afgewerkt met pijnboompitten en balsamicostroop. Uit eigen receptenboekje. Hoeveelheden deels een schatting.",
   "foto": "caprese-pesto-lasagne.jpg",
   "personen": 3,
   "tags": ["oven", "pasta", "italiaans", "vega"],
@@ -13,14 +13,21 @@
     { "id": "parmezaan", "naam": "parmezaanse kaas", "hoeveelheid": 50, "eenheid": "g", "schaling": "lineair", "categorie": "kaas", "notitie": "geraspt" },
     { "id": "knoflook", "naam": "teen knoflook", "meervoud": "tenen knoflook", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit", "notitie": "geperst" },
     { "id": "basilicum", "naam": "basilicum", "hoeveelheid": 10, "eenheid": "g", "schaling": "lineair", "categorie": "groente-en-fruit" },
+    { "id": "zongedroogde-tomaten", "naam": "zongedroogde tomaten", "hoeveelheid": 100, "eenheid": "g", "schaling": "lineair", "categorie": "conserven-en-potten", "notitie": "op olie, uitgelekt en fijngesneden" },
+    { "id": "geroosterde-knoflook", "naam": "teen knoflook", "meervoud": "tenen knoflook", "hoeveelheid": 6, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit", "notitie": "om te roosteren, daarna geplet" },
+    { "id": "pijnboompitten", "naam": "pijnboompitten", "hoeveelheid": 30, "eenheid": "g", "schaling": "lineair", "categorie": "overig", "notitie": "geroosterd" },
+    { "id": "balsamicostroop", "naam": "balsamicostroop", "schaling": "vast", "categorie": "olie-en-sauzen", "notitie": "om over te druppelen" },
     { "id": "olie", "naam": "olijfolie", "hoeveelheid": 2, "eenheid": "el", "schaling": "lineair", "categorie": "olie-en-sauzen" },
     { "id": "peper-zout", "naam": "peper en zout", "schaling": "vast", "categorie": "kruiden-en-specerijen" }
   ],
   "stappen": [
+    { "tekst": "Rooster {geroosterde-knoflook} in de schil zacht en zoet, ±20 minuten. Laat afkoelen, knijp uit de schil en plet tot een pasta.", "duur": 3, "wachttijd": 20, "vereist": { "apparaat": "oven", "temperatuur": 200 } },
+    { "tekst": "Rooster {pijnboompitten} droog in een pan tot ze goudbruin zijn en zet apart.", "duur": 4 },
     { "tekst": "Snijd {courgette} in dunne reepjes of plakken en bak ze kort aan in {olie}, of gril ze even. Bestrooi met {peper-zout}.", "duur": 8 },
-    { "tekst": "Meng {ricotta} met {knoflook}, een deel van de {basilicum} en wat {peper-zout}.", "duur": 3 },
-    { "tekst": "Vet een ovenschaal in. Maak lagen: eerst courgette, dan ricottamengsel, dan {lasagnebladen}, dan {pesto}. Herhaal deze lagen.", "duur": 8 },
-    { "tekst": "Eindig met een laag {mozzarella} en bestrooi met {parmezaan} en de rest van de {basilicum}.", "duur": 3 },
-    { "tekst": "Bak de lasagne in de oven tot de bovenkant goudbruin en gaar is, ±30 minuten.", "duur": 2, "wachttijd": 30, "vereist": { "apparaat": "oven", "temperatuur": 200 } }
+    { "tekst": "Meng {ricotta} met {knoflook}, {geroosterde-knoflook}, een deel van de {basilicum} en wat {peper-zout}.", "duur": 3 },
+    { "tekst": "Vet een ovenschaal in. Maak lagen: eerst courgette, dan ricottamengsel, dan wat {zongedroogde-tomaten}, dan {lasagnebladen}, dan {pesto}. Herhaal deze lagen.", "duur": 8 },
+    { "tekst": "Eindig met een laag {mozzarella} en bestrooi met {parmezaan}.", "duur": 3 },
+    { "tekst": "Bak de lasagne in de oven tot de bovenkant goudbruin en gaar is, ±30 minuten.", "duur": 2, "wachttijd": 30, "vereist": { "apparaat": "oven", "temperatuur": 200 } },
+    { "tekst": "Werk de lasagne na het bakken af met de rest van de {basilicum}, de geroosterde {pijnboompitten} en een drizzle {balsamicostroop}.", "duur": 2 }
   ]
 }
