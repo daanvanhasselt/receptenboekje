@@ -1,0 +1,24 @@
+{
+  "titel": "Orecchiette, broccoli",
+  "beschrijving": "Korte pasta met broccoli, pancetta, knoflook en chili, afgemaakt met Parmezaanse kaas.",
+  "foto": "orecchiette-broccoli.jpg",
+  "personen": 4,
+  "tags": ["pasta", "italiaans"],
+  "ingredienten": [
+    { "id": "orecchiette", "naam": "orecchiette", "hoeveelheid": 320, "eenheid": "g", "schaling": "lineair", "categorie": "pasta-rijst-en-granen" },
+    { "id": "broccoli", "naam": "broccoli", "hoeveelheid": 400, "eenheid": "g", "schaling": "lineair", "categorie": "groente-en-fruit", "notitie": "in kleine roosjes" },
+    { "id": "knoflook", "naam": "teen knoflook", "meervoud": "tenen knoflook", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit", "notitie": "fijngesneden" },
+    { "id": "chili", "naam": "gedroogde chilipeper", "meervoud": "gedroogde chilipepers", "hoeveelheid": 3, "eenheid": "stuk", "schaling": "stuks", "categorie": "kruiden-en-specerijen", "notitie": "verkruimeld" },
+    { "id": "parmezaan", "naam": "parmezaanse kaas", "hoeveelheid": 50, "eenheid": "g", "schaling": "lineair", "categorie": "kaas", "notitie": "geraspt" },
+    { "id": "olie", "naam": "extra vierge olijfolie", "hoeveelheid": 2, "eenheid": "el", "schaling": "lineair", "categorie": "olie-en-sauzen" },
+    { "id": "pancetta", "naam": "pancetta", "hoeveelheid": 100, "eenheid": "g", "schaling": "lineair", "categorie": "vlees-en-vis", "notitie": "in staafjes" },
+    { "id": "zout", "naam": "zout", "schaling": "vast", "categorie": "kruiden-en-specerijen", "notitie": "voor het kookwater en op smaak" }
+  ],
+  "stappen": [
+    { "tekst": "Snijd {broccoli} in kleine roosjes en {pancetta} in dunne staafjes. Snijd {knoflook} fijn en verkruimel {chili}. Rasp {parmezaan}.", "duur": 10 },
+    { "tekst": "Kook {broccoli} in ruim water met {zout} tot ze zacht is. Schep eruit en houd apart.", "duur": 6, "vereist": { "apparaat": "pan-water" } },
+    { "tekst": "Verhit {olie} in een pan met dikke bodem. Bak {pancetta} en {knoflook} tot zacht maar niet knapperig.", "duur": 5 },
+    { "tekst": "Voeg de broccoli en {chili} toe, breng op smaak met {zout} en roer een paar minuten op zacht vuur.", "duur": 4 },
+    { "tekst": "Kook {orecchiette} in ruim water met {zout} al dente. Giet af, meng door de broccoli en serveer met {parmezaan}.", "duur": 12, "vereist": { "apparaat": "pan-water" } }
+  ]
+}
