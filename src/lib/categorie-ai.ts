@@ -24,7 +24,7 @@ export async function herkenCategorie(naam: string, apiSleutel: string): Promise
   try {
     const client = new Anthropic({ apiKey: apiSleutel, dangerouslyAllowBrowser: true });
     const antwoord = await client.messages.create({
-      model: 'claude-opus-5-5',
+      model: 'claude-haiku-5-5',
       max_tokens: 2048,
       system: SYSTEEMPROMPT,
       messages: [{ role: 'user', content: naam }],
