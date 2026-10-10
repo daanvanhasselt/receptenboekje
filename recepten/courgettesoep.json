@@ -1,0 +1,28 @@
+{
+  "titel": "Courgettesoep",
+  "beschrijving": "Romige courgettesoep met ui, knoflook en tijm, gladgepureerd en afgemaakt met kookroom.",
+  "personen": 4,
+  "tags": ["soep", "vega", "snel"],
+  "foto": "courgettesoep.jpg",
+  "bron": "https://www.eefkooktzo.nl/courgettesoep/",
+  "ingredienten": [
+    { "id": "ui", "naam": "ui", "meervoud": "uien", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit", "notitie": "gesnipperd" },
+    { "id": "knoflook", "naam": "teen knoflook", "meervoud": "tenen knoflook", "hoeveelheid": 2, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit", "notitie": "fijngesneden" },
+    { "id": "courgette", "naam": "courgette", "meervoud": "courgettes", "hoeveelheid": 2, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit", "notitie": "ca. 700 gram, in blokjes" },
+    { "id": "tijm", "naam": "tijm", "hoeveelheid": 1, "eenheid": "tl", "schaling": "lineair", "categorie": "kruiden-en-specerijen" },
+    { "id": "bouillonblokje", "naam": "groentebouillonblokje", "meervoud": "groentebouillonblokjes", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "categorie": "conserven-en-potten", "notitie": "voor 500 ml" },
+    { "id": "water", "naam": "water", "hoeveelheid": 500, "eenheid": "ml", "schaling": "lineair", "categorie": "overig" },
+    { "id": "kookroom", "naam": "kookroom", "hoeveelheid": 150, "eenheid": "ml", "schaling": "lineair", "categorie": "zuivel-en-eieren", "notitie": "evt. plantaardig" },
+    { "id": "olie", "naam": "olie", "schaling": "vast", "categorie": "olie-en-sauzen", "notitie": "om in te bakken" },
+    { "id": "peper-zout", "naam": "peper en zout", "schaling": "vast", "categorie": "kruiden-en-specerijen", "notitie": "ruim zwarte peper, naar smaak" }
+  ],
+  "stappen": [
+    { "tekst": "Verhit een beetje {olie} in een ruime soeppan met dikke bodem en fruit {ui} en {knoflook} aan tot ze glazig zijn.", "duur": 4 },
+    { "tekst": "Voeg {courgette} toe samen met {tijm} en bak een paar minuten mee.", "duur": 3 },
+    { "tekst": "Verkruimel {bouillonblokje} boven de pan en voeg {water} toe.", "duur": 1 },
+    { "tekst": "Breng het geheel aan de kook en laat 10 minuten zachtjes koken.", "duur": 1, "wachttijd": 10 },
+    { "tekst": "Zet het vuur uit en pureer met de staafmixer tot een gladde soep.", "duur": 2 },
+    { "tekst": "Voeg {kookroom} toe, meng door de soep en breng op smaak met {peper-zout}. Kook eventueel nog iets in als de soep te dun is, of voeg wat extra water of kookroom toe als hij te dik is.", "duur": 3 },
+    { "tekst": "Serveer warm, lekker met kiemgroenten, zelfgemaakte croutons of brood.", "duur": 1 }
+  ]
+}
