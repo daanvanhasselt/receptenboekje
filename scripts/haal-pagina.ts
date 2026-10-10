@@ -1,4 +1,17 @@
+import { existsSync, readdirSync } from 'node:fs';
 import { chromium } from 'playwright-core';
+
+function vindChrome(): string | undefined {
+  if (process.env.CHROME_PATH) return process.env.CHROME_PATH;
+  const basis = `${process.env.HOME ?? ''}/.cache/cft/chrome`;
+  if (!existsSync(basis)) return undefined;
+  const versies = readdirSync(basis).sort().reverse();
+  for (const versie of versies) {
+    const pad = `${basis}/${versie}/chrome-linux64/chrome`;
+    if (existsSync(pad)) return pad;
+  }
+  return undefined;
+}
 
 const url = process.argv[2];
 if (url === undefined || !/^https?:\/\//.test(url)) {
@@ -7,7 +20,10 @@ if (url === undefined || !/^https?:\/\//.test(url)) {
 }
 
 try {
-  const browser = await chromium.launch({ channel: 'chrome', headless: true });
+  const chromePad = vindChrome();
+  const browser = await chromium.launch(
+    chromePad ? { executablePath: chromePad, headless: true } : { channel: 'chrome', headless: true }
+  );
   const context = await browser.newContext({
     userAgent:
       'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36',

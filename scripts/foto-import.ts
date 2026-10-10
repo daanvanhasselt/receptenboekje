@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import sharp from 'sharp';
 
@@ -17,9 +17,24 @@ async function haalDirect(): Promise<Buffer> {
   return readFileSync(bron);
 }
 
+function vindChrome(): string | undefined {
+  if (process.env.CHROME_PATH) return process.env.CHROME_PATH;
+  const basis = `${process.env.HOME ?? ''}/.cache/cft/chrome`;
+  if (!existsSync(basis)) return undefined;
+  const versies = readdirSync(basis).sort().reverse();
+  for (const versie of versies) {
+    const pad = `${basis}/${versie}/chrome-linux64/chrome`;
+    if (existsSync(pad)) return pad;
+  }
+  return undefined;
+}
+
 async function haalViaBrowser(pagina: string): Promise<Buffer> {
   const { chromium } = await import('playwright-core');
-  const browser = await chromium.launch({ channel: 'chrome', headless: true });
+  const chromePad = vindChrome();
+  const browser = await chromium.launch(
+    chromePad ? { executablePath: chromePad, headless: true } : { channel: 'chrome', headless: true }
+  );
   try {
     const tabblad = await (
       await browser.newContext({
