@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { maakItems, parseInvoer, perCategorie, samengevoegd, verwijderRij } from '../src/lib/boodschappen';
+import { isCategorie, maakItems, perCategorie, samengevoegd, verwijderRij, zetCategorie } from '../src/lib/boodschappen';
 import type { BoodschapItem } from '../src/lib/boodschappen';
 import type { Ingredient } from '../src/lib/typen';
 
@@ -71,25 +71,36 @@ describe('perCategorie', () => {
   });
 });
 
-describe('parseInvoer', () => {
-  test('alleen naam', () => {
-    expect(parseInvoer('melk')).toEqual({ naam: 'melk' });
+describe('zetCategorie', () => {
+  test('verandert alleen overig-items met dezelfde getrimde naam, zonder afvinkstatus te wijzigen', () => {
+    const lijst = {
+      items: [
+        item({ naam: ' Appels ', hoeveelheid: 1 }),
+        item({ naam: 'appels', hoeveelheid: 2 }),
+        item({ naam: 'appels', categorie: 'diepvries' }),
+        item({ naam: 'peren' }),
+      ],
+      afgevinkt: ['appels|'],
+    };
+
+    expect(zetCategorie(lijst, 'APPELS', 'groente-en-fruit')).toEqual({
+      items: [
+        item({ naam: ' Appels ', hoeveelheid: 1, categorie: 'groente-en-fruit' }),
+        item({ naam: 'appels', hoeveelheid: 2, categorie: 'groente-en-fruit' }),
+        item({ naam: 'appels', categorie: 'diepvries' }),
+        item({ naam: 'peren' }),
+      ],
+      afgevinkt: ['appels|'],
+    });
   });
-  test('getal met bekende eenheid', () => {
-    expect(parseInvoer('2 kg appels')).toEqual({ naam: 'appels', hoeveelheid: 2, eenheid: 'kg' });
-  });
-  test('getal zonder eenheid', () => {
-    expect(parseInvoer('3 appels')).toEqual({ naam: 'appels', hoeveelheid: 3 });
-  });
-  test('komma als decimaalteken en hoofdletter-eenheid', () => {
-    expect(parseInvoer('1,5 L melk')).toEqual({ naam: 'melk', hoeveelheid: 1.5, eenheid: 'l' });
-  });
-  test('meerwoordige naam blijft heel', () => {
-    expect(parseInvoer('250 g geraspte kaas')).toEqual({ naam: 'geraspte kaas', hoeveelheid: 250, eenheid: 'g' });
-  });
-  test('lege of witruimte-invoer levert niets op', () => {
-    expect(parseInvoer('')).toBeUndefined();
-    expect(parseInvoer('   ')).toBeUndefined();
+});
+
+describe('isCategorie', () => {
+  test('accepteert alleen bekende categorieën', () => {
+    expect(isCategorie('kaas')).toBe(true);
+    expect(isCategorie('onbekend')).toBe(false);
+    expect(isCategorie(3)).toBe(false);
+    expect(isCategorie(undefined)).toBe(false);
   });
 });
 

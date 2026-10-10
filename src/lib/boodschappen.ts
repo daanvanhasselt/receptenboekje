@@ -53,22 +53,6 @@ export function maakItems(ingredienten: Ingredient[], factor: number): Boodschap
   }));
 }
 
-const INVOER_EENHEDEN = new Set(['g', 'kg', 'ml', 'l', 'el', 'tl']);
-
-export function parseInvoer(tekst: string): { naam: string; hoeveelheid?: number; eenheid?: string } | undefined {
-  const delen = tekst.trim().split(/\s+/).filter((deel) => deel !== '');
-  if (delen.length === 0) return undefined;
-  const getal = Number(delen[0].replace(',', '.'));
-  if (Number.isNaN(getal) || getal <= 0 || delen.length === 1) {
-    return { naam: delen.join(' ') };
-  }
-  const eenheid = delen[1].toLowerCase();
-  if (delen.length >= 3 && INVOER_EENHEDEN.has(eenheid)) {
-    return { naam: delen.slice(2).join(' '), hoeveelheid: getal, eenheid };
-  }
-  return { naam: delen.slice(1).join(' '), hoeveelheid: getal };
-}
-
 function naarBasis(item: BoodschapItem): { hoeveelheid?: number; eenheid?: string } {
   if (item.hoeveelheid === undefined || item.eenheid === undefined) {
     return { hoeveelheid: item.hoeveelheid, eenheid: item.eenheid };
@@ -132,7 +116,24 @@ export function perCategorie(rijen: BoodschapRij[]): { categorie: Categorie; rij
   })).filter((groep) => groep.rijen.length > 0);
 }
 
+export function isCategorie(waarde: unknown): waarde is Categorie {
+  return typeof waarde === 'string' && CATEGORIEEN.includes(waarde as Categorie);
+}
+
+export function zetCategorie(lijst: Boodschappenlijst, naam: string, categorie: Categorie): Boodschappenlijst {
+  const gezochteNaam = naam.trim().toLowerCase();
+  return {
+    ...lijst,
+    items: lijst.items.map((item) =>
+      item.categorie === 'overig' && item.naam.trim().toLowerCase() === gezochteNaam
+        ? { ...item, categorie }
+        : item,
+    ),
+  };
+}
+
 const OPSLAG_SLEUTEL = 'boodschappen';
+const CATEGORIE_CACHE_SLEUTEL = 'boodschappen-categorieen';
 
 export function laadLijst(): Boodschappenlijst {
   try {
@@ -145,4 +146,30 @@ export function laadLijst(): Boodschappenlijst {
 
 export function bewaarLijst(lijst: Boodschappenlijst): void {
   localStorage.setItem(OPSLAG_SLEUTEL, JSON.stringify(lijst));
+}
+
+export function laadCategorieCache(): Record<string, Categorie> {
+  try {
+    const data: unknown = JSON.parse(localStorage.getItem(CATEGORIE_CACHE_SLEUTEL) ?? '');
+    if (data === null || typeof data !== 'object' || Array.isArray(data)) return {};
+    return Object.fromEntries(
+      Object.entries(data).filter(([, categorie]) => isCategorie(categorie)),
+    ) as Record<string, Categorie>;
+  } catch {
+    return {};
+  }
+}
+
+export function bewaarCategorie(naam: string, categorie: Categorie): void {
+  try {
+    const cache = laadCategorieCache();
+    cache[naam.trim().toLowerCase()] = categorie;
+    localStorage.setItem(CATEGORIE_CACHE_SLEUTEL, JSON.stringify(cache));
+  } catch {
+    // Lokale opslag is niet altijd beschikbaar, bijvoorbeeld in privémodus.
+  }
+}
+
+export function categorieUitCache(naam: string): Categorie | undefined {
+  return laadCategorieCache()[naam.trim().toLowerCase()];
 }

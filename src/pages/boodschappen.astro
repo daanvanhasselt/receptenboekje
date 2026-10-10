@@ -1,20 +1,24 @@
 ---
 import Basis from '../layouts/Basis.astro';
-import { CATEGORIE_LABELS } from '../lib/boodschappen';
 import { pad } from '../lib/pad';
-import { CATEGORIEEN } from '../lib/typen';
 ---
 <Basis titel="Boodschappen" actief="boodschappen">
   <h1>🛒 Boodschappen</h1>
   <form class="toevoegen" id="toevoegen">
-    <input type="text" id="invoer" placeholder="Voeg toe… (bijv. 2 kg appels)" autocomplete="off" />
-    <select id="invoer-categorie" aria-label="Categorie">
-      {CATEGORIEEN.map((categorie) => (
-        <option value={categorie} selected={categorie === 'overig'}>{CATEGORIE_LABELS[categorie]}</option>
+    <input type="text" id="invoer" placeholder="Voeg toe… (bijv. appels)" autocomplete="off" />
+    <select id="invoer-aantal" aria-label="Aantal">
+      {Array.from({ length: 10 }, (_, index) => (
+        <option value={index + 1} selected={index === 0}>{index + 1}</option>
       ))}
     </select>
     <button type="submit" aria-label="Voeg toe">+</button>
   </form>
+  <details class="ai-instellingen">
+    <summary>AI-instellingen</summary>
+    <label for="api-sleutel">Anthropic API-sleutel</label>
+    <input type="password" id="api-sleutel" autocomplete="off" placeholder="sk-ant-…" />
+    <p>Wordt alleen in deze browser bewaard en gebruikt om de categorie automatisch te herkennen. Zonder sleutel komt alles onder "Overig".</p>
+  </details>
   <p class="leeg" id="leeg" hidden>
     Nog niets op de lijst. Open een <a href={pad('')}>recept</a> en druk op "Zet op boodschappenlijst".
   </p>
@@ -23,15 +27,17 @@ import { CATEGORIEEN } from '../lib/typen';
 </Basis>
 
 <script>
-  import { bewaarLijst, laadLijst, parseInvoer, perCategorie, samengevoegd, verwijderRij, CATEGORIE_LABELS } from '../lib/boodschappen';
-  import type { Categorie } from '../lib/typen';
+  import { bewaarCategorie, bewaarLijst, categorieUitCache, laadLijst, perCategorie, samengevoegd, verwijderRij, zetCategorie, CATEGORIE_LABELS } from '../lib/boodschappen';
+  import { herkenCategorie } from '../lib/categorie-ai';
 
   const lijstElement = document.querySelector<HTMLElement>('#lijst')!;
   const leegElement = document.querySelector<HTMLElement>('#leeg')!;
   const wisKnop = document.querySelector<HTMLButtonElement>('#wis')!;
   const formulier = document.querySelector<HTMLFormElement>('#toevoegen')!;
   const invoer = document.querySelector<HTMLInputElement>('#invoer')!;
-  const invoerCategorie = document.querySelector<HTMLSelectElement>('#invoer-categorie')!;
+  const invoerAantal = document.querySelector<HTMLSelectElement>('#invoer-aantal')!;
+  const apiSleutel = document.querySelector<HTMLInputElement>('#api-sleutel')!;
+  const API_SLEUTEL_OPSLAG = 'anthropic-api-sleutel';
 
   function toon() {
     const lijst = laadLijst();
@@ -93,16 +99,41 @@ import { CATEGORIEEN } from '../lib/typen';
     toon();
   });
 
+  apiSleutel.value = localStorage.getItem(API_SLEUTEL_OPSLAG) ?? '';
+  apiSleutel.addEventListener('change', () => {
+    if (apiSleutel.value === '') {
+      localStorage.removeItem(API_SLEUTEL_OPSLAG);
+    } else {
+      localStorage.setItem(API_SLEUTEL_OPSLAG, apiSleutel.value);
+    }
+  });
+
   formulier.addEventListener('submit', (gebeurtenis) => {
     gebeurtenis.preventDefault();
-    const geparsed = parseInvoer(invoer.value);
-    if (geparsed === undefined) return;
+    const naam = invoer.value.trim();
+    if (naam === '') return;
+    const aantal = Number(invoerAantal.value);
+    const categorieUitLokaleCache = categorieUitCache(naam);
+    const categorie = categorieUitLokaleCache ?? 'overig';
     const lijst = laadLijst();
-    lijst.items.push({ ...geparsed, categorie: invoerCategorie.value as Categorie });
+    lijst.items.push({ naam, hoeveelheid: aantal, categorie });
     bewaarLijst(lijst);
     invoer.value = '';
     invoer.focus();
     toon();
+
+    if (categorieUitLokaleCache !== undefined || apiSleutel.value === '') return;
+    void herkenCategorie(naam, apiSleutel.value)
+      .then((herkendeCategorie) => {
+        if (herkendeCategorie === undefined) {
+          console.warn('Automatische categorisatie gaf geen geldige categorie terug.');
+          return;
+        }
+        bewaarCategorie(naam, herkendeCategorie);
+        bewaarLijst(zetCategorie(laadLijst(), naam, herkendeCategorie));
+        toon();
+      })
+      .catch((fout) => console.warn('Automatische categorisatie is niet gelukt.', fout));
   });
 
   toon();
