@@ -1,0 +1,29 @@
+{
+  "titel": "Zelf gehaktballen maken",
+  "beschrijving": "Stevige rundergehaktballen met mosterd, ketchup en ketjap, gebraden en afgeblust met runderfond.",
+  "personen": 4,
+  "tags": ["vlees-en-vis"],
+  "foto": "zelf-gehaktballen-maken.jpg",
+  "bron": "https://www.laurasbakery.nl/zelf-gehaktballen-maken/",
+  "ingredienten": [
+    { "id": "rundergehakt", "naam": "mager rundergehakt", "hoeveelheid": 500, "eenheid": "g", "schaling": "lineair", "categorie": "vlees-en-vis" },
+    { "id": "ei", "naam": "ei", "meervoud": "eieren", "hoeveelheid": 2, "eenheid": "stuk", "schaling": "stuks", "categorie": "zuivel-en-eieren" },
+    { "id": "paneermeel", "naam": "paneermeel", "hoeveelheid": 60, "eenheid": "g", "schaling": "lineair", "categorie": "pasta-rijst-en-granen" },
+    { "id": "mosterd", "naam": "grove mosterd", "hoeveelheid": 1.5, "eenheid": "el", "schaling": "lineair", "categorie": "olie-en-sauzen" },
+    { "id": "ketchup", "naam": "ketchup", "hoeveelheid": 1.5, "eenheid": "el", "schaling": "lineair", "categorie": "olie-en-sauzen" },
+    { "id": "ketjap-ballen", "naam": "ketjap manis", "hoeveelheid": 1, "eenheid": "el", "schaling": "lineair", "categorie": "olie-en-sauzen", "notitie": "voor de ballen" },
+    { "id": "nootmuskaat", "naam": "nootmuskaat", "hoeveelheid": 1, "eenheid": "tl", "schaling": "lineair", "categorie": "kruiden-en-specerijen" },
+    { "id": "runderfond", "naam": "runderfond", "hoeveelheid": 250, "eenheid": "ml", "schaling": "lineair", "categorie": "conserven-en-potten" },
+    { "id": "ketjap-saus", "naam": "ketjap manis", "hoeveelheid": 1, "eenheid": "el", "schaling": "lineair", "categorie": "olie-en-sauzen", "notitie": "voor de saus" },
+    { "id": "roomboter", "naam": "roomboter", "hoeveelheid": 25, "eenheid": "g", "schaling": "lineair", "categorie": "zuivel-en-eieren" },
+    { "id": "olie", "naam": "olie", "schaling": "vast", "categorie": "olie-en-sauzen", "notitie": "om in te braden" },
+    { "id": "peper-zout", "naam": "peper en zout", "schaling": "vast", "categorie": "kruiden-en-specerijen", "notitie": "een mespunt, naar smaak" }
+  ],
+  "stappen": [
+    { "tekst": "Kneed {rundergehakt}, {ei}, {paneermeel}, {mosterd}, {ketchup}, {ketjap-ballen} en {nootmuskaat} samen in een kom met {peper-zout}. Vorm zeven stevige ballen die even groot zijn, zodat ze gelijkmatig garen.", "duur": 10 },
+    { "tekst": "Laat de gehaktballen afgedekt een half uur tot een uur rusten in de koelkast, zodat ze goed binden en niet uit elkaar vallen.", "duur": 1, "wachttijd": 45 },
+    { "tekst": "Verhit een braadpan op middelhoog vuur met een beetje {olie} en braad de ballen in ongeveer 10 minuten rondom aan.", "duur": 10 },
+    { "tekst": "Verwarm {runderfond} in een apart pannetje. Voeg ondertussen {roomboter} toe aan de pan met gehaktballen en braad ze verder gelijkmatig bruin.", "duur": 5 },
+    { "tekst": "Giet de warme fond bij de ballen samen met {ketjap-saus} en laat het geheel nog 30 minuten pruttelen op laag vuur.", "duur": 2, "wachttijd": 30 }
+  ]
+}
