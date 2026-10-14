@@ -1,0 +1,23 @@
+{
+  "titel": "Gehaktballenjus",
+  "beschrijving": "Ouderwetse hartige jus voor gehaktballen met ketjap manis en mosterd, afgeblust met water en runderbouillon. Lekker met hutspot.",
+  "personen": 2,
+  "tags": ["saus"],
+  "ingredienten": [
+    { "id": "roomboter", "naam": "roomboter", "hoeveelheid": 25, "eenheid": "g", "schaling": "lineair", "categorie": "zuivel-en-eieren" },
+    { "id": "ketjap", "naam": "ketjap manis", "hoeveelheid": 1, "eenheid": "el", "schaling": "lineair", "categorie": "olie-en-sauzen" },
+    { "id": "water", "naam": "water", "hoeveelheid": 125, "eenheid": "ml", "schaling": "lineair", "categorie": "overig" },
+    { "id": "mosterd", "naam": "mosterd", "hoeveelheid": 1, "eenheid": "tl", "schaling": "lineair", "categorie": "olie-en-sauzen" },
+    { "id": "peper", "naam": "peper", "schaling": "vast", "categorie": "kruiden-en-specerijen", "notitie": "snufje" },
+    { "id": "bouillonblokje", "naam": "bouillonblokje rund", "hoeveelheid": 0.5, "eenheid": "stuk", "schaling": "vast", "categorie": "conserven-en-potten", "notitie": "eventueel" },
+    { "id": "worcestershire", "naam": "worcestershiresaus", "schaling": "vast", "categorie": "olie-en-sauzen", "notitie": "eventueel, klein scheutje" }
+  ],
+  "stappen": [
+    { "tekst": "Smelt de {roomboter} in een koekenpan.", "duur": 2 },
+    { "tekst": "Voeg de {ketjap} en {mosterd} toe.", "duur": 1 },
+    { "tekst": "Schenk het {water} erbij en roer goed door.", "duur": 1 },
+    { "tekst": "Voeg eventueel een {bouillonblokje} voor wat extra runderbouillon toe en breng op smaak met {peper}. Voor die ouderwetse, hartige smaak kun je ook een klein scheutje {worcestershire} toevoegen.", "duur": 1 },
+    { "tekst": "Leg de gehaktballen in de jus.", "duur": 1 },
+    { "tekst": "Laat ze met een deksel op de pan zachtjes sudderen, tot ze helemaal door en door heet zijn.", "duur": 1, "wachttijd": 13 }
+  ]
+}
