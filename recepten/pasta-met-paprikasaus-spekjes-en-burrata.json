@@ -1,0 +1,33 @@
+{
+  "titel": "Pasta met paprikasaus, spekjes en burrata",
+  "beschrijving": "Rigatoni met een gladde saus van geroosterde puntpaprika en tomaat, afgemaakt met krokante spekjes, pijnboompitten en burrata.",
+  "personen": 3,
+  "tags": ["pasta", "oven", "italiaans"],
+  "ingredienten": [
+    { "id": "rigatoni", "naam": "rigatoni", "hoeveelheid": 225, "eenheid": "g", "schaling": "lineair", "categorie": "pasta-rijst-en-granen" },
+    { "id": "puntpaprika", "naam": "puntpaprika", "meervoud": "puntpaprika's", "hoeveelheid": 3, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit" },
+    { "id": "rode-ui", "naam": "rode ui", "meervoud": "rode uien", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit" },
+    { "id": "knoflook", "naam": "teen knoflook", "meervoud": "tenen knoflook", "hoeveelheid": 3, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit" },
+    { "id": "romatomaatjes", "naam": "zoete romatomaatjes", "hoeveelheid": 250, "eenheid": "g", "schaling": "lineair", "categorie": "groente-en-fruit" },
+    { "id": "olijfolie", "naam": "olijfolie", "hoeveelheid": 3, "eenheid": "el", "schaling": "lineair", "categorie": "olie-en-sauzen" },
+    { "id": "paprikapoeder", "naam": "gerookt paprikapoeder", "hoeveelheid": 2, "eenheid": "tl", "schaling": "lineair", "categorie": "kruiden-en-specerijen" },
+    { "id": "italiaanse-kruiden", "naam": "Italiaanse kruiden", "hoeveelheid": 2, "eenheid": "tl", "schaling": "lineair", "categorie": "kruiden-en-specerijen" },
+    { "id": "cottage-cheese", "naam": "cottage cheese", "hoeveelheid": 200, "eenheid": "g", "schaling": "lineair", "categorie": "zuivel-en-eieren" },
+    { "id": "citroen", "naam": "citroen", "meervoud": "citroenen", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit", "notitie": "sap en rasp" },
+    { "id": "basilicum", "naam": "verse basilicum", "schaling": "vast", "categorie": "groente-en-fruit", "notitie": "handje" },
+    { "id": "chilivlokken", "naam": "chilivlokken", "schaling": "vast", "categorie": "kruiden-en-specerijen", "notitie": "naar smaak" },
+    { "id": "spekjes", "naam": "spekjes", "hoeveelheid": 150, "eenheid": "g", "schaling": "lineair", "categorie": "vlees-en-vis" },
+    { "id": "pijnboompitjes", "naam": "pijnboompitjes", "hoeveelheid": 30, "eenheid": "g", "schaling": "lineair", "categorie": "overig" },
+    { "id": "burrata", "naam": "burrata", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "stuks", "categorie": "kaas" },
+    { "id": "zout-peper", "naam": "zout en peper", "schaling": "vast", "categorie": "kruiden-en-specerijen", "notitie": "naar smaak" }
+  ],
+  "stappen": [
+    { "tekst": "Snijd {puntpaprika} in stukken en {rode-ui} in parten. Leg samen met {romatomaatjes} en {knoflook} op een bakplaat, besprenkel met {olijfolie} en bestrooi met {paprikapoeder}, {italiaanse-kruiden} en wat {zout-peper}. Rooster goudbruin en zacht.", "duur": 5, "wachttijd": 25, "vereist": { "apparaat": "oven", "temperatuur": 200 } },
+    { "tekst": "Kook {rigatoni} beetgaar in ruim gezouten water. Bewaar een paar eetlepels pastawater en giet af.", "duur": 12, "vereist": { "apparaat": "pan-water" } },
+    { "tekst": "Bak {spekjes} krokant in een droge pan.", "duur": 6 },
+    { "tekst": "Rooster {pijnboompitjes} apart goudbruin in een droge pan.", "duur": 3 },
+    { "tekst": "Doe de geroosterde groenten in een blender met {cottage-cheese}, het sap en de rasp van {citroen}, een deel van {basilicum}, wat {chilivlokken} en een scheutje pastawater. Blend tot een gladde saus.", "duur": 3 },
+    { "tekst": "Verwarm de saus op laag vuur en schep de pasta erdoor; voeg nog wat pastawater toe als het te dik is.", "duur": 3 },
+    { "tekst": "Verdeel over de borden en maak af met {burrata}, de {spekjes}, {pijnboompitjes}, nog wat {chilivlokken} en de rest van de {basilicum}.", "duur": 2 }
+  ]
+}
