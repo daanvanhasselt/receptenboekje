@@ -1,9 +1,9 @@
 {
-  "titel": "Zelf gehaktballen maken",
+  "titel": "Gehaktballen",
   "beschrijving": "Stevige rundergehaktballen met mosterd, ketchup en ketjap, gebraden en afgeblust met runderfond.",
   "personen": 4,
   "tags": ["vlees-en-vis"],
-  "foto": "zelf-gehaktballen-maken.jpg",
+  "foto": "gehaktballen.jpg",
   "bron": "https://www.laurasbakery.nl/zelf-gehaktballen-maken/",
   "ingredienten": [
     { "id": "rundergehakt", "naam": "mager rundergehakt", "hoeveelheid": 500, "eenheid": "g", "schaling": "lineair", "categorie": "vlees-en-vis" },
