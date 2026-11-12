@@ -30,9 +30,21 @@ export interface BoodschapRij {
   categorie: Categorie;
 }
 
+export const KLEUREN = ['geel', 'roze', 'blauw'] as const;
+
+export type Kleur = (typeof KLEUREN)[number];
+
+export const KLEUR_LABELS: Record<Kleur, string> = {
+  geel: 'Geel',
+  roze: 'Roze',
+  blauw: 'Blauw',
+};
+
 export interface Boodschappenlijst {
   items: BoodschapItem[];
   afgevinkt: string[];
+  /** Markeerkleur per rij-sleutel; een rij zonder kleur is wit. */
+  kleuren?: Record<string, Kleur>;
 }
 
 const NAAR_BASIS: Record<string, { eenheid: string; factor: number }> = {
@@ -69,9 +81,19 @@ function sleutelVan(item: BoodschapItem): string {
 
 export function verwijderRij(lijst: Boodschappenlijst, sleutel: string): Boodschappenlijst {
   return {
+    ...zetKleur(lijst, sleutel, undefined),
     items: lijst.items.filter((item) => sleutelVan(item) !== sleutel),
     afgevinkt: lijst.afgevinkt.filter((afgevinkteSleutel) => afgevinkteSleutel !== sleutel),
   };
+}
+
+export function isKleur(waarde: unknown): waarde is Kleur {
+  return typeof waarde === 'string' && KLEUREN.includes(waarde as Kleur);
+}
+
+export function zetKleur(lijst: Boodschappenlijst, sleutel: string, kleur: Kleur | undefined): Boodschappenlijst {
+  const { [sleutel]: _vorige, ...overige } = lijst.kleuren ?? {};
+  return { ...lijst, kleuren: kleur === undefined ? overige : { ...overige, [sleutel]: kleur } };
 }
 
 export function samengevoegd(items: BoodschapItem[]): BoodschapRij[] {
@@ -138,10 +160,15 @@ const CATEGORIE_CACHE_SLEUTEL = 'boodschappen-categorieen';
 export function laadLijst(): Boodschappenlijst {
   try {
     const data = JSON.parse(localStorage.getItem(OPSLAG_SLEUTEL) ?? '');
-    return { items: data.items ?? [], afgevinkt: data.afgevinkt ?? [] };
+    return { items: data.items ?? [], afgevinkt: data.afgevinkt ?? [], kleuren: geldigeKleuren(data.kleuren) };
   } catch {
-    return { items: [], afgevinkt: [] };
+    return { items: [], afgevinkt: [], kleuren: {} };
   }
+}
+
+function geldigeKleuren(data: unknown): Record<string, Kleur> {
+  if (data === null || typeof data !== 'object' || Array.isArray(data)) return {};
+  return Object.fromEntries(Object.entries(data).filter(([, kleur]) => isKleur(kleur))) as Record<string, Kleur>;
 }
 
 export function bewaarLijst(lijst: Boodschappenlijst): void {

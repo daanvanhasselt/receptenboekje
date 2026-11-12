@@ -27,7 +27,8 @@ import { pad } from '../lib/pad';
 </Basis>
 
 <script>
-  import { bewaarCategorie, bewaarLijst, categorieUitCache, laadLijst, perCategorie, samengevoegd, verwijderRij, zetCategorie, CATEGORIE_LABELS } from '../lib/boodschappen';
+  import { bewaarCategorie, bewaarLijst, categorieUitCache, laadLijst, perCategorie, samengevoegd, verwijderRij, zetCategorie, zetKleur, CATEGORIE_LABELS, KLEUREN, KLEUR_LABELS } from '../lib/boodschappen';
+  import type { Kleur } from '../lib/boodschappen';
   import { herkenCategorie } from '../lib/categorie-ai';
 
   const lijstElement = document.querySelector<HTMLElement>('#lijst')!;
@@ -39,8 +40,52 @@ import { pad } from '../lib/pad';
   const apiSleutel = document.querySelector<HTMLInputElement>('#api-sleutel')!;
   const API_SLEUTEL_OPSLAG = 'anthropic-api-sleutel';
 
+  /** Sleutel van de rij waarvan het kleurpalet open staat; er is er hooguit één. */
+  let openKleurSleutel: string | undefined;
+
+  function rijElement(sleutel: string): HTMLElement | undefined {
+    return [...lijstElement.querySelectorAll<HTMLElement>('li')].find((li) => li.dataset.sleutel === sleutel);
+  }
+
+  /** Sluit het palet zonder de lijst opnieuw te tekenen, zodat een lopende tik op een checkbox niet verloren gaat. */
+  function sluitPalet() {
+    if (openKleurSleutel === undefined) return;
+    openKleurSleutel = undefined;
+    lijstElement.querySelector('.kleur-palet')?.remove();
+    lijstElement.querySelector('.kleur-knop[aria-expanded="true"]')?.setAttribute('aria-expanded', 'false');
+  }
+
+  function maakPalet(sleutel: string, huidig: Kleur | undefined): HTMLElement {
+    const palet = document.createElement('div');
+    palet.className = 'kleur-palet';
+    palet.setAttribute('role', 'group');
+    palet.setAttribute('aria-label', 'Markeerkleur');
+    for (const kleur of [undefined, ...KLEUREN]) {
+      const staal = document.createElement('button');
+      staal.type = 'button';
+      staal.className = 'kleur-staal';
+      if (kleur !== undefined) staal.dataset.kleur = kleur;
+      staal.setAttribute('aria-label', kleur === undefined ? 'Geen kleur' : KLEUR_LABELS[kleur]);
+      staal.setAttribute('aria-pressed', String(kleur === huidig));
+      staal.addEventListener('click', () => {
+        bewaarLijst(zetKleur(laadLijst(), sleutel, kleur));
+        openKleurSleutel = undefined;
+        toon();
+        rijElement(sleutel)?.querySelector<HTMLElement>('.kleur-knop')?.focus();
+      });
+      palet.append(staal);
+    }
+    palet.addEventListener('keydown', (gebeurtenis) => {
+      if (gebeurtenis.key !== 'Escape') return;
+      sluitPalet();
+      rijElement(sleutel)?.querySelector<HTMLElement>('.kleur-knop')?.focus();
+    });
+    return palet;
+  }
+
   function toon() {
     const lijst = laadLijst();
+    const kleuren = lijst.kleuren ?? {};
     const groepen = perCategorie(samengevoegd(lijst.items));
     lijstElement.textContent = '';
     leegElement.hidden = groepen.length > 0;
@@ -55,6 +100,9 @@ import { pad } from '../lib/pad';
       ul.className = 'ingredienten';
       for (const rij of groep.rijen) {
         const li = document.createElement('li');
+        li.dataset.sleutel = rij.sleutel;
+        const kleur = kleuren[rij.sleutel];
+        if (kleur !== undefined) li.dataset.kleur = kleur;
         const label = document.createElement('label');
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
@@ -76,6 +124,19 @@ import { pad } from '../lib/pad';
           hoeveelheid.textContent = rij.hoeveelheid;
           label.append(hoeveelheid);
         }
+        const kleurKnop = document.createElement('button');
+        kleurKnop.type = 'button';
+        kleurKnop.className = 'kleur-knop';
+        kleurKnop.setAttribute('aria-label', `Kleur voor ${rij.tekst}`);
+        kleurKnop.setAttribute('aria-expanded', String(openKleurSleutel === rij.sleutel));
+        kleurKnop.addEventListener('click', (gebeurtenis) => {
+          gebeurtenis.preventDefault();
+          openKleurSleutel = openKleurSleutel === rij.sleutel ? undefined : rij.sleutel;
+          toon();
+          const nieuweRij = rijElement(rij.sleutel);
+          const doel = openKleurSleutel === undefined ? '.kleur-knop' : '.kleur-staal[aria-pressed="true"]';
+          nieuweRij?.querySelector<HTMLElement>(doel)?.focus();
+        });
         const verwijder = document.createElement('button');
         verwijder.type = 'button';
         verwijder.className = 'rij-verwijder';
@@ -86,13 +147,20 @@ import { pad } from '../lib/pad';
           bewaarLijst(verwijderRij(laadLijst(), rij.sleutel));
           toon();
         });
-        label.append(verwijder);
+        label.append(kleurKnop, verwijder);
         li.append(label);
+        if (openKleurSleutel === rij.sleutel) li.append(maakPalet(rij.sleutel, kleur));
         ul.append(li);
       }
       lijstElement.append(ul);
     }
   }
+
+  document.addEventListener('click', (gebeurtenis) => {
+    const doel = gebeurtenis.target;
+    if (doel instanceof Element && doel.closest('.kleur-knop, .kleur-palet') !== null) return;
+    sluitPalet();
+  });
 
   wisKnop.addEventListener('click', () => {
     bewaarLijst({ items: [], afgevinkt: [] });

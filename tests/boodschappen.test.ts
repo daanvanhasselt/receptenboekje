@@ -1,6 +1,17 @@
-import { describe, expect, test } from 'vitest';
-import { isCategorie, maakItems, perCategorie, samengevoegd, verwijderRij, zetCategorie } from '../src/lib/boodschappen';
-import type { BoodschapItem } from '../src/lib/boodschappen';
+import { afterEach, describe, expect, test, vi } from 'vitest';
+import {
+  bewaarLijst,
+  isCategorie,
+  isKleur,
+  laadLijst,
+  maakItems,
+  perCategorie,
+  samengevoegd,
+  verwijderRij,
+  zetCategorie,
+  zetKleur,
+} from '../src/lib/boodschappen';
+import type { BoodschapItem, Boodschappenlijst } from '../src/lib/boodschappen';
 import type { Ingredient } from '../src/lib/typen';
 
 function item(deel: Partial<BoodschapItem> & { naam: string }): BoodschapItem {
@@ -116,5 +127,86 @@ describe('verwijderRij', () => {
     const lijst = verwijderRij({ items, afgevinkt: [melkRij.sleutel] }, melkRij.sleutel);
     expect(lijst.items.map((overgebleven) => overgebleven.naam)).toEqual(['ui']);
     expect(lijst.afgevinkt).toEqual([]);
+  });
+  test('haalt ook de kleur van die rij weg en laat andere kleuren staan', () => {
+    const lijst = verwijderRij(
+      { items: [item({ naam: 'melk' }), item({ naam: 'ui' })], afgevinkt: [], kleuren: { 'melk|': 'geel', 'ui|': 'blauw' } },
+      'melk|',
+    );
+    expect(lijst.kleuren).toEqual({ 'ui|': 'blauw' });
+  });
+});
+
+describe('isKleur', () => {
+  test('accepteert alleen de drie markeerkleuren', () => {
+    expect(isKleur('geel')).toBe(true);
+    expect(isKleur('roze')).toBe(true);
+    expect(isKleur('blauw')).toBe(true);
+    expect(isKleur('wit')).toBe(false);
+    expect(isKleur('')).toBe(false);
+    expect(isKleur(undefined)).toBe(false);
+  });
+});
+
+describe('zetKleur', () => {
+  test('geeft een rij een kleur en laat items en afvinkstatus ongemoeid', () => {
+    const lijst: Boodschappenlijst = { items: [item({ naam: 'melk' })], afgevinkt: ['melk|'] };
+    expect(zetKleur(lijst, 'melk|', 'geel')).toEqual({
+      items: [item({ naam: 'melk' })],
+      afgevinkt: ['melk|'],
+      kleuren: { 'melk|': 'geel' },
+    });
+  });
+  test('overschrijft een bestaande kleur en laat andere rijen met rust', () => {
+    const lijst: Boodschappenlijst = { items: [], afgevinkt: [], kleuren: { 'melk|': 'geel', 'ui|': 'blauw' } };
+    expect(zetKleur(lijst, 'melk|', 'roze').kleuren).toEqual({ 'melk|': 'roze', 'ui|': 'blauw' });
+  });
+  test('maakt een rij weer wit bij undefined', () => {
+    const lijst: Boodschappenlijst = { items: [], afgevinkt: [], kleuren: { 'melk|': 'geel', 'ui|': 'blauw' } };
+    expect(zetKleur(lijst, 'melk|', undefined).kleuren).toEqual({ 'ui|': 'blauw' });
+  });
+  test('muteert de oorspronkelijke lijst niet', () => {
+    const lijst: Boodschappenlijst = { items: [], afgevinkt: [], kleuren: { 'melk|': 'geel' } };
+    zetKleur(lijst, 'melk|', undefined);
+    zetKleur(lijst, 'ui|', 'blauw');
+    expect(lijst.kleuren).toEqual({ 'melk|': 'geel' });
+  });
+});
+
+describe('laadLijst', () => {
+  function nepOpslag(inhoud?: string) {
+    const data = new Map<string, string>();
+    if (inhoud !== undefined) data.set('boodschappen', inhoud);
+    vi.stubGlobal('localStorage', {
+      getItem: (sleutel: string) => data.get(sleutel) ?? null,
+      setItem: (sleutel: string, waarde: string) => void data.set(sleutel, waarde),
+    });
+  }
+  afterEach(() => vi.unstubAllGlobals());
+
+  test('kleuren overleven bewaren en opnieuw laden', () => {
+    nepOpslag();
+    bewaarLijst({ items: [item({ naam: 'melk' })], afgevinkt: [], kleuren: { 'melk|': 'roze' } });
+    expect(laadLijst()).toEqual({
+      items: [item({ naam: 'melk' })],
+      afgevinkt: [],
+      kleuren: { 'melk|': 'roze' },
+    });
+  });
+  test('gooit onbekende kleurwaarden weg', () => {
+    nepOpslag(JSON.stringify({ items: [], afgevinkt: [], kleuren: { 'melk|': 'paars', 'ui|': 'blauw', 'kaas|': 3 } }));
+    expect(laadLijst().kleuren).toEqual({ 'ui|': 'blauw' });
+  });
+  test('een oude opgeslagen lijst zonder kleuren laadt met lege kleuren', () => {
+    nepOpslag(JSON.stringify({ items: [item({ naam: 'melk' })], afgevinkt: ['melk|'] }));
+    expect(laadLijst()).toEqual({ items: [item({ naam: 'melk' })], afgevinkt: ['melk|'], kleuren: {} });
+  });
+  test('kleuren in een onverwachte vorm worden genegeerd', () => {
+    nepOpslag(JSON.stringify({ items: [], afgevinkt: [], kleuren: ['geel'] }));
+    expect(laadLijst().kleuren).toEqual({});
+  });
+  test('kapotte opslag geeft een lege lijst', () => {
+    nepOpslag('{geen json');
+    expect(laadLijst()).toEqual({ items: [], afgevinkt: [], kleuren: {} });
   });
 });
