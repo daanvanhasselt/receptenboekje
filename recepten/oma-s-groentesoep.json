@@ -1,0 +1,25 @@
+{
+  "titel": "Oma's groentesoep",
+  "beschrijving": "Klassieke Hollandse groentesoep met soepgroenten, soepballetjes en vermicelli in kippen- of groentebouillon.",
+  "personen": 6,
+  "tags": ["soep"],
+  "foto": "oma-s-groentesoep.jpg",
+  "bron": "https://www.eefkooktzo.nl/omas-groentesoep/",
+  "ingredienten": [
+    { "id": "sjalot", "naam": "sjalot", "meervoud": "sjalotten", "hoeveelheid": 2, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit", "notitie": "gesnipperd" },
+    { "id": "soepgroenten", "naam": "fijne soepgroenten", "hoeveelheid": 500, "eenheid": "g", "schaling": "lineair", "categorie": "groente-en-fruit" },
+    { "id": "bouillonblokje", "naam": "bouillonblokje", "meervoud": "bouillonblokjes", "hoeveelheid": 2, "eenheid": "stuk", "schaling": "stuks", "categorie": "conserven-en-potten", "notitie": "kippen- of groentebouillon" },
+    { "id": "water", "naam": "water", "hoeveelheid": 2, "eenheid": "l", "schaling": "lineair", "categorie": "overig" },
+    { "id": "soepballetjes", "naam": "soepballetjes", "hoeveelheid": 300, "eenheid": "g", "schaling": "lineair", "categorie": "vlees-en-vis" },
+    { "id": "vermicelli", "naam": "vermicelli", "hoeveelheid": 50, "eenheid": "g", "schaling": "lineair", "categorie": "pasta-rijst-en-granen" },
+    { "id": "olijfolie", "naam": "olijfolie", "schaling": "vast", "categorie": "olie-en-sauzen", "notitie": "om in te bakken" },
+    { "id": "peper-zout", "naam": "peper en zout", "schaling": "vast", "categorie": "kruiden-en-specerijen", "notitie": "naar smaak" }
+  ],
+  "stappen": [
+    { "tekst": "Verhit een beetje {olijfolie} in een ruime soeppan en fruit {sjalot} enkele minuten tot ze beginnen te geuren.", "duur": 3 },
+    { "tekst": "Voeg {soepgroenten} toe en bak ze op middelhoog vuur ongeveer 5 minuten tot ze iets zachter zijn.", "duur": 5 },
+    { "tekst": "Verkruimel {bouillonblokje} over de groenten, giet {water} erbij en roer door. Breng aan de kook.", "duur": 3 },
+    { "tekst": "Voeg {soepballetjes} en {vermicelli} toe zodra de soep kookt. Doe de deksel op de pan en laat 30 tot 45 minuten zachtjes pruttelen op laag vuur tot de balletjes gaar en de groenten zacht zijn.", "duur": 2, "wachttijd": 40 },
+    { "tekst": "Breng op smaak met {peper-zout} en serveer warm.", "duur": 1 }
+  ]
+}
