@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import { fotoVoor } from '../lib/fotos';
 import { pad } from '../lib/pad';
 import { formatteerMinuten, totaalTijd } from '../lib/tijden';
@@ -14,7 +14,7 @@ const zoektekst = [recept.titel, ...recept.tags, ...recept.ingredienten.map((ing
 ---
 <a class="kaart" href={pad(`recept/${recept.slug}/`)} data-zoek={zoektekst} data-tags={recept.tags.join(' ')}>
   {foto ? (
-    <Image src={foto} alt="" widths={[480]} sizes="(max-width: 40rem) 100vw, 20rem" />
+    <Picture src={foto} alt="" widths={[480]} sizes="(max-width: 40rem) 100vw, 20rem" formats={['webp']} fallbackFormat="jpg" />
   ) : (
     <div class="kaart-placeholder" aria-hidden="true">{recept.titel.slice(0, 1)}</div>
   )}

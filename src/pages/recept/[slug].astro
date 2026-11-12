@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import IngredientenLijst from '../../components/IngredientenLijst.astro';
 import KookModus from '../../components/KookModus.astro';
 import PersonenKiezer from '../../components/PersonenKiezer.astro';
@@ -31,7 +31,7 @@ const bron = recept.bron !== undefined ? bronWeergave(recept.bron) : undefined;
         <path d="M19 12H5m6-6-6 6 6 6" />
       </svg>
     </a>
-    {foto && <Image class="recept-foto" src={foto} alt={recept.titel} widths={[480, 960]} sizes="100vw" />}
+    {foto && <Picture class="recept-foto" src={foto} alt={recept.titel} widths={[480, 960]} sizes="100vw" formats={['webp']} fallbackFormat="jpg" />}
     <h1>{recept.titel}</h1>
     <p class="beschrijving">{recept.beschrijving}</p>
     <div class="statrij">
