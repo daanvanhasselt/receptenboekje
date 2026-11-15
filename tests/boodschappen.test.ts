@@ -1,13 +1,16 @@
 import { afterEach, describe, expect, test, vi } from 'vitest';
 import {
   bewaarLijst,
+  hoeveelheidAlsTekst,
   isCategorie,
   isKleur,
   laadLijst,
+  leesHoeveelheid,
   maakItems,
   perCategorie,
   samengevoegd,
   verwijderRij,
+  wijzigRij,
   zetCategorie,
   zetKleur,
 } from '../src/lib/boodschappen';
@@ -68,6 +71,163 @@ describe('samengevoegd', () => {
     ]);
     expect(rijen[0].tekst).toBe('uien');
     expect(rijen[0].hoeveelheid).toBe('2');
+  });
+  test('geeft het getal en de eenheid van de rij ook los terug', () => {
+    const [aardappelen] = samengevoegd([
+      item({ naam: 'aardappelen', hoeveelheid: 0.5, eenheid: 'kg' }),
+      item({ naam: 'aardappelen', hoeveelheid: 750, eenheid: 'g' }),
+    ]);
+    expect([aardappelen.aantal, aardappelen.eenheid]).toEqual([1.25, 'kg']);
+    const [uien] = samengevoegd([item({ naam: 'ui', meervoud: 'uien', hoeveelheid: 2, eenheid: 'stuk' })]);
+    expect([uien.aantal, uien.eenheid]).toEqual([2, 'stuk']);
+    const [zout] = samengevoegd([item({ naam: 'zout' })]);
+    expect([zout.aantal, zout.eenheid]).toEqual([undefined, undefined]);
+  });
+});
+
+describe('wijzigRij', () => {
+  test('zet een nieuw aantal op een losse boodschap', () => {
+    const resultaat = wijzigRij({ items: [item({ naam: 'melk', hoeveelheid: 1 })], afgevinkt: [] }, 'melk|', { hoeveelheid: 3 });
+    expect(resultaat.lijst.items).toEqual([item({ naam: 'melk', hoeveelheid: 3 })]);
+    expect(resultaat.sleutel).toBe('melk|');
+  });
+  test('vervangt een samengevoegde rij door één item met het nieuwe totaal, op dezelfde plek', () => {
+    const lijst = {
+      items: [
+        item({ naam: 'ui' }),
+        item({ naam: 'spaghetti', hoeveelheid: 200, eenheid: 'g', categorie: 'pasta-rijst-en-granen' }),
+        item({ naam: 'zout' }),
+        item({ naam: 'spaghetti', hoeveelheid: 300, eenheid: 'g', categorie: 'pasta-rijst-en-granen' }),
+      ],
+      afgevinkt: [],
+    };
+    expect(wijzigRij(lijst, 'spaghetti|g', { hoeveelheid: 750 }).lijst.items).toEqual([
+      item({ naam: 'ui' }),
+      item({ naam: 'spaghetti', hoeveelheid: 750, eenheid: 'g', categorie: 'pasta-rijst-en-granen' }),
+      item({ naam: 'zout' }),
+    ]);
+  });
+  test('het nieuwe totaal geldt in de eenheid waarin de rij wordt getoond', () => {
+    const lijst = {
+      items: [
+        item({ naam: 'aardappelen', hoeveelheid: 0.5, eenheid: 'kg' }),
+        item({ naam: 'aardappelen', hoeveelheid: 750, eenheid: 'g' }),
+      ],
+      afgevinkt: [],
+    };
+    const rijen = samengevoegd(wijzigRij(lijst, 'aardappelen|g', { hoeveelheid: 2 }).lijst.items);
+    expect(rijen.map((rij) => rij.hoeveelheid)).toEqual(['2 kg']);
+  });
+  test('null haalt de hoeveelheid weg en verhuist afvinkstatus en kleur mee', () => {
+    const resultaat = wijzigRij(
+      { items: [item({ naam: 'gehakt', hoeveelheid: 500, eenheid: 'g' })], afgevinkt: ['gehakt|g'], kleuren: { 'gehakt|g': 'geel' } },
+      'gehakt|g',
+      { hoeveelheid: null },
+    );
+    expect(resultaat.sleutel).toBe('gehakt|');
+    expect(samengevoegd(resultaat.lijst.items).map((rij) => rij.hoeveelheid)).toEqual([undefined]);
+    expect(resultaat.lijst.afgevinkt).toEqual(['gehakt|']);
+    expect(resultaat.lijst.kleuren).toEqual({ 'gehakt|': 'geel' });
+  });
+  test('hernoemt alle items van de rij en verhuist afvinkstatus en kleur mee', () => {
+    const resultaat = wijzigRij(
+      {
+        items: [item({ naam: 'apels', hoeveelheid: 1 }), item({ naam: 'peren' }), item({ naam: 'apels', hoeveelheid: 2 })],
+        afgevinkt: ['apels|', 'peren|'],
+        kleuren: { 'apels|': 'roze' },
+      },
+      'apels|',
+      { naam: 'appels' },
+    );
+    expect(resultaat.sleutel).toBe('appels|');
+    expect(resultaat.lijst.items).toEqual([
+      item({ naam: 'appels', hoeveelheid: 1 }),
+      item({ naam: 'peren' }),
+      item({ naam: 'appels', hoeveelheid: 2 }),
+    ]);
+    expect([...resultaat.lijst.afgevinkt].sort()).toEqual(['appels|', 'peren|']);
+    expect(resultaat.lijst.kleuren).toEqual({ 'appels|': 'roze' });
+  });
+  test('na hernoemen staat er precies wat is getypt, ook bij een ander aantal', () => {
+    const lijst = { items: [item({ naam: 'ui', meervoud: 'uien', hoeveelheid: 2, eenheid: 'stuk' })], afgevinkt: [] };
+    const hernoemd = wijzigRij(lijst, 'ui|stuk', { naam: 'rode uien' });
+    expect(samengevoegd(hernoemd.lijst.items).map((rij) => rij.tekst)).toEqual(['rode uien']);
+    const eentje = wijzigRij(hernoemd.lijst, hernoemd.sleutel, { hoeveelheid: 1 });
+    expect(samengevoegd(eentje.lijst.items).map((rij) => [rij.tekst, rij.hoeveelheid])).toEqual([['rode uien', '1']]);
+  });
+  test('een naam die gelijk is aan de getoonde tekst is geen hernoeming: het meervoud blijft werken', () => {
+    const lijst = { items: [item({ naam: 'ui', meervoud: 'uien', hoeveelheid: 2, eenheid: 'stuk' })], afgevinkt: [] };
+    const resultaat = wijzigRij(lijst, 'ui|stuk', { naam: 'uien', hoeveelheid: 1 });
+    expect(samengevoegd(resultaat.lijst.items).map((rij) => [rij.tekst, rij.hoeveelheid])).toEqual([['ui', '1']]);
+  });
+  test('hernoemen naar een bestaande rij voegt samen; afgevinkt alleen als beide het waren', () => {
+    const items = [item({ naam: 'appel', hoeveelheid: 2 }), item({ naam: 'appels', hoeveelheid: 3 })];
+    const eenAfgevinkt = wijzigRij({ items, afgevinkt: ['appel|'], kleuren: { 'appels|': 'blauw' } }, 'appel|', { naam: 'appels' });
+    expect(samengevoegd(eenAfgevinkt.lijst.items).map((rij) => rij.hoeveelheid)).toEqual(['5']);
+    expect(eenAfgevinkt.lijst.afgevinkt).toEqual([]);
+    expect(eenAfgevinkt.lijst.kleuren).toEqual({ 'appels|': 'blauw' });
+
+    const beideAfgevinkt = wijzigRij(
+      { items, afgevinkt: ['appel|', 'appels|'], kleuren: { 'appel|': 'geel', 'appels|': 'blauw' } },
+      'appel|',
+      { naam: 'appels' },
+    );
+    expect(beideAfgevinkt.lijst.afgevinkt).toEqual(['appels|']);
+    expect(beideAfgevinkt.lijst.kleuren).toEqual({ 'appels|': 'geel' });
+  });
+  test('een lege naam wordt genegeerd', () => {
+    const lijst = { items: [item({ naam: 'melk', hoeveelheid: 1 })], afgevinkt: ['melk|'] };
+    expect(wijzigRij(lijst, 'melk|', { naam: '   ' })).toEqual({ lijst, sleutel: 'melk|' });
+  });
+  test('een onbekende rij laat de lijst ongemoeid', () => {
+    const lijst = { items: [item({ naam: 'melk', hoeveelheid: 1 })], afgevinkt: [] };
+    expect(wijzigRij(lijst, 'kaas|', { naam: 'brie', hoeveelheid: 2 })).toEqual({ lijst, sleutel: 'kaas|' });
+  });
+  test('behoudt de categorie', () => {
+    const lijst = { items: [item({ naam: 'melk', hoeveelheid: 1, categorie: 'zuivel-en-eieren' })], afgevinkt: [] };
+    const resultaat = wijzigRij(lijst, 'melk|', { naam: 'halfvolle melk', hoeveelheid: 2 });
+    expect(resultaat.lijst.items).toEqual([item({ naam: 'halfvolle melk', hoeveelheid: 2, categorie: 'zuivel-en-eieren' })]);
+  });
+  test('muteert de oorspronkelijke lijst niet', () => {
+    const lijst: Boodschappenlijst = {
+      items: [item({ naam: 'gehakt', hoeveelheid: 500, eenheid: 'g' })],
+      afgevinkt: ['gehakt|g'],
+      kleuren: { 'gehakt|g': 'geel' },
+    };
+    const kopie = structuredClone(lijst);
+    wijzigRij(lijst, 'gehakt|g', { naam: 'rundergehakt', hoeveelheid: null });
+    expect(lijst).toEqual(kopie);
+  });
+});
+
+describe('leesHoeveelheid', () => {
+  test('leest hele getallen en decimalen met komma of punt', () => {
+    expect(leesHoeveelheid('3')).toBe(3);
+    expect(leesHoeveelheid('1,5')).toBe(1.5);
+    expect(leesHoeveelheid(' 2.25 ')).toBe(2.25);
+  });
+  test('een leeg veld betekent: geen hoeveelheid', () => {
+    expect(leesHoeveelheid('')).toBeNull();
+    expect(leesHoeveelheid('   ')).toBeNull();
+  });
+  test('al het andere is ongeldig', () => {
+    expect(leesHoeveelheid('veel')).toBeUndefined();
+    expect(leesHoeveelheid('0')).toBeUndefined();
+    expect(leesHoeveelheid('-2')).toBeUndefined();
+    expect(leesHoeveelheid('1,2,3')).toBeUndefined();
+    expect(leesHoeveelheid('3 stuks')).toBeUndefined();
+  });
+});
+
+describe('hoeveelheidAlsTekst', () => {
+  test('schrijft een getal met een komma en hooguit twee decimalen', () => {
+    expect(hoeveelheidAlsTekst(3)).toBe('3');
+    expect(hoeveelheidAlsTekst(1.25)).toBe('1,25');
+    expect(hoeveelheidAlsTekst(0.5)).toBe('0,5');
+    expect(hoeveelheidAlsTekst(333.3333)).toBe('333,33');
+  });
+  test('wat het schrijft kan leesHoeveelheid weer lezen', () => {
+    expect(leesHoeveelheid(hoeveelheidAlsTekst(1.25))).toBe(1.25);
   });
 });
 

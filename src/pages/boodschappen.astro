@@ -27,8 +27,8 @@ import { pad } from '../lib/pad';
 </Basis>
 
 <script>
-  import { bewaarCategorie, bewaarLijst, categorieUitCache, laadLijst, perCategorie, samengevoegd, verwijderRij, zetCategorie, zetKleur, CATEGORIE_LABELS, KLEUREN, KLEUR_LABELS } from '../lib/boodschappen';
-  import type { Kleur } from '../lib/boodschappen';
+  import { bewaarCategorie, bewaarLijst, categorieUitCache, hoeveelheidAlsTekst, laadLijst, leesHoeveelheid, perCategorie, samengevoegd, verwijderRij, wijzigRij, zetCategorie, zetKleur, CATEGORIE_LABELS, KLEUREN, KLEUR_LABELS } from '../lib/boodschappen';
+  import type { BoodschapRij, Kleur } from '../lib/boodschappen';
   import { herkenCategorie } from '../lib/categorie-ai';
 
   const lijstElement = document.querySelector<HTMLElement>('#lijst')!;
@@ -42,6 +42,25 @@ import { pad } from '../lib/pad';
 
   /** Sleutel van de rij waarvan het kleurpalet open staat; er is er hooguit één. */
   let openKleurSleutel: string | undefined;
+  /** Sleutel van de rij die bewerkt wordt (naam en aantal); ook hooguit één. */
+  let bewerkSleutel: string | undefined;
+
+  function icoon(paden: string): string {
+    return `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paden}</svg>`;
+  }
+  const POTLOOD = icoon('<path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>');
+  const VINKJE = icoon('<path d="M20 6 9 17l-5-5"/>');
+  const KRUISJE = icoon('<path d="M18 6 6 18M6 6l12 12"/>');
+
+  /** `inhoud` is vaste opmaak (een icoon of teken), nooit tekst van de gebruiker. */
+  function maakKnop(klasse: string, label: string, inhoud: string, type: 'button' | 'submit' = 'button'): HTMLButtonElement {
+    const knop = document.createElement('button');
+    knop.type = type;
+    knop.className = klasse;
+    knop.setAttribute('aria-label', label);
+    knop.innerHTML = inhoud;
+    return knop;
+  }
 
   function rijElement(sleutel: string): HTMLElement | undefined {
     return [...lijstElement.querySelectorAll<HTMLElement>('li')].find((li) => li.dataset.sleutel === sleutel);
@@ -83,6 +102,111 @@ import { pad } from '../lib/pad';
     return palet;
   }
 
+  /** Vraagt de AI op de achtergrond om de categorie van items met deze naam die nog onder "Overig" staan. */
+  function herkenOpAchtergrond(naam: string) {
+    if (apiSleutel.value === '') return;
+    void herkenCategorie(naam, apiSleutel.value)
+      .then((herkendeCategorie) => {
+        if (herkendeCategorie === undefined) {
+          console.warn('Automatische categorisatie gaf geen geldige categorie terug.');
+          return;
+        }
+        bewaarCategorie(naam, herkendeCategorie);
+        bewaarLijst(zetCategorie(laadLijst(), naam, herkendeCategorie));
+        // Niet opnieuw tekenen terwijl iemand een regel bewerkt: dan is het getypte weg. Bij het sluiten volgt het vanzelf.
+        if (bewerkSleutel === undefined) toon();
+      })
+      .catch((fout) => console.warn('Automatische categorisatie is niet gelukt.', fout));
+  }
+
+  function sluitBewerken(sleutel: string) {
+    bewerkSleutel = undefined;
+    toon();
+    rijElement(sleutel)?.querySelector<HTMLElement>('.rij-bewerk-knop')?.focus();
+  }
+
+  function maakBewerkFormulier(rij: BoodschapRij): HTMLFormElement {
+    const bewerk = document.createElement('form');
+    bewerk.className = 'rij-bewerk';
+    bewerk.noValidate = true;
+
+    const naamVeld = document.createElement('input');
+    naamVeld.type = 'text';
+    naamVeld.className = 'bewerk-naam';
+    naamVeld.value = rij.tekst;
+    naamVeld.autocomplete = 'off';
+    naamVeld.setAttribute('aria-label', 'Naam');
+
+    const beginAantal = rij.aantal !== undefined ? hoeveelheidAlsTekst(rij.aantal) : '';
+    const aantalVeld = document.createElement('input');
+    aantalVeld.type = 'text';
+    aantalVeld.inputMode = 'decimal';
+    aantalVeld.className = 'bewerk-hoeveelheid';
+    aantalVeld.value = beginAantal;
+    aantalVeld.autocomplete = 'off';
+    aantalVeld.setAttribute('aria-label', 'Aantal');
+    aantalVeld.addEventListener('input', () => aantalVeld.removeAttribute('aria-invalid'));
+
+    const aantalGroep = document.createElement('div');
+    aantalGroep.className = 'bewerk-aantal';
+    if (rij.eenheid === undefined || rij.eenheid === 'stuk') {
+      // Telbare dingen: plus en min, zodat het toetsenbord niet nodig is.
+      const stap = (verschil: number, label: string, teken: string) => {
+        const knop = maakKnop('bewerk-stap', label, teken);
+        knop.addEventListener('click', () => {
+          aantalVeld.value = hoeveelheidAlsTekst(Math.max(1, (leesHoeveelheid(aantalVeld.value) ?? 0) + verschil));
+          aantalVeld.removeAttribute('aria-invalid');
+        });
+        return knop;
+      };
+      aantalGroep.append(stap(-1, 'Eén minder', '−'), aantalVeld, stap(1, 'Eén meer', '+'));
+    } else {
+      const eenheid = document.createElement('span');
+      eenheid.className = 'bewerk-eenheid';
+      eenheid.textContent = rij.eenheid;
+      aantalGroep.append(aantalVeld, eenheid);
+    }
+
+    const annuleer = maakKnop('bewerk-annuleer', 'Annuleer', KRUISJE);
+    annuleer.addEventListener('click', () => sluitBewerken(rij.sleutel));
+    const knoppen = document.createElement('div');
+    knoppen.className = 'bewerk-knoppen';
+    knoppen.append(annuleer, maakKnop('bewerk-bewaar', 'Bewaar', VINKJE, 'submit'));
+
+    const onder = document.createElement('div');
+    onder.className = 'bewerk-onder';
+    onder.append(aantalGroep, knoppen);
+    bewerk.append(naamVeld, onder);
+
+    bewerk.addEventListener('keydown', (gebeurtenis) => {
+      if (gebeurtenis.key === 'Escape') sluitBewerken(rij.sleutel);
+    });
+    bewerk.addEventListener('submit', (gebeurtenis) => {
+      gebeurtenis.preventDefault();
+      // Een onaangeraakt aantal blijft precies zoals het was (het veld toont een afgeronde waarde).
+      const aantalGewijzigd = aantalVeld.value.trim() !== beginAantal;
+      const hoeveelheid = aantalGewijzigd ? leesHoeveelheid(aantalVeld.value) : undefined;
+      if (aantalGewijzigd && hoeveelheid === undefined) {
+        aantalVeld.setAttribute('aria-invalid', 'true');
+        aantalVeld.focus();
+        return;
+      }
+      const naam = naamVeld.value.trim();
+      const hernoemd = naam !== '' && naam !== rij.tekst;
+      let resultaat = wijzigRij(laadLijst(), rij.sleutel, { naam, hoeveelheid });
+      // Een hernoemd item dat onder "Overig" staat krijgt alsnog een categorie, net als een nieuw item.
+      const inOverig = resultaat.lijst.items.some(
+        (item) => item.categorie === 'overig' && item.naam.trim().toLowerCase() === naam.toLowerCase(),
+      );
+      const uitCache = hernoemd && inOverig ? categorieUitCache(naam) : undefined;
+      if (uitCache !== undefined) resultaat = { ...resultaat, lijst: zetCategorie(resultaat.lijst, naam, uitCache) };
+      bewaarLijst(resultaat.lijst);
+      sluitBewerken(resultaat.sleutel);
+      if (hernoemd && inOverig && uitCache === undefined) herkenOpAchtergrond(naam);
+    });
+    return bewerk;
+  }
+
   function toon() {
     const lijst = laadLijst();
     const kleuren = lijst.kleuren ?? {};
@@ -103,6 +227,11 @@ import { pad } from '../lib/pad';
         li.dataset.sleutel = rij.sleutel;
         const kleur = kleuren[rij.sleutel];
         if (kleur !== undefined) li.dataset.kleur = kleur;
+        if (bewerkSleutel === rij.sleutel) {
+          li.append(maakBewerkFormulier(rij));
+          ul.append(li);
+          continue;
+        }
         const label = document.createElement('label');
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
@@ -124,6 +253,15 @@ import { pad } from '../lib/pad';
           hoeveelheid.textContent = rij.hoeveelheid;
           label.append(hoeveelheid);
         }
+        const bewerkKnop = maakKnop('rij-bewerk-knop', `Bewerk ${rij.tekst}`, POTLOOD);
+        bewerkKnop.addEventListener('click', (gebeurtenis) => {
+          gebeurtenis.preventDefault();
+          openKleurSleutel = undefined;
+          bewerkSleutel = rij.sleutel;
+          toon();
+          // Op een aanraakscherm geen focus in een veld: dan springt het toetsenbord op terwijl plus/min vaak genoeg is.
+          if (!matchMedia('(pointer: coarse)').matches) rijElement(rij.sleutel)?.querySelector<HTMLElement>('.bewerk-naam')?.focus();
+        });
         const kleurKnop = document.createElement('button');
         kleurKnop.type = 'button';
         kleurKnop.className = 'kleur-knop';
@@ -132,6 +270,7 @@ import { pad } from '../lib/pad';
         kleurKnop.addEventListener('click', (gebeurtenis) => {
           gebeurtenis.preventDefault();
           openKleurSleutel = openKleurSleutel === rij.sleutel ? undefined : rij.sleutel;
+          bewerkSleutel = undefined;
           toon();
           const nieuweRij = rijElement(rij.sleutel);
           const doel = openKleurSleutel === undefined ? '.kleur-knop' : '.kleur-staal[aria-pressed="true"]';
@@ -145,9 +284,10 @@ import { pad } from '../lib/pad';
         verwijder.addEventListener('click', (gebeurtenis) => {
           gebeurtenis.preventDefault();
           bewaarLijst(verwijderRij(laadLijst(), rij.sleutel));
+          bewerkSleutel = undefined;
           toon();
         });
-        label.append(kleurKnop, verwijder);
+        label.append(bewerkKnop, kleurKnop, verwijder);
         li.append(label);
         if (openKleurSleutel === rij.sleutel) li.append(maakPalet(rij.sleutel, kleur));
         ul.append(li);
@@ -164,6 +304,7 @@ import { pad } from '../lib/pad';
 
   wisKnop.addEventListener('click', () => {
     bewaarLijst({ items: [], afgevinkt: [] });
+    bewerkSleutel = undefined;
     toon();
   });
 
@@ -176,8 +317,7 @@ import { pad } from '../lib/pad';
     }
   });
 
-  formulier.addEventListener('submit', (gebeurtenis) => {
-    gebeurtenis.preventDefault();
+  function voegToe() {
     const naam = invoer.value.trim();
     if (naam === '') return;
     const aantal = Number(invoerAantal.value);
@@ -188,20 +328,22 @@ import { pad } from '../lib/pad';
     bewaarLijst(lijst);
     invoer.value = '';
     invoer.focus();
+    bewerkSleutel = undefined;
     toon();
+    if (categorieUitLokaleCache === undefined) herkenOpAchtergrond(naam);
+  }
 
-    if (categorieUitLokaleCache !== undefined || apiSleutel.value === '') return;
-    void herkenCategorie(naam, apiSleutel.value)
-      .then((herkendeCategorie) => {
-        if (herkendeCategorie === undefined) {
-          console.warn('Automatische categorisatie gaf geen geldige categorie terug.');
-          return;
-        }
-        bewaarCategorie(naam, herkendeCategorie);
-        bewaarLijst(zetCategorie(laadLijst(), naam, herkendeCategorie));
-        toon();
-      })
-      .catch((fout) => console.warn('Automatische categorisatie is niet gelukt.', fout));
+  formulier.addEventListener('submit', (gebeurtenis) => {
+    gebeurtenis.preventDefault();
+    voegToe();
+  });
+
+  // Enter voegt rechtstreeks toe in plaats van via een formulierverzending: die sluit op iOS het
+  // schermtoetsenbord, waardoor je niet meteen het volgende item kunt typen.
+  invoer.addEventListener('keydown', (gebeurtenis) => {
+    if (gebeurtenis.key !== 'Enter' || gebeurtenis.isComposing) return;
+    gebeurtenis.preventDefault();
+    voegToe();
   });
 
   toon();

@@ -27,7 +27,17 @@ export interface BoodschapRij {
   sleutel: string;
   tekst: string;
   hoeveelheid?: string;
+  /** Het totaal als getal, in `eenheid`; ontbreekt als de rij geen hoeveelheid heeft. */
+  aantal?: number;
+  eenheid?: string;
   categorie: Categorie;
+}
+
+export interface RijWijziging {
+  /** Nieuwe naam. Leeg, weggelaten of gelijk aan de getoonde tekst: de naam blijft zoals hij is. */
+  naam?: string;
+  /** Nieuw totaal in de eenheid van de rij; `null` haalt de hoeveelheid weg; weggelaten: ongewijzigd. */
+  hoeveelheid?: number | null;
 }
 
 export const KLEUREN = ['geel', 'roze', 'blauw'] as const;
@@ -87,6 +97,71 @@ export function verwijderRij(lijst: Boodschappenlijst, sleutel: string): Boodsch
   };
 }
 
+/**
+ * Past de naam en/of het totaal van één rij aan. Een nieuw totaal vervangt alle items achter de rij
+ * door één item; afvinkstatus en kleur verhuizen mee als de rij daardoor een andere sleutel krijgt.
+ */
+export function wijzigRij(
+  lijst: Boodschappenlijst,
+  sleutel: string,
+  wijziging: RijWijziging,
+): { lijst: Boodschappenlijst; sleutel: string } {
+  const betrokken = lijst.items.filter((item) => sleutelVan(item) === sleutel);
+  if (betrokken.length === 0) return { lijst, sleutel };
+  const [rij] = samengevoegd(betrokken);
+  const naam = wijziging.naam?.trim();
+  const hernoemd = naam !== undefined && naam !== '' && naam !== rij.tekst;
+  if (!hernoemd && wijziging.hoeveelheid === undefined) return { lijst, sleutel };
+
+  const hernoem = (item: BoodschapItem): BoodschapItem => {
+    if (!hernoemd) return item;
+    const { meervoud: _meervoud, ...rest } = item;
+    return { ...rest, naam };
+  };
+  const metTotaal = (item: BoodschapItem): BoodschapItem => {
+    const { hoeveelheid: _hoeveelheid, eenheid: _eenheid, ...rest } = item;
+    return wijziging.hoeveelheid == null ? rest : { ...rest, hoeveelheid: wijziging.hoeveelheid, eenheid: rij.eenheid };
+  };
+
+  // Alleen hernoemen: elk item blijft op zijn plek. Een nieuw totaal: het eerste item draagt het, de rest vervalt.
+  let eerste: BoodschapItem | undefined;
+  const items = lijst.items.flatMap((item) => {
+    if (sleutelVan(item) !== sleutel) return [item];
+    if (wijziging.hoeveelheid !== undefined && eerste !== undefined) return [];
+    const vervanger = hernoem(wijziging.hoeveelheid === undefined ? item : metTotaal(item));
+    eerste ??= vervanger;
+    return [vervanger];
+  });
+
+  const nieuweSleutel = eerste === undefined ? sleutel : sleutelVan(eerste);
+  if (nieuweSleutel === sleutel) return { lijst: { ...lijst, items }, sleutel };
+
+  // De rij verhuist naar een andere sleutel. Bestond die al, dan vloeien de rijen samen:
+  // afgevinkt blijft het alleen als beide het waren, en de kleur van de bewerkte rij gaat voor.
+  const doelBestond = lijst.items.some((item) => sleutelVan(item) === nieuweSleutel);
+  const blijftAfgevinkt =
+    lijst.afgevinkt.includes(sleutel) && (!doelBestond || lijst.afgevinkt.includes(nieuweSleutel));
+  const afgevinkt = lijst.afgevinkt.filter((afgevinkteSleutel) => afgevinkteSleutel !== sleutel && afgevinkteSleutel !== nieuweSleutel);
+  if (blijftAfgevinkt) afgevinkt.push(nieuweSleutel);
+  const kleur = lijst.kleuren?.[sleutel] ?? lijst.kleuren?.[nieuweSleutel];
+  const verhuisd = zetKleur(zetKleur({ ...lijst, items, afgevinkt }, sleutel, undefined), nieuweSleutel, kleur);
+  return { lijst: verhuisd, sleutel: nieuweSleutel };
+}
+
+/** Leest een ingetypte hoeveelheid: een getal, `null` voor een leeg veld, `undefined` als het geen geldig getal is. */
+export function leesHoeveelheid(tekst: string): number | null | undefined {
+  const schoon = tekst.trim();
+  if (schoon === '') return null;
+  if (!/^\d+([.,]\d+)?$/.test(schoon)) return undefined;
+  const getal = Number(schoon.replace(',', '.'));
+  return getal > 0 ? getal : undefined;
+}
+
+/** Schrijft een hoeveelheid zoals je hem intypt: met een komma en hooguit twee decimalen. */
+export function hoeveelheidAlsTekst(getal: number): string {
+  return String(Math.round(getal * 100) / 100).replace('.', ',');
+}
+
 export function isKleur(waarde: unknown): waarde is Kleur {
   return typeof waarde === 'string' && KLEUREN.includes(waarde as Kleur);
 }
@@ -127,6 +202,8 @@ function maakRij(sleutel: string, stapel: BoodschapItem): BoodschapRij {
     sleutel,
     tekst,
     hoeveelheid: hoeveelheid !== undefined ? formatteerHoeveelheid(hoeveelheid, toonEenheid) : undefined,
+    aantal: hoeveelheid,
+    eenheid: hoeveelheid !== undefined ? eenheid : undefined,
     categorie: stapel.categorie,
   };
 }

@@ -224,7 +224,7 @@ button.tag { cursor: pointer; }
   padding: 0.7rem 0;
   cursor: pointer;
 }
-.ingredienten input { accent-color: var(--accent); transform: translateY(2px) scale(1.25); }
+.ingredienten input[type="checkbox"] { accent-color: var(--accent); transform: translateY(2px) scale(1.25); }
 .ingredient-naam { flex: 1; }
 .ingredient-hoeveelheid { color: var(--inkt-zacht); font-size: 0.95rem; white-space: nowrap; }
 .ingredienten label:has(input:checked) { opacity: 0.45; }
@@ -409,6 +409,7 @@ main { padding-bottom: 7rem; }
   background-color: color-mix(in srgb, var(--markering) 45%, transparent);
 }
 .ingredienten li[data-kleur] .ingredient-hoeveelheid,
+.ingredienten li[data-kleur] .rij-bewerk-knop,
 .ingredienten li[data-kleur] .rij-verwijder {
   color: color-mix(in srgb, var(--inkt) 75%, transparent);
 }
@@ -455,6 +456,62 @@ main { padding-bottom: 7rem; }
 }
 .kleur-staal[aria-pressed="true"] { outline: 2px solid var(--accent); outline-offset: 2px; }
 .kleur-knop:focus-visible, .kleur-staal:focus-visible { outline: 2px solid var(--accent-donker); outline-offset: 2px; }
+
+/* Naam en aantal van een boodschappenregel bewerken */
+.rij-bewerk-knop {
+  position: relative;
+  align-self: center;
+  flex-shrink: 0;
+  display: flex;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--inkt-zacht);
+  cursor: pointer;
+}
+/* Groter tikvlak dan het potloodje zelf */
+.rij-bewerk-knop::after { content: ''; position: absolute; inset: -0.7rem -0.4rem; }
+.rij-bewerk-knop:hover { color: var(--accent-donker); }
+
+.rij-bewerk { display: flex; flex-direction: column; gap: 0.6rem; padding: 0.7rem 0; }
+.rij-bewerk input {
+  min-width: 0;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #c9d6d0;
+  border-radius: 0.75rem;
+  background: var(--kaart);
+  color: var(--inkt);
+  font: inherit;
+  font-size: 1rem; /* 16px: iOS zoomt niet in bij focus */
+}
+.rij-bewerk input:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+.rij-bewerk input[aria-invalid="true"] { border-color: #c2452d; outline-color: #c2452d; }
+.bewerk-naam { width: 100%; }
+.bewerk-onder { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
+.bewerk-aantal { display: flex; align-items: center; gap: 0.4rem; }
+.rij-bewerk .bewerk-hoeveelheid { width: 4.25rem; padding-inline: 0.4rem; text-align: center; }
+.bewerk-eenheid { color: var(--inkt-zacht); }
+.bewerk-knoppen { display: flex; gap: 0.5rem; }
+.bewerk-stap, .bewerk-annuleer, .bewerk-bewaar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2.4rem;
+  height: 2.4rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--chip);
+  color: var(--accent-donker);
+  font: inherit;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.bewerk-bewaar { background: var(--accent); color: #fff; }
+.bewerk-bewaar:hover { background: var(--accent-donker); }
+.rij-bewerk-knop:focus-visible, .rij-bewerk button:focus-visible { outline: 2px solid var(--accent-donker); outline-offset: 2px; }
 
 /* Kookmodus */
 .kookmodus-start {
