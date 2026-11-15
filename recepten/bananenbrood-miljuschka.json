@@ -20,7 +20,7 @@
   ],
   "stappen": [
     { "tekst": "Verwarm de oven voor op 160 °C (heteluchtoven). Bekleed een cakeblik van 25 cm met bakpapier of vet het goed in.", "duur": 5, "vereist": { "apparaat": "oven", "temperatuur": 160 } },
-    { "tekst": "Meng als eerste {suiker} met de gesmolten {boter} en klop goed door elkaar. Voeg {ei} één voor één toe en meng even door.", "duur": 5 },
+    { "tekst": "Meng als eerste {suiker} met de {boter} en klop deze goed door elkaar. Voeg {ei} één voor één toe en meng even door.", "duur": 5 },
     { "tekst": "Roer {melk} en {vanille} erdoor. Doe {bloem}, {bakingsoda} en {zout} erbij en roer het om. Niet te lang kloppen; als het goed gemengd is, is het voldoende.", "duur": 3 },
     { "tekst": "Prak {banaan} met een vork of pureer ze in een blender. Voeg toe aan het beslag en roer tot het goed verdeeld is. Voeg als laatste {chocola} toe.", "duur": 3 },
     { "tekst": "Stort het beslag in de klaarstaande vorm. Wil je {extra-banaan} gebruiken, snijd deze dan in de lengte doormidden en druk met de bolle kanten in het beslag.", "duur": 2 },
