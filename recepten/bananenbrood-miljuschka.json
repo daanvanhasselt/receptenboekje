@@ -1,0 +1,28 @@
+{
+  "titel": "Bananenbrood (Miljuschka)",
+  "beschrijving": "Smeuïg bananenbrood met cranberry's en geschaafde amandelen. Het beroemde 'beste bananenbrood recept ooit' van Miljuschka.",
+  "personen": 12,
+  "tags": ["oven", "bakken", "zoet"],
+  "bron": "https://miljuschka.nl/het-beste-bananenbrood-recept-ooit/",
+  "ingredienten": [
+    { "id": "boter", "naam": "roomboter", "hoeveelheid": 125, "eenheid": "g", "schaling": "lineair", "categorie": "zuivel-en-eieren", "notitie": "gesmolten" },
+    { "id": "suiker", "naam": "suiker", "hoeveelheid": 200, "eenheid": "g", "schaling": "lineair", "categorie": "overig" },
+    { "id": "ei", "naam": "ei", "meervoud": "eieren", "hoeveelheid": 2, "eenheid": "stuk", "schaling": "stuks", "categorie": "zuivel-en-eieren", "notitie": "maat M" },
+    { "id": "melk", "naam": "halfvolle melk", "hoeveelheid": 60, "eenheid": "ml", "schaling": "lineair", "categorie": "zuivel-en-eieren" },
+    { "id": "vanille", "naam": "vanille-extract", "hoeveelheid": 1, "eenheid": "tl", "schaling": "lineair", "categorie": "overig" },
+    { "id": "banaan", "naam": "rijpe banaan", "meervoud": "rijpe bananen", "hoeveelheid": 3, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit" },
+    { "id": "bloem", "naam": "tarwebloem", "hoeveelheid": 250, "eenheid": "g", "schaling": "lineair", "categorie": "brood-en-bakkerij" },
+    { "id": "bakpoeder", "naam": "bakpoeder", "hoeveelheid": 1, "eenheid": "tl", "schaling": "lineair", "categorie": "brood-en-bakkerij", "notitie": "of baking soda" },
+    { "id": "zout", "naam": "zout", "hoeveelheid": 1, "eenheid": "snuf", "schaling": "vast", "categorie": "kruiden-en-specerijen" },
+    { "id": "amandel", "naam": "amandelschaafsel", "hoeveelheid": 25, "eenheid": "g", "schaling": "lineair", "categorie": "overig" },
+    { "id": "cranberry", "naam": "gedroogde cranberry", "meervoud": "gedroogde cranberry's", "hoeveelheid": 25, "eenheid": "g", "schaling": "lineair", "categorie": "overig" }
+  ],
+  "stappen": [
+    { "tekst": "Verwarm de oven voor op 160 °C hetelucht. Bekleed een cakeblik van 25 cm met bakpapier of vet het goed in.", "duur": 5, "vereist": { "apparaat": "oven", "temperatuur": 160 } },
+    { "tekst": "Mix {suiker} met de gesmolten {boter} en klop goed door elkaar. Voeg {ei} één voor één toe en klop ze goed door de boter-suikermassa. Roer {melk} en {vanille} erdoor.", "duur": 5 },
+    { "tekst": "Doe {bloem}, {bakpoeder} en {zout} erbij en mix dit kort door; niet te lang kloppen, als het goed gemengd is, is het voldoende.", "duur": 2 },
+    { "tekst": "Prak {banaan} met een vork en roer door het beslag tot het goed verdeeld is. Voeg als laatste {cranberry} en {amandel} toe.", "duur": 3 },
+    { "tekst": "Verdeel het beslag in de ingevette vorm en bak het bananenbrood ±55-60 minuten in het midden van de oven, tot een houten prikker er droog uitkomt.", "duur": 2, "wachttijd": 60, "vereist": { "apparaat": "oven", "temperatuur": 160 } },
+    { "tekst": "Laat het brood 10 minuten afkoelen in het blik voordat je het stort.", "duur": 1, "wachttijd": 10 }
+  ]
+}
