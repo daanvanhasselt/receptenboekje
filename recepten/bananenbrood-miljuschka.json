@@ -1,28 +1,30 @@
 {
   "titel": "Bananenbrood (Miljuschka)",
-  "beschrijving": "Smeuïg bananenbrood met cranberry's en geschaafde amandelen. Het beroemde 'beste bananenbrood recept ooit' van Miljuschka.",
-  "personen": 12,
+  "beschrijving": "Het allerlekkerste bananenbrood dat je ooit hebt geproefd! Smeuïg bananenbrood met chocola of noten en een extra banaan op de bovenkant. Het beroemde 'beste bananenbrood recept ooit' van Miljuschka.",
+  "foto": "bananenbrood-miljuschka.jpg",
+  "personen": 10,
   "tags": ["oven", "bakken", "zoet"],
   "bron": "https://miljuschka.nl/het-beste-bananenbrood-recept-ooit/",
   "ingredienten": [
-    { "id": "boter", "naam": "roomboter", "hoeveelheid": 125, "eenheid": "g", "schaling": "lineair", "categorie": "zuivel-en-eieren", "notitie": "gesmolten" },
+    { "id": "boter", "naam": "boter", "hoeveelheid": 125, "eenheid": "g", "schaling": "lineair", "categorie": "zuivel-en-eieren", "notitie": "gesmolten" },
     { "id": "suiker", "naam": "suiker", "hoeveelheid": 200, "eenheid": "g", "schaling": "lineair", "categorie": "overig" },
-    { "id": "ei", "naam": "ei", "meervoud": "eieren", "hoeveelheid": 2, "eenheid": "stuk", "schaling": "stuks", "categorie": "zuivel-en-eieren", "notitie": "maat M" },
-    { "id": "melk", "naam": "halfvolle melk", "hoeveelheid": 60, "eenheid": "ml", "schaling": "lineair", "categorie": "zuivel-en-eieren" },
+    { "id": "ei", "naam": "groot ei", "meervoud": "grote eieren", "hoeveelheid": 2, "eenheid": "stuk", "schaling": "stuks", "categorie": "zuivel-en-eieren" },
+    { "id": "melk", "naam": "melk", "hoeveelheid": 60, "eenheid": "ml", "schaling": "lineair", "categorie": "zuivel-en-eieren" },
     { "id": "vanille", "naam": "vanille-extract", "hoeveelheid": 1, "eenheid": "tl", "schaling": "lineair", "categorie": "overig" },
     { "id": "banaan", "naam": "rijpe banaan", "meervoud": "rijpe bananen", "hoeveelheid": 3, "eenheid": "stuk", "schaling": "stuks", "categorie": "groente-en-fruit" },
-    { "id": "bloem", "naam": "tarwebloem", "hoeveelheid": 250, "eenheid": "g", "schaling": "lineair", "categorie": "brood-en-bakkerij" },
-    { "id": "bakpoeder", "naam": "bakpoeder", "hoeveelheid": 1, "eenheid": "tl", "schaling": "lineair", "categorie": "brood-en-bakkerij", "notitie": "of baking soda" },
+    { "id": "bloem", "naam": "bloem", "hoeveelheid": 250, "eenheid": "g", "schaling": "lineair", "categorie": "brood-en-bakkerij" },
+    { "id": "bakingsoda", "naam": "baking soda", "hoeveelheid": 1, "eenheid": "tl", "schaling": "lineair", "categorie": "brood-en-bakkerij" },
     { "id": "zout", "naam": "zout", "hoeveelheid": 1, "eenheid": "snuf", "schaling": "vast", "categorie": "kruiden-en-specerijen" },
-    { "id": "amandel", "naam": "amandelschaafsel", "hoeveelheid": 25, "eenheid": "g", "schaling": "lineair", "categorie": "overig" },
-    { "id": "cranberry", "naam": "gedroogde cranberry", "meervoud": "gedroogde cranberry's", "hoeveelheid": 25, "eenheid": "g", "schaling": "lineair", "categorie": "overig" }
+    { "id": "chocola", "naam": "gehakte chocola of noten", "hoeveelheid": 1, "eenheid": "handvol", "schaling": "vast", "categorie": "overig" },
+    { "id": "extra-banaan", "naam": "extra banaan voor de bovenkant", "hoeveelheid": 1, "eenheid": "stuk", "schaling": "vast", "categorie": "groente-en-fruit", "notitie": "optioneel" }
   ],
   "stappen": [
-    { "tekst": "Verwarm de oven voor op 160 °C hetelucht. Bekleed een cakeblik van 25 cm met bakpapier of vet het goed in.", "duur": 5, "vereist": { "apparaat": "oven", "temperatuur": 160 } },
-    { "tekst": "Mix {suiker} met de gesmolten {boter} en klop goed door elkaar. Voeg {ei} één voor één toe en klop ze goed door de boter-suikermassa. Roer {melk} en {vanille} erdoor.", "duur": 5 },
-    { "tekst": "Doe {bloem}, {bakpoeder} en {zout} erbij en mix dit kort door; niet te lang kloppen, als het goed gemengd is, is het voldoende.", "duur": 2 },
-    { "tekst": "Prak {banaan} met een vork en roer door het beslag tot het goed verdeeld is. Voeg als laatste {cranberry} en {amandel} toe.", "duur": 3 },
-    { "tekst": "Verdeel het beslag in de ingevette vorm en bak het bananenbrood ±55-60 minuten in het midden van de oven, tot een houten prikker er droog uitkomt.", "duur": 2, "wachttijd": 60, "vereist": { "apparaat": "oven", "temperatuur": 160 } },
-    { "tekst": "Laat het brood 10 minuten afkoelen in het blik voordat je het stort.", "duur": 1, "wachttijd": 10 }
+    { "tekst": "Verwarm de oven voor op 160 °C (heteluchtoven). Bekleed een cakeblik van 25 cm met bakpapier of vet het goed in.", "duur": 5, "vereist": { "apparaat": "oven", "temperatuur": 160 } },
+    { "tekst": "Meng als eerste {suiker} met de gesmolten {boter} en klop goed door elkaar. Voeg {ei} één voor één toe en meng even door.", "duur": 5 },
+    { "tekst": "Roer {melk} en {vanille} erdoor. Doe {bloem}, {bakingsoda} en {zout} erbij en roer het om. Niet te lang kloppen; als het goed gemengd is, is het voldoende.", "duur": 3 },
+    { "tekst": "Prak {banaan} met een vork of pureer ze in een blender. Voeg toe aan het beslag en roer tot het goed verdeeld is. Voeg als laatste {chocola} toe.", "duur": 3 },
+    { "tekst": "Stort het beslag in de klaarstaande vorm. Wil je {extra-banaan} gebruiken, snijd deze dan in de lengte doormidden en druk met de bolle kanten in het beslag.", "duur": 2 },
+    { "tekst": "Bak het bananenbrood ±50-65 minuten in de voorverwarmde oven, tot een houten prikker er droog uitkomt.", "duur": 1, "wachttijd": 60, "vereist": { "apparaat": "oven", "temperatuur": 160 } },
+    { "tekst": "Laat het 10 minuten afkoelen in het blik voordat je het uitstort en verder laat afkoelen. Serveer eventueel met een bol vanille-ijs.", "duur": 1, "wachttijd": 10 }
   ]
 }
